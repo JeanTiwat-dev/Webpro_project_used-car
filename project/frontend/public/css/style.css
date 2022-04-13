@@ -1,0 +1,16 @@
+.dropdown:hover .dropdown-menu {
+    display: block;
+    animation: fadeout 0.5s ease-in-out;
+}
+@keyframes fadeout {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+*{
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Prompt', sans-serif;
+}
