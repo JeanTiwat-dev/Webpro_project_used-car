@@ -193,8 +193,6 @@ export default {
     return {
       username: "",
       password: "",
-      user: [],
-      error: false,
     };
   },
 };
