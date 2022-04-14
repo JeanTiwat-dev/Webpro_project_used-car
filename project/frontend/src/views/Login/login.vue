@@ -38,7 +38,7 @@
 
           <!-- user -->
           <div class="mt-10">
-            <form action="#">
+            <form>
               <div class="flex flex-col mb-5">
                 <label
                   for="email"
@@ -132,7 +132,7 @@
 
               <div class="flex w-full">
                 <button
-                  type="submit"
+                  type="button"
                   class="
                   flex
                   mt-2
