@@ -334,7 +334,7 @@
         <!-- footer form -->
         <div class="flex justify-center items-center mt-6">
           <a
-            href="#"
+            href=""
             target="_blank"
             class="
             inline-flex
