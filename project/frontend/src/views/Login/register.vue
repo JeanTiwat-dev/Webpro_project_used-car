@@ -69,6 +69,7 @@
                   <div class="flex flex-col mb-5 w-full">
                     <div class="flex items-center">
                       <input
+                        v-model="birthdate"
                         class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                         type="text"
                         placeholder="Date of Birth"
@@ -80,15 +81,16 @@
                   <!-- gender -->
                   <div class="flex items-center mb-5 w-full">
                     <select
+                      v-model="gender"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       id="grid-state"
                       type="text"
                       required
                     >
-                      <option value="" selected disabled>Gender</option>
-                      <option value="">Male</option>
-                      <option value="">Female</option>
-                      <option value="">Others</option>
+                      <option value="Gender" selected disabled>Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Others">Others</option>
                     </select>
                   </div>
                 </div>
@@ -97,6 +99,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="flex items-center">
                     <input
+                      v-model="idcard"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="text"
                       placeholder="ID card"
@@ -108,6 +111,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
+                      v-model="address"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="text"
                       placeholder="Address"
@@ -119,6 +123,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="flex items-center">
                     <input
+                      v-model="email"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="email"
                       placeholder="Email"
@@ -130,6 +135,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
+                      v-model="phone"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="text"
                       placeholder="Phone number"
@@ -144,6 +150,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
+                      v-model="username"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 mr-3 pl-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="text"
                       placeholder="Username"
@@ -171,6 +178,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
+                      v-model="password_con"
                       type="password"
                       name="password"
                       class="
@@ -194,8 +202,8 @@
                 </div>
               </div>
 
-              <!-- button -->
-              <!-- button1 -->
+<!-- button -->
+              <!-- next button-->
               <div class="flex w-full" v-show="page">
                 <button
                   type="button"
@@ -237,7 +245,7 @@
                 </button>
               </div>
 
-<!-- button back-->
+              <!-- button back-->
               <div class="flex w-full" v-show="!page">
                 <button
                   type="button"
@@ -279,8 +287,8 @@
                 </button>
               </div>
 
-              <!-- button 2 -->
-              <div class="flex w-full" v-show="!page">
+              <!-- register button -->
+              <div class="flex w-full" v-show="!page" @click="register()">
                 <button
                   type="button"
                   class="
@@ -362,17 +370,51 @@ export default {
   data() {
     return {
       page: true,
+      firstname: '',
+      lastname: '',
+      birthdate: null,
+      gender: 'Gender',
+      idcard: '',
+      email: '',
+      phone: '',
+      username: '',
+      password: '',
+      password_con: '',
+      address: '',
     };
+  },
+  methods: {
+    register() {
+      if (this.password !== this.password_con) {
+        alert('password not matched');
+      } else {
+        axios.post('http://localhost:3000/register',{
+          username: this.username,
+          password: this.password,
+          firstname: this.firstname,
+          lastname: this.lastname,
+          birthdate: this.birthdate,
+          gender: this.gender,
+          idcard: this.idcard,
+          email: this.email,
+          phone: this.phone,
+          address: this.address
+        }).then( _res => {
+          this.$router.push('/login');
+        }).catch(err => {
+          console.log(err.res.data.message);
+        })
+      }
+    }
   }
 };
 </script>
 
 <style>
-select:required:invalid {
+select:required {
   color: #9ca3af;
-  /* by phol */
 }
-option[value=""][disabled] {
+option[value="Gender"][disabled] {
   display: none;
 }
 option {
