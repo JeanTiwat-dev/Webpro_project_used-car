@@ -57,7 +57,7 @@
             <div class="relative mr-20 items-center">
                 <input
                 type="text"
-                class="h-14 w-96 pr-8 pl-5 rounded border-blue-900"
+                class="h-14 w-96 pr-8 pl-5 rounded border border-blue-900"
                 placeholder="Search anything..."
                 />
                 <div class="absolute top-4 right-3">
