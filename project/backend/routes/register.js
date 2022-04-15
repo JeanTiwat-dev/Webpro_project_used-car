@@ -28,15 +28,13 @@ router.post("/register", async function (req, res) {
     if (age >= 20) {
         customer_type = true;
     }
-
+    console.log(firstname, lastname, email, phone, birthdate, idcard, customer_type, address, gender, email, birthdate, idcard);
     const con = await pool.getConnection();
     await con.beginTransaction();
     try {
         const user_data = await con.query(
-            "INSERT INTO USERS (user_name, user_password, user_firstname, user_lastname, user_idcard, user_age, user_phone, user_address, user_email, user_gender, user_birth, customer_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO USERS (user_firstname, user_lastname, user_idcard, user_age, user_phone, user_address, user_email, user_gender, user_birth, customer_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
-                username,
-                password,
                 firstname,
                 lastname,
                 idcard,
@@ -50,7 +48,7 @@ router.post("/register", async function (req, res) {
             ]
         );
         await con.query(
-            "INSERT INTO LOGIN (login_username, login_password, User_user_id ) VALUES (?, ?, ?)",
+            "INSERT INTO LOGIN (login_username, login_password, user_id ) VALUES (?, ?, ?)",
             [username, password, user_data[0].insertId]
         );
         await con.commit();
