@@ -1,59 +1,43 @@
 <template>
   <welcome-layout>
     <div class="min-h-screen">
-    <div class="box-border flex flex-col items-center content-center px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
-
+    <div class="flex flex-col items-center content-center mx-auto text-black md:flex-row">
         <!-- Image -->
-        <div class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
-            <img src="../../public/car.png" class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 ">
+        <div class="relative px-4 mt-3 mb-4 ml-0 mb-0 w-1/2 pl-10">
+            <img src="../../public/car.png" class="p-2 pl-16 pr-20">
         </div>
-
         <!-- Content -->
-        <div class="box-border order-first w-full text-black border-solid mt-20 md:w-1/2 md:pl-10 md:order-none">
-            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+        <div class="w-full text-black w-1/2 pl-10">
+            <h2 class="m-0 text-3xl font-bold text-orange-500">
                  The way it should be 
             </h2>
-            <p class="pt-4 pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+            <p class="pt-4 pb-8 m-0 text-gray-700 text-lg">
                 At CarMax, you can buy online or at your nearest CarMax store. If you purchase in-store, you can still take care of many details from home, including financing and a trade-in offer.
             </p>
-            <ul class="p-0 m-0 leading-6 border-0 border-gray-300">
-                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+            <ul class="p-0 m-0">
+                <li class="relative py-1 pl-0 text-left text-gray-500">
                     <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Do more from home
                 </li>
-                <!-- <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Speed past your competition
-                </li>
-                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Learn the top techniques
-                </li> -->
             </ul>
         </div>
         <!-- End  Content -->
     </div>
-    <div class="box-border flex flex-col items-center content-center px-8 mx-auto mt-2 leading-6 text-black border-0 border-gray-300 border-solid md:mt-20 xl:mt-0 md:flex-row max-w-7xl lg:px-16">
-
+    <div class="flex flex-col items-center content-center px-8 mx-auto mt-2 text-black md:mt-20 xl:mt-0 md:flex-row max-w-7xl px-16">
         <!-- Content -->
         <div class="box-border w-full text-black border-solid md:w-1/2 md:pl-6 xl:pl-32">
-            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl text-orange-500">
                 Love it or return it!
             </h2>
-            <p class="pt-4 pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-10 lg:text-lg">
+            <p class="pt-4 pb-8 m-0 text-gray-700 border-0 border-gray-300 sm:pr-10 lg:text-lg">
                 We give you a full 30 days (up to 1500 miles) to decide if your car is the perfect fit for your life. If it's not, simply bring it back for a full refund. It’s that easy.
             </p>
-            <ul class="p-0 m-0 leading-6 border-0 border-gray-300">
+            <ul class="p-0 m-0">
                 <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
                     <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> 30-day money back (up to 1500 mi.)
                 </li>
-                <!-- <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Detailed analytics for your data
-                </li>
-                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Some awesome integrations
-                </li> -->
             </ul>
         </div>
         <!-- End  Content -->
-
         <!-- Image -->
         <div class="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
             <img src="../../public/car.png" class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32">
@@ -62,7 +46,7 @@
     </div>
 
 <!-- Section 4 -->
-<section class="py-20 bg-gray-50">
+<section class="py-10 bg-gray-50">
   <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
     <div class="flex flex-wrap items-center -mx-3">
       <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
@@ -113,7 +97,6 @@
                             <p class="text-gray-600">UI Design & Front-End Developer</p>
                         </div>
                     </div>
-                    <!-- <blockquote class="mt-8 text-lg text-gray-500">"This is a no-brainer if you want to take your business to the next level. If you are looking for the ultimate toolset, this is it!"</blockquote> -->
                 </div>
                 <div class="flex flex-col items-start justify-start w-full h-auto px-0 mx-0 mb-12 border-l border-r border-transparent lg:w-1/3 lg:mb-0 lg:px-8 lg:mx-8 lg:border-gray-200">
                     <div class="flex items-center justify-center">
@@ -126,9 +109,6 @@
                             <p class="text-gray-600">Database (MySQL)</p>
                         </div>
                     </div>
-                    <!-- <blockquote class="mt-8 text-lg text-gray-500">"Thanks for creating this service. My life is so much
-                        easier.
-                        Thanks for making such a great product."</blockquote> -->
                 </div>
                 <div class="flex flex-col items-start justify-start w-full h-auto lg:w-1/3">
                     <div class="flex items-center justify-center">
@@ -164,9 +144,6 @@ export default {
   },
   // data() {
   //   return {
-  //     loginuser: [],
-  //     allItems: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  //   };
   // },
 };
 </script>

@@ -116,7 +116,7 @@
                 border
                 rounded
                 drop-shadow-xl
-                z-40
+                z-50
                 "
                 style="width: 200px"
                 v-show="menu"
