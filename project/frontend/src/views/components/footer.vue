@@ -1,16 +1,16 @@
 <template>
-    <div class="flex absolute bottom-0" id="app">
+    <div class="flex bottom-0" id="app">
         <footer class="bg-gray-100 text-center lg:text-left">
             <div class="p-6 text-gray-800">
                 <div class="grid lg:grid-cols-2 gap-4">
                 <div class="mb-6 md:mb-0">
-                    <h5 class="font-medium mb-2 uppercase">Footer text</h5>
+                    <h5 class="font-medium mb-2 uppercase">Designed By</h5>
 
-                    <p class="mb-4">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                    aliquam voluptatem veniam, est atque cumque eum delectus sint!
-                    </p>
+                    <ul>
+                        <li>Nattarinee Sawalaksana 62070159</li>
+                        <li>Tiwat Parkpoompisal 63070068</li>
+                        <li>Tiwat Parkpoompisal 63070156</li>
+                    </ul> 
                 </div>
 
                 <div class="mb-6 md:mb-0">
