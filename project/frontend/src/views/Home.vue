@@ -1,49 +1,84 @@
 <template>
   <welcome-layout>
     <div class="min-h-screen">
-    <div class="flex flex-col items-center content-center mx-auto text-black md:flex-row">
+    <!-- Section 3 -->
+<section class="w-full bg-white pt-7 pb-7 md:pt-20 md:pb-24">
+    <div class="box-border flex flex-col items-center content-center px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
+
         <!-- Image -->
-        <div class="relative px-4 mt-3 mb-4 ml-0 mb-0 w-1/2 pl-10">
-            <img src="../../public/car.png" class="p-2 pl-16 pr-20">
+        <div class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
+            <img src="../../public/car.png" class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 ">
         </div>
+
         <!-- Content -->
-        <div class="w-full text-black w-1/2 pl-10">
-            <h2 class="m-0 text-3xl font-bold text-orange-500">
-                 The way it should be 
+        <div class="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
+            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+                Boost Productivity
             </h2>
-            <p class="pt-4 pb-8 m-0 text-gray-700 text-lg">
-                At CarMax, you can buy online or at your nearest CarMax store. If you purchase in-store, you can still take care of many details from home, including financing and a trade-in offer.
+            <p class="pt-4 pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                Build an atmosphere that creates productivity in your organization and your company culture.
             </p>
-            <ul class="p-0 m-0">
-                <li class="relative py-1 pl-0 text-left text-gray-500">
-                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Do more from home
+            <ul class="p-0 m-0 leading-6 border-0 border-gray-300">
+                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Maximize productivity and growth
+                </li>
+                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Speed past your competition
+                </li>
+                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Learn the top techniques
                 </li>
             </ul>
         </div>
         <!-- End  Content -->
     </div>
-    <div class="flex flex-col items-center content-center px-8 mx-auto mt-2 text-black md:mt-20 xl:mt-0 md:flex-row max-w-7xl px-16">
+    <div class="box-border flex flex-col items-center content-center px-8 mx-auto mt-2 leading-6 text-black border-0 border-gray-300 border-solid md:mt-20 xl:mt-0 md:flex-row max-w-7xl lg:px-16">
+
         <!-- Content -->
         <div class="box-border w-full text-black border-solid md:w-1/2 md:pl-6 xl:pl-32">
-            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl text-orange-500">
-                Love it or return it!
+            <h2 class="m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+                Automated Tasks
             </h2>
-            <p class="pt-4 pb-8 m-0 text-gray-700 border-0 border-gray-300 sm:pr-10 lg:text-lg">
-                We give you a full 30 days (up to 1500 miles) to decide if your car is the perfect fit for your life. If it's not, simply bring it back for a full refund. It’s that easy.
+            <p class="pt-4 pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-10 lg:text-lg">
+                Save time and money with our revolutionary services. We are the leaders in the industry.
             </p>
-            <ul class="p-0 m-0">
+            <ul class="p-0 m-0 leading-6 border-0 border-gray-300">
                 <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> 30-day money back (up to 1500 mi.)
+                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Automated task management workflow
+                </li>
+                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Detailed analytics for your data
+                </li>
+                <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                    <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-yellow-300 rounded-full"><span class="text-sm font-bold">✓</span></span> Some awesome integrations
                 </li>
             </ul>
         </div>
         <!-- End  Content -->
+
         <!-- Image -->
         <div class="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
             <img src="../../public/car.png" class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32">
         </div>
     </div>
+</section>
+<section class="text-gray-700 body-font">
+  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Before they sold out
+        <br class="hidden lg:inline-block">readymade gluten
+      </h1>
+      <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
+      <div class="flex justify-center">
+        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
+        <button class="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">Button</button>
+      </div>
     </div>
+    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+      <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600/edf2f7/a5afbd">
+    </div>
+  </div>
+</section>
 
 <!-- Section 4 -->
 <section class="py-10 bg-gray-50">
@@ -129,7 +164,7 @@
     </div>
 </section>
 
-
+</div> 
   </welcome-layout>
 </template>
 

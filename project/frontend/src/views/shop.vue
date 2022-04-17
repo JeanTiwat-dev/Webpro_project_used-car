@@ -1,32 +1,22 @@
 <template>
   <info-layout>
-    <div class="min-h-screen flex grid grid-cols-4 w-5/5 h-2/5 gap-4 p-4 z-0">
-      <div v-for="(item, index) of allItems" :key="`car-card-${index}`">
-        <div class="w-100 flex flex-col bg-gray-200 border rounded shadow-lg drop-shadow-xl relative">
-          <div class="m-0 p-0 border flex-3 rounded">
-            <img src="https://mclaren.scene7.com/is/image/mclaren/765lt-3-1200x1200-1:crop-4x3?wid=1920&hei=1440" alt="my_future_car_gift_by_angel">
-          </div>
-          <div class="flex-1 m-2">
-            Brand:
-          </div>
-          <div class="flex-1 m-2">
-            Price:
-          </div>
-          <div class="flex-1 m-2">
-            My Super Car
-          </div>
-          <div class="card_action absolute text-black">
-            <button>
-              <i class="fa fa-info-circle z-40" style="font-size:40px; border: solid 1px white;border-radius: 100%;"></i>
-            </button>
-          </div>
-          <div class="px-6 pt-4 pb-2">
-            <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-            <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+  <div class="min-h-screen container mt-4 mx-auto" >
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div class="card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200" v-for="(item, index) of allItems" :key="`car-card-${index}`">
+        <div class="m-3">
+          <img class="rounded" src="https://mclaren.scene7.com/is/image/mclaren/765lt-3-1200x1200-1:crop-4x3?wid=1920&hei=1440" alt="my_future_car_gift_by_angel">
+         <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-teal-100 inline rounded-full px-2 mt-3">info</span></button>
+         <h2 class="text-lg mt-2 mb-2">Brand:</h2>
+          <h2 class="text-lg mt-2 mb-2">Price:</h2>
+        <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">BLABLA</p>
+        <div class="px-6 pt-4 pb-2">
+            <span class="inline-block bg-white border rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+            <span class="inline-block bg-white border rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </info-layout>
 </template>
 
@@ -42,19 +32,8 @@ export default {
   data() {
     return {
       loginuser: [],
-      allItems: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      allItems: [0, 0, 0, 0, 0]
     };
   },
 };
 </script>
-<style scoped>
-    .card_action {
-      position: absolute;
-      top: 55.5%;
-      right: 10px;
-    }
-    .card_action button {
-      width: 30px;
-      height: 30px;
-    }
-</style>
