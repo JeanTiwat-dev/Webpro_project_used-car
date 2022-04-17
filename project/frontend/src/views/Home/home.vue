@@ -7,7 +7,7 @@
 
         <!-- Image -->
         <div class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
-            <img src="../../public/car.png" class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 ">
+            <img src="../../../public/car.png" class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 ">
         </div>
 
         <!-- Content -->
@@ -58,7 +58,7 @@
 
         <!-- Image -->
         <div class="box-border relative w-full max-w-md px-4 mt-10 mb-4 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none lg:mb-0 md:w-1/2">
-            <img src="../../public/car.png" class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32">
+            <img src="../../../public/car.png" class="pl-4 sm:pr-10 xl:pl-10 lg:pr-32">
         </div>
     </div>
 </section>
@@ -125,7 +125,7 @@
                 <div class="flex flex-col items-start justify-start w-full h-auto mb-12 lg:w-1/3 lg:mb-0">
                     <div class="flex items-center justify-center">
                         <div class="w-16 h-16 mr-4 overflow-hidden bg-gray-200 rounded-full">
-                            <img src="../../../../develop/angel.jpg" class="object-cover w-full h-full">
+                            <img src="../../../../../develop/angel.jpg" class="object-cover w-full h-full">
                         </div>
                         <div class="flex flex-col items-start justify-center">
                             <h4 class="font-bold text-gray-800">Nattarinee Sawalaksana</h4>
@@ -136,7 +136,7 @@
                 <div class="flex flex-col items-start justify-start w-full h-auto px-0 mx-0 mb-12 border-l border-r border-transparent lg:w-1/3 lg:mb-0 lg:px-8 lg:mx-8 lg:border-gray-200">
                     <div class="flex items-center justify-center">
                         <div class="w-16 h-16 mr-4 overflow-hidden bg-gray-200 rounded-full">
-                            <img src="../../../../develop/jean.jpg" class="object-cover w-full h-full">
+                            <img src="../../../../../develop/jean.jpg" class="object-cover w-full h-full">
                         </div>
                         <div class="flex flex-col items-start justify-center">
                             <h4 class="font-bold text-gray-800">Tiwat Parkpoompisal</h4>
@@ -148,7 +148,7 @@
                 <div class="flex flex-col items-start justify-start w-full h-auto lg:w-1/3">
                     <div class="flex items-center justify-center">
                         <div class="w-16 h-16 mr-4 overflow-hidden bg-gray-200 rounded-full">
-                            <img src="../../../../develop/fah.jpg" class="object-cover w-full h-full">
+                            <img src="../../../../../develop/fah.jpg" class="object-cover w-full h-full">
                         </div>
                         <div class="flex flex-col items-start justify-center">
                             <h4 class="font-bold text-gray-800">Wannasa Chonchoochart</h4>
@@ -170,7 +170,7 @@
 
 <script>
 import axios from "axios";
-import WelcomeLayout from './layouts/welcome.vue'
+import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "Home",

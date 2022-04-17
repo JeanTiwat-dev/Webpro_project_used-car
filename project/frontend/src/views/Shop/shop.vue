@@ -22,7 +22,7 @@
 
 <script>
 import axios from "axios";
-import InfoLayout from './layouts/info.vue'
+import InfoLayout from '../layouts/info.vue'
 // @ is an alias to /src
 export default {
   name: "Home",
