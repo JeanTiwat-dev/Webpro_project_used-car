@@ -1,34 +1,12 @@
 <template>
-    <div class="flex absolute bottom-0" id="app">
-        <footer class="bg-gray-100 text-center lg:text-left">
-            <div class="p-6 text-gray-800">
-                <div class="grid lg:grid-cols-2 gap-4">
-                <div class="mb-6 md:mb-0">
-                    <h5 class="font-medium mb-2 uppercase">Footer text</h5>
-
-                    <p class="mb-4">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                    aliquam voluptatem veniam, est atque cumque eum delectus sint!
-                    </p>
-                </div>
-
-                <div class="mb-6 md:mb-0">
-                    <h5 class="font-medium mb-2 uppercase">Footer text</h5>
-
-                    <p class="mb-4">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                    aliquam voluptatem veniam, est atque cumque eum delectus sint!
-                    </p>
-                </div>
-                </div>
-            </div>
-
-            <div class="text-center text-gray-700 p-4" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2022 Copyright:
-                <a class="text-gray-800" href="#">Used Car Project</a>
-            </div>
-        </footer>
+    <!-- <div class="flex bottom-0 items-center" id="app">
+        <footer class="bg-gray-100 text-center lg:text-left"> -->
+    <div class="max-w-screen-xl px-4 py-3 mx-auto overflow-hidden">
+        <div class="flex justify-center mt-8">
+            
+        </div>
+        <p class="text-base text-center text-gray-400">
+            © 2022 Used Car Project, Inc. All rights reserved.
+        </p>
     </div>
 </template>
