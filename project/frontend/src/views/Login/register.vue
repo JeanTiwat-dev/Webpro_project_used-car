@@ -370,7 +370,6 @@ export default {
 <style>
 select:required:invalid {
   color: #9ca3af;
-  /* by phol */
 }
 option[value=""][disabled] {
   display: none;
