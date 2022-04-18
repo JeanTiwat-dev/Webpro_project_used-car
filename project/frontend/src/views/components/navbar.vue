@@ -116,35 +116,31 @@
                 "
                 style="width: 200px"
                 v-show="menu"
-            >
+            > 
                 <li class="">
-                <a
-                    class="
-                    rounded-t
-                    bg-white
-                    hover:bg-gray-200
-                    py-2
-                    px-4
-                    block
-                    whitespace-no-wrap
-                    "
-                    href="/login"
-                    >Login</a
-                >
+                    <router-link to="/login" class="
+                            rounded-t
+                            bg-white
+                            hover:bg-gray-200
+                            py-2
+                            px-4
+                            block
+                            whitespace-no-wrap
+                            ">
+                            Login
+                    </router-link>
                 </li>
                 <li class="">
-                <a
-                    class="
+                <router-link to="/register" class="
                     bg-white
                     hover:bg-gray-200
                     py-2
                     px-4
                     block
                     whitespace-no-wrap
-                    "
-                    href="/register"
-                    >Register</a
-                >
+                    ">
+                    Register
+                </router-link>
                 </li>
             </ul>
             </div>

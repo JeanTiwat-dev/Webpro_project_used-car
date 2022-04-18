@@ -132,6 +132,7 @@
 
               <div class="flex w-full">
                 <button
+                  @click="login()"
                   type="button"
                   class="
                   flex
@@ -151,7 +152,7 @@
                   ease-in
                 "
                 >
-                  <span class="mr-2 uppercase">sign in</span>
+                  <span class="mr-2 uppercase" >sign in</span>
                   <span>
                     <svg
                       class="h-6 w-6"
@@ -209,6 +210,22 @@ export default {
       username: "",
       password: ""
     };
+  },
+  methods: {
+    login() {
+      axios.post('http://localhost:3000/goto', {
+        username: this.username,
+        password: this.password
+      }).then( res => {
+        if ( res.data == 'error') {
+          alert('Username or Password incorrect!');
+        } else {
+          localStorage.setItem( 'user_account', JSON.stringify(_res.data))
+          this.$router.push({ name : 'home'})
+        }
+      }).catch(err => console.log(err))
+      
+    }
   }
 };
 </script>
