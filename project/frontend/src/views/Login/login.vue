@@ -1,4 +1,5 @@
 <template>
+<welcome-layout>
   <div id="app">
     <!-- component -->
     <div class="min-h-screen flex items-center justify-center bg-gray-100">
@@ -189,8 +190,8 @@
           >
             <span class="ml-2"
               >You don't have an account?
-              <a href="#" class="text-sm ml-2 text-orange-500 font-semibold"
-                >Register now</a
+              <router-link to="/register" class="text-sm ml-2 text-orange-500 font-semibold"
+                >Register now</router-link
               ></span
             >
           </a>
@@ -198,13 +199,18 @@
       </div>
     </div>
   </div>
+  </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
+import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "login",
+  components :{
+    WelcomeLayout
+  },
   data() {
     return {
       username: "",

@@ -8,20 +8,22 @@
             border border-2
             bg-white
             p-2
-            px-20
+            px-10
         "
         >
+        <router-link to="/">
         <div class="flex items-center text-blue-900 m-6 mr-6">
+            
             <!-- <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg> -->
             <i class="fas fa-car mr-6 text-2xl"></i>
             <span class="font-bold text-2xl text-blue-900 tracking-tight"
             >Used Car Project</span
             >
-        </div>
+        </div></router-link>
         <div class="w-full block flex-grow flex items-center w-auto">
             <div class="text-l flex-grow">
-            <a
-                href="#"
+            <router-link
+                to="/shop"
                 class="
                 block
                 mt-4
@@ -34,10 +36,10 @@
                 ml-8
                 focus:text-orange-500
                 "
-                >Shop</a
+                >Shop</router-link
             >
-            <a
-                href="#"
+            <router-link
+                to="/sell"
                 class="
                 block
                 mt-4
@@ -50,11 +52,11 @@
                 ml-8
                 focus:text-orange-500
                 "
-                >Sell</a
+                >Sell</router-link
             >
             </div>
-            <div>
-            <div class="relative mr-20 items-center">
+            
+            <div class="relative m-2 mx-5 mr-20 items-center">
                 <input
                 type="text"
                 class="h-14 w-96 pr-8 pl-5 rounded border border-blue-900"
@@ -66,7 +68,7 @@
                 ></i>
                 </div>
             </div>
-            </div>
+            
             <div
             class="dropdown inline-block relative"
             @mouseover="menu = true"
@@ -111,37 +113,29 @@
                 absolute
                 text-gray-700
                 right-10
+                border
                 rounded
-                drop-shadow-lg
+                drop-shadow-xl
+                z-50
                 "
                 style="width: 200px"
                 v-show="menu"
             > 
                 <li class="">
-                    <router-link to="/login" class="
-                            rounded-t
-                            bg-white
-                            hover:bg-gray-200
-                            py-2
-                            px-4
-                            block
-                            whitespace-no-wrap
-                            ">
-                            Login
-                    </router-link>
-                </li>
-                <li class="">
-                <router-link to="/register" class="
+                <router-link to="/login"
+                    class="
+                    rounded-t
                     bg-white
                     hover:bg-gray-200
                     py-2
                     px-4
                     block
                     whitespace-no-wrap
-                    ">
-                    Register
-                </router-link>
+                    "
+                    >Login
+                    </router-link>
                 </li>
+                
             </ul>
             </div>
         </div>
