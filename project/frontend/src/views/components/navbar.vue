@@ -120,7 +120,7 @@
                 "
                 style="width: 200px"
                 v-show="menu"
-            >
+            > 
                 <li class="">
                 <router-link to="/login"
                     class="
