@@ -3,7 +3,7 @@ const pool = require("../config");
 
 router = express.Router();
 
-router.get("/", async function (req, res, next) {
+router.get("/", async function (_req, res, next) {
   try {
     const [rows, fields] = await pool.query(
       `SELECT a.*, b.file_path FROM blogs AS a LEFT JOIN 
