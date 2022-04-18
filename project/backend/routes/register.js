@@ -1,10 +1,9 @@
 const express = require("express");
-const { listeners } = require("process");
 const pool = require("../config");
 
 const router = express.Router();
 
-router.post("/register", async function (req, res) {
+router.post("/register", async function (req, res, next) {
     let username = req.body.username;
     let password = req.body.password;
     let firstname = req.body.firstname;
@@ -28,12 +27,11 @@ router.post("/register", async function (req, res) {
     if (age >= 20) {
         customer_type = true;
     }
-    console.log(firstname, lastname, email, phone, birthdate, idcard, customer_type, address, gender, email, birthdate, idcard);
     const con = await pool.getConnection();
     await con.beginTransaction();
     try {
         const user_data = await con.query(
-            "INSERT INTO USERS (user_firstname, user_lastname, user_idcard, user_age, user_phone, user_address, user_email, user_gender, user_birth, customer_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO Users (user_firstname, user_lastname, user_idcard, user_age, user_phone, user_address, user_email, user_gender, user_birth, customer_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 firstname,
                 lastname,
@@ -48,14 +46,14 @@ router.post("/register", async function (req, res) {
             ]
         );
         await con.query(
-            "INSERT INTO LOGIN (login_username, login_password, user_id ) VALUES (?, ?, ?)",
+            "INSERT INTO Login (login_username, login_password, user_id ) VALUES (?, ?, ?)",
             [username, password, user_data[0].insertId]
         );
         await con.commit();
         res.json('success');
     } catch (error) { 
         await con.rollback();
-        res.json(error);
+        next(error);
     }
 });
 

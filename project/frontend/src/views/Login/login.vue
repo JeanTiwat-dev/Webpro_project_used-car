@@ -1,4 +1,5 @@
 <template>
+<welcome-layout>
   <div id="app">
     <!-- component -->
     <div class="min-h-screen flex items-center justify-center bg-gray-100">
@@ -132,6 +133,7 @@
 
               <div class="flex w-full">
                 <button
+                  @click="login()"
                   type="button"
                   class="
                   flex
@@ -151,7 +153,7 @@
                   ease-in
                 "
                 >
-                  <span class="mr-2 uppercase">sign in</span>
+                  <span class="mr-2 uppercase" >sign in</span>
                   <span>
                     <svg
                       class="h-6 w-6"
@@ -188,8 +190,8 @@
           >
             <span class="ml-2"
               >You don't have an account?
-              <a href="#" class="text-sm ml-2 text-orange-500 font-semibold"
-                >Register now</a
+              <router-link to="/register" class="text-sm ml-2 text-orange-500 font-semibold"
+                >Register now</router-link
               ></span
             >
           </a>
@@ -197,18 +199,39 @@
       </div>
     </div>
   </div>
+  </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
+import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "login",
+  components :{
+    WelcomeLayout
+  },
   data() {
     return {
       username: "",
       password: ""
     };
+  },
+  methods: {
+    login() {
+      axios.post('http://localhost:3000/goto', {
+        username: this.username,
+        password: this.password
+      }).then( res => {
+        if ( res.data == 'error') {
+          alert('Username or Password incorrect!');
+        } else {
+          localStorage.setItem( 'user_account', JSON.stringify(_res.data))
+          this.$router.push({ name : 'home'})
+        }
+      }).catch(err => console.log(err))
+      
+    }
   }
 };
 </script>
