@@ -226,7 +226,7 @@ export default {
         if ( res.data == 'error') {
           alert('Username or Password incorrect!');
         } else {
-          localStorage.setItem( 'user_account', JSON.stringify(_res.data))
+          localStorage.setItem( 'user_account', JSON.stringify(res.data))
           this.$router.push({ name : 'home'})
         }
       }).catch(err => console.log(err))

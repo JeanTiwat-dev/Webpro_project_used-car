@@ -5,13 +5,12 @@ const router = express.Router();
 router.post('/goto', async function(req, res, next) {
     let username = req.body.username;
     let password = req.body.password;
-    // console.log("success");
     const login = await pool.query(
-        'SELECT user_id FROM Login  WHERE login_username = ?', [
+        'SELECT user_id, login_password FROM Login  WHERE login_username = ?', [
             username
         ]
     )
-    if (login[0][0].user_id == undefined) {
+    if (login[0][0].user_id == undefined || login[0][0].login_password != password) {
         console.log(login[0][0]);
         res.json('error');
     } else {
