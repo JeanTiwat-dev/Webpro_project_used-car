@@ -1,5 +1,4 @@
 <template>
-  <welcome-layout>
     <div class="min-h-screen">
     <!-- Section 3 -->
 <section class="w-full bg-white pt-7 pb-7 md:pt-20 md:pb-24">
@@ -108,7 +107,6 @@
     </div>
   </div>
 </section>
-
 <!-- Section 5 -->
 <section class="flex items-center justify-center py-20 bg-white min-w-screen">
     <div class="px-16 bg-white">
@@ -164,19 +162,15 @@
     </div>
 </section>
 
+
 </div> 
-  </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
-import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "Home",
-  components :{
-    WelcomeLayout
-  },
   // data() {
   //   return {
   // },

@@ -16,7 +16,7 @@
             
             <i class="fas fa-car mr-6 text-2xl"></i>
             <span class="font-bold text-2xl text-blue-900 tracking-tight"
-            >Used Car Project</span
+            >Car247</span
             >
         </div></router-link>
         <div class="w-full block flex-grow flex items-center w-auto">
@@ -115,7 +115,7 @@
                 border
                 rounded
                 drop-shadow-xl
-                z-50
+                z-40
                 "
                 style="width: 200px"
                 v-show="menu"
