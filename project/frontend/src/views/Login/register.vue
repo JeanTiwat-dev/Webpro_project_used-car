@@ -1,5 +1,4 @@
 <template>
-<welcome-layout>
   <div id="app">
     <!-- component -->
     <div class="min-h-screen flex items-center justify-center bg-gray-100">
@@ -361,7 +360,6 @@
       </div>
     </div>
   </div>
-  </welcome-layout>
 </template>
 
 <script>
@@ -370,9 +368,6 @@ import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "register",
-  components :{
-    WelcomeLayout
-  },
   
   data() {
     return {

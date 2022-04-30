@@ -4,7 +4,7 @@
             
         </div>
         <p class="text-base text-center text-gray-400">
-            © 2022 Used Car Project, Inc. All rights reserved.
+            © 2022 Car247, Inc. All rights reserved.
         </p>
     </div>
 </template>
