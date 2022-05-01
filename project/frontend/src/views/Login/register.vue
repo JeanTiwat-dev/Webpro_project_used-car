@@ -66,7 +66,7 @@
 
                 <!--PAGE1 birth gender -->
                 <div class="flex">
-                  <!-- dath of birth -->
+                  <!-- date of birth -->
                   <div class="flex flex-col mb-5 w-full">
                     <div class="flex items-center">
                       <input
@@ -203,7 +203,7 @@
                 </div>
               </div>
 
-<!-- button -->
+              <!-- button -->
               <!-- next button-->
               <div class="flex w-full" v-show="page">
                 <button
@@ -225,7 +225,7 @@
                   duration-150
                   ease-in
                 "
-                @click="page = false"
+                  @click="page = false"
                 >
                   <span class="mr-2 uppercase">next</span>
                   <span>
@@ -246,11 +246,13 @@
                 </button>
               </div>
 
-              <!-- button back-->
-              <div class="flex w-full" v-show="!page">
-                <button
-                  type="button"
-                  class="
+              <!-- button back/register -->
+              <div class="grid grid-cols-2 gap-2">
+                <!-- button back-->
+                <div class="flex w-full" v-show="!page">
+                  <button
+                    type="button"
+                    class="
                   flex
                   mt-2
                   items-center
@@ -258,8 +260,8 @@
                   focus:outline-none
                   text-white text-sm
                   sm:text-base
-                  bg-orange-500
-                  hover:bg-orange-600
+                  bg-gray-400
+                  hover:bg-gray-500
                   rounded-3xl
                   py-3
                   w-full
@@ -267,32 +269,32 @@
                   duration-150
                   ease-in
                 "
-                @click="page = true"
-                >
-                  <span class="mr-2 uppercase">back</span>
-                  <span>
-                    <svg
-                      class="h-6 w-6"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
+                    @click="page = true"
+                  >
+                    <span>
+                      <svg
+                        class="h-6 w-6 rotate-180"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="ml-2 uppercase ">back</span>
+                  </button>
+                </div>
 
-              <!-- register button -->
-              <div class="flex w-full" v-show="!page" @click="register()">
-                <button
-                  type="button"
-                  class="
+                <!-- register button -->
+                <div class="flex w-full" v-show="!page" @click="register()">
+                  <button
+                    type="button"
+                    class="
                   flex
                   mt-2
                   items-center
@@ -309,24 +311,25 @@
                   duration-150
                   ease-in
                 "
-                >
-                  <span class="mr-2 uppercase">Register</span>
-                  <span>
-                    <svg
-                      class="h-6 w-6"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </span>
-                </button>
+                  >
+                    <span class="mr-2 uppercase">Register</span>
+                    <span>
+                      <svg
+                        class="h-6 w-6"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
               </div>
             </form>
           </div>
@@ -355,9 +358,27 @@
         </div>
       </div>
 
-      <!-- Description -->
+      <!-- Description right side -->
       <div class="px-10">
         <p>Why create a MyCarMax account?</p>
+        <div class="">
+          <div class="flex items-center">
+            <img src="https://www.carmax.com/mycarmax/img/saved-searches.svg" alt="">
+            <p>Access saved cars and searches</p>
+          </div>
+          <div class="flex items-center">
+            <img src="https://www.carmax.com/mycarmax/img/saved-cars.svg" alt="">
+            <p>Compare your favorites</p>
+          </div>
+          <div class="flex items-center">
+            <img src="https://www.carmax.com/mycarmax/img/car-alerts.svg" alt="">
+            <p>Set up new inventory alerts</p>
+          </div>
+          <div class="flex items-center">
+            <img src="https://www.carmax.com/mycarmax/img/account.svg" alt="">
+            <p>Make car payments and manage finance account</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -373,40 +394,43 @@ export default {
   data() {
     return {
       page: true,
-      firstname: '',
-      lastname: '',
+      firstname: "",
+      lastname: "",
       birthdate: null,
-      gender: 'Gender',
-      idcard: '',
-      email: '',
-      phone: '',
-      username: '',
-      password: '',
-      password_con: '',
-      address: '',
+      gender: "Gender",
+      idcard: "",
+      email: "",
+      phone: "",
+      username: "",
+      password: "",
+      password_con: "",
+      address: ""
     };
   },
   methods: {
     register() {
       if (this.password !== this.password_con) {
-        alert('password not matched');
+        alert("password not matched");
       } else {
-        axios.post('http://localhost:3000/register',{
-          username: this.username,
-          password: this.password,
-          firstname: this.firstname,
-          lastname: this.lastname,
-          birthdate: this.birthdate,
-          gender: this.gender,
-          idcard: this.idcard,
-          email: this.email,
-          phone: this.phone,
-          address: this.address
-        }).then( _res => {
-          this.$router.push('/login');
-        }).catch(err => {
-          console.log(err.res.data.message);
-        })
+        axios
+          .post("http://localhost:3000/register", {
+            username: this.username,
+            password: this.password,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            birthdate: this.birthdate,
+            gender: this.gender,
+            idcard: this.idcard,
+            email: this.email,
+            phone: this.phone,
+            address: this.address
+          })
+          .then(_res => {
+            this.$router.push("/login");
+          })
+          .catch(err => {
+            console.log(err.res.data.message);
+          });
       }
     }
   }
@@ -424,5 +448,3 @@ option {
   color: #000;
 }
 </style>
-
-

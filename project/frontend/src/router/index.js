@@ -33,7 +33,13 @@ const routes = [
     path: "/sell",
     name: "addproduct",
     component: () => import("../views/seller/addproduct.vue")
-  }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: () => import("../views/Profile/editprofile.vue")
+  },
+
 ];
 
 const router = new VueRouter({
