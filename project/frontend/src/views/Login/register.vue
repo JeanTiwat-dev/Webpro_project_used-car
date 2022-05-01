@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- component -->
-    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20">
       <!-- card -->
       <div>
         <div
@@ -13,9 +13,10 @@
           sm:px-6
           md:px-8
           lg:px-10
-          py-16
+          py-5
           rounded-xl
           max-w-md
+          mt-6
         "
         >
           <!-- form -->

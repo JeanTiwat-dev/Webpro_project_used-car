@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- component -->
-    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20">
       <!-- pic logo -->
       <div class="px-10">
         <img

@@ -10,10 +10,6 @@
          <h2 class="text-lg mt-2 mb-2">Brand:</h2>
           <h2 class="text-lg mt-2 mb-2">Price:</h2>
         <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">BLABLA</p>
-        <div class="px-6 pt-4 pb-2">
-            <span class="inline-block bg-white border rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-            <span class="inline-block bg-white border rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-          </div>
         </div>
       </div>
   
