@@ -1,8 +1,7 @@
 <template>
-  <welcome-layout>
   <div id="app">
     <!-- component -->
-    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20 pb-20">
       <!-- card -->
       <div>
         <div
@@ -13,9 +12,10 @@
             sm:px-6
             md:px-8
             lg:px-10
-            py-10
+            py-5
             rounded-xl
             max-w-2xl
+            mt-10
           "
         >
           <div
@@ -24,7 +24,7 @@
             Addproduct
           </div>
           <!-- form -->
-          <div class="mt-10">
+          <div class="mt-14">
             <form>
               <!-- page1 -->
               <div v-show="page">
@@ -673,18 +673,13 @@
       </div>
     </div>
   </div>
-    </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
-import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "addproduct",
-  components :{
-    WelcomeLayout
-  },
   data() {
     return {
       page: true,

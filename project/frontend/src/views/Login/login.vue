@@ -1,8 +1,7 @@
 <template>
-<welcome-layout>
   <div id="app">
     <!-- component -->
-    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20">
       <!-- pic logo -->
       <div class="px-10">
         <img
@@ -199,18 +198,14 @@
       </div>
     </div>
   </div>
-  </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
-import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "login",
-  components :{
-    WelcomeLayout
-  },
+  
   data() {
     return {
       username: "",
@@ -226,7 +221,7 @@ export default {
         if ( res.data == 'error') {
           alert('Username or Password incorrect!');
         } else {
-          localStorage.setItem( 'user_account', JSON.stringify(_res.data))
+          localStorage.setItem( 'user_account', JSON.stringify(res.data))
           this.$router.push({ name : 'home'})
         }
       }).catch(err => console.log(err))

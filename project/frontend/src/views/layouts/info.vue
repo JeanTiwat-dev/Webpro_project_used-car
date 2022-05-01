@@ -1,33 +1,25 @@
 <template>
-  <div id="app">
-    <Navbar />
+  <div class="pt-20 pb-20" id="app">
     <div class="w-full grid grid-cols-12">
-        <div class="col-start-1 col-end-4 mt-2 text-center text-bold border-2 border-blue-900 m-2">
-            <div class="row">Sort By</div>
-            <p>- PRICE</p>
-            <p>- Kilometers</p>
-            <div class="row">Filter By Brand</div>
-            <div class="row">Filter By Color</div>
-            <div class="row">Filter By car type</div>
-            <div class="row">Filter By Price Range</div>
-            <div class="row">Filter By Kilometers Range</div>
+        <div class="col-start-1 col-end-4 text-center text-bold grid grid-cols-1 divide-y">
+            <div class="bg-white rounded shadow border p-6 w-full mt-9">
+              <h5 class="text-2xl font-bold mb-4 mt-0">Sort by</h5><hr>
+              <p class="text-gray-700 text-m mt-2">Content goes here</p>
+        </div>
+          <div class="bg-white rounded shadow border p-6 w-full mt-2">
+              <h5 class="text-2xl font-bold mb-4 mt-0">Filter by</h5><hr>
+              <p class="text-gray-700 text-m mt-2">Content goes here</p>
+        </div>
         </div>
         <div class="col-start-4 col-end-13">
             <slot/>
         </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
-import navbar from "../components/navbar.vue";
-import footer from "../components/footer.vue";
 export default {
   name: "DefaultLayout",
-  components :{
-    Navbar : navbar,
-    Footer : footer
-  },
 };
 </script>
