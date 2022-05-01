@@ -1,64 +1,85 @@
 <template>
-    <div class="w-full" id="app">
-        <nav
+  <div class="w-full" id="app">
+    <section class="w-full px-8 text-gray-700 bg-white fixed top-0 h-20 z-40">
+      <div
         class="
-            flex
-            items-center
-            justify-between
-            border border-2
-            bg-white
-            p-2
-            px-10
+          container
+          flex flex-col flex-wrap
+          items-center
+          justify-between
+          py-5
+          mx-auto
+          md:flex-row
+          max-w-7xl
         "
-        >
-        <router-link to="/">
-        <div class="flex items-center text-blue-900 m-6 mr-6">
-            
-            <i class="fas fa-car mr-6 text-2xl"></i>
-            <span class="font-bold text-2xl text-blue-900 tracking-tight"
-            >Car247</span
+      >
+        <div class="relative flex flex-col md:flex-row">
+          <router-link
+            to="/"
+            class="
+              flex
+              items-center
+              mb-5
+              font-medium
+              text-gray-900
+              lg:w-auto lg:items-center lg:justify-center
+              md:mb-0
+            "
+          >
+            <span
+              class="
+                mx-auto
+                text-xl
+                font-blue-900
+                leading-none
+                text-gray-900
+                select-none
+              "
+              ><i class="fas fa-car mr-6 font-blue-900 text-2xl"></i
+            ></span>
+            <span class="font-bold text-2xl text-orange-500 tracking-tight"
+              >Car247</span
             >
-        </div></router-link>
-        <div class="w-full block flex-grow flex items-center w-auto">
-            <div class="text-l flex-grow">
+          </router-link>
+          <nav
+            class="
+              flex flex-wrap
+              items-center
+              mb-5
+              text-base
+              md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200
+            "
+          >
             <router-link
-                to="/shop"
-                class="
-                block
-                mt-4
-                inline-block
-                mt-0
-                font-semibold
-                text-blue-900
-                hover:text-blue-700
-                p-6
-                ml-8
-                focus:text-orange-500
-                "
-                >Shop</router-link
+              to="/shop"
+              class="
+                mr-10
+                font-medium
+                leading-6
+                text-gray-600
+                hover:text-gray-900
+                focus:text-blue-900
+              "
+              ><b>shop</b></router-link
             >
             <router-link
-                to="/sell"
-                class="
-                block
-                mt-4
-                inline-block
-                mt-0
-                font-semibold
-                text-blue-900
-                hover:text-blue-700
-                p-6
-                ml-8
-                focus:text-orange-500
-                "
-                >Sell</router-link
+              to="/sell"
+              class="
+                mr-10
+                font-medium
+                leading-6
+                text-gray-600
+                hover:text-gray-900
+                focus:text-blue-900
+              "
+              ><b>sell car</b></router-link
             >
-            </div>
-            
-            <div class="relative m-2 mx-5 mr-20 items-center">
+          </nav>
+        </div>
+        <!-- <div class="relative items-center">
                 <input
                 type="text"
-                class="h-14 w-96 pr-8 pl-5 rounded border border-blue-900"
+                class="h-14 w-96 pr-8 pl-5 rounded border border-gray-200 focus:outline-none focus:border-orange-200 focus:ring-1 focus:ring-orange-200"
                 placeholder="Search anything..."
                 />
                 <div class="absolute top-4 right-3">
@@ -66,87 +87,62 @@
                     class="fa fa-search text-gray-400 z-20 hover:text-gray-500"
                 ></i>
                 </div>
-            </div>
-            
-            <div
-            class="dropdown inline-block relative"
-            @mouseover="menu = true"
-            @mouseleave="menu = false"
-            >
-            <div class="rounded-full">
-                <button
-                type="button"
-                class="
-                    text-blue-900
-                    font-medium
-                    rounded
-                    text-sm
-                    px-4
-                    py-4
-                    text-center
-                    mr-2
-                    mb-2
-                    mr-8
-                    hover:bg-indigo-200 hover:opacity-75 hover:rounded-full
-                "
-                >
-                <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    ></path>
-                </svg>
-                </button>
-            </div>
-            <ul
-                class="
-                dropdown-menu
-                absolute
-                text-gray-700
-                right-10
-                border
-                rounded
-                drop-shadow-xl
-                z-40
-                "
-                style="width: 200px"
-                v-show="menu"
-            > 
-                <li class="">
-                <router-link to="/login"
-                    class="
-                    rounded-t
-                    bg-white
-                    hover:bg-gray-200
-                    py-2
-                    px-4
-                    block
-                    whitespace-no-wrap
-                    "
-                    >Login
-                    </router-link>
-                </li>
-                
-            </ul>
-            </div>
+            </div> -->
+
+        <div class="inline-flex items-center ml-5 space-x-6 lg:justify-end">
+          <router-link
+            to="/register"
+            class="
+              text-base
+              font-medium
+              leading-6
+              text-gray-600
+              whitespace-no-wrap
+              transition
+              duration-150
+              ease-in-out
+              hover:text-gray-900
+            "
+          >
+            Sign up
+          </router-link>
+          <router-link
+            to="/login"
+            class="
+              inline-flex
+              items-center
+              justify-center
+              px-4
+              py-2
+              text-base
+              font-medium
+              leading-6
+              text-white
+              whitespace-no-wrap
+              bg-orange-500
+              border border-transparent
+              rounded-md
+              shadow-sm
+              hover:bg-orange-200
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-indigo-600
+            "
+          >
+            Sign in
+          </router-link>
         </div>
-        </nav>
-    </div>
-    </template>
+      </div>
+    </section>
+  </div>
+</template>
     <script>
-    export default {
-    data() {
-        return {
-        menu: false,
-        };
-    },
+export default {
+  data() {
+    return {
+      menu: false,
     };
+  },
+};
 </script>

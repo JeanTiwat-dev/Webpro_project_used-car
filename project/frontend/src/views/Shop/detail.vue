@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto pt-20 pb-20">
     <div class="carousel relative shadow-2xl bg-white w-full mt-4">
       <div class="carousel-inner relative overflow-hidden">
         <div v-for="(carousel, index) of carouselItems" :key="`carousel-item-${index}`">
@@ -11,31 +11,19 @@
           <label :for="carousel.next" :class="`next control-${index + 1} w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto`">›</label>
         </div>
 
-        <!-- Add additional indicators for each slide-->
-        <ol class="carousel-indicators">
-          <li class="inline-block mr-3">
-            <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-black hover:text-blue-700">•</label>
-          </li>
-          <li class="inline-block mr-3">
-            <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-black hover:text-blue-700">•</label>
-          </li>
-          <li class="inline-block mr-3">
-            <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-black hover:text-blue-700">•</label>
-          </li>
-        </ol>
       </div>
     </div>
-    <div class="mt-10 text-center">
-      price
+    <div class="mt-10 text-center bg-gray-100 p-2 w-30 h-10">
+      200,000 ฿
     </div>
     <div>
-      <div class="rounded-full w-1/2 mx-auto mt-10">
+      <div class="w-1/2 mx-auto mt-10">
         <!-- Tabs -->
-        <ul id="tabs" class="inline-flex w-full grid grid-cols-2 border-b">
+        <ul id="tabs" class="w-full grid grid-cols-2 border-b">
           <li
             v-for="(item, index) of tabPageItems"
             :key="`tab-item-${index}`"
-            :class="`px-4 text-black font-bold rounded-t ${tabPage === item.key ? '-mb-px bg-orange-500' : ''}`"
+            :class="`px-4 text-black font-bold rounded-t cursor-pointer ${tabPage === item.key ? '-mb-px bg-orange-500' : ''}`"
             @click="tabPage = item.key"
           >
             <span>{{ item.title }}</span>
