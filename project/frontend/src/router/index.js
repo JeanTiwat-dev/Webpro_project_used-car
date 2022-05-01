@@ -15,6 +15,11 @@ const routes = [
     component: () => import("../views/Shop/shop.vue")
   },
   {
+    path: "/detail",
+    name: "detail",
+    component: () => import("../views/Shop/detail.vue")
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("../views/Login/login.vue")
@@ -28,7 +33,13 @@ const routes = [
     path: "/sell",
     name: "addproduct",
     component: () => import("../views/seller/addproduct.vue")
-  }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: () => import("../views/Profile/editprofile.vue")
+  },
+
 ];
 
 const router = new VueRouter({
