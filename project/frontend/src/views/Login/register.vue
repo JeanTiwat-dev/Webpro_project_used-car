@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <!-- component -->
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20">
+    <div
+      class="min-h-screen flex items-center justify-center bg-gray-100 pt-20"
+    >
       <!-- card -->
       <div>
         <div
@@ -350,7 +352,9 @@
           >
             <span class="ml-2"
               >Already have an account?
-              <router-link to="/login" class="text-sm ml-2 text-orange-500 font-semibold"
+              <router-link
+                to="/login"
+                class="text-sm ml-2 text-orange-500 font-semibold"
                 >Sign-In to your account</router-link
               ></span
             >
@@ -360,22 +364,42 @@
 
       <!-- Description right side -->
       <div class="px-10">
-        <p>Why create a MyCarMax account?</p>
-        <div class="">
+        <p class="mb-4">Why create a MyCarMax account?</p>
+        <div class="grid grid-rows-4 gap-2">
+          <!-- search -->
           <div class="flex items-center">
-            <img src="https://www.carmax.com/mycarmax/img/saved-searches.svg" alt="">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="currentColor"
+                d="m15.45 15.05l1.1-1.05l-2.1-2.1q.275-.425.413-.9q.137-.475.137-1q0-1.475-1.037-2.488Q12.925 6.5 11.5 6.5T9.038 7.512Q8 8.525 8 10t1.038 2.488Q10.075 13.5 11.5 13.5q.525 0 .988-.137q.462-.138.912-.413ZM11.5 12q-.825 0-1.412-.588Q9.5 10.825 9.5 10t.588-1.413Q10.675 8 11.5 8q.8 0 1.4.587q.6.588.6 1.413q0 .825-.587 1.412Q12.325 12 11.5 12ZM4 18q-.825 0-1.412-.587Q2 16.825 2 16V5q0-.825.588-1.413Q3.175 3 4 3h16q.825 0 1.413.587Q22 4.175 22 5v11q0 .825-.587 1.413Q20.825 18 20 18Zm-2 3q-.425 0-.712-.288Q1 20.425 1 20t.288-.712Q1.575 19 2 19h20q.425 0 .712.288q.288.287.288.712t-.288.712Q22.425 21 22 21Z"
+              />
+            </svg>
             <p>Access saved cars and searches</p>
           </div>
+          <!-- compare -->
           <div class="flex items-center">
-            <img src="https://www.carmax.com/mycarmax/img/saved-cars.svg" alt="">
+            <img
+              src="https://www.carmax.com/mycarmax/img/saved-cars.svg"
+              alt=""
+            />
             <p>Compare your favorites</p>
           </div>
+          <!-- set up -->
           <div class="flex items-center">
-            <img src="https://www.carmax.com/mycarmax/img/car-alerts.svg" alt="">
+            <img
+              src="https://www.carmax.com/mycarmax/img/car-alerts.svg"
+              alt=""
+            />
             <p>Set up new inventory alerts</p>
           </div>
+          <!-- payment -->
           <div class="flex items-center">
-            <img src="https://www.carmax.com/mycarmax/img/account.svg" alt="">
+            <img src="https://www.carmax.com/mycarmax/img/account.svg" alt="" />
             <p>Make car payments and manage finance account</p>
           </div>
         </div>
@@ -386,11 +410,11 @@
 
 <script>
 import axios from "axios";
-import WelcomeLayout from '../layouts/welcome.vue'
+import WelcomeLayout from "../layouts/welcome.vue";
 // @ is an alias to /src
 export default {
   name: "register",
-  
+
   data() {
     return {
       page: true,
