@@ -53,10 +53,10 @@
             <form>
               <!-- page1 -->
               <div v-show="page">
-                <!-- PAGE1 carbrand (select)-->
+                <!-- PAGE1 car_brand (select)-->
                 <div class="flex flex-col mb-5">
                   <select
-                    v-model="carbrand"
+                    v-model="car_brand"
                     id="grid-state"
                     type="text"
                     required
@@ -74,13 +74,12 @@
                     "
                   >
                     <option value="" selected disabled>Car Brand</option>
-                    <option value="">Mercedes Benz</option>
-                    <option value="">BMW</option>
-                    <option value="">Nissan</option>
-                    <option value="">Honda</option>
-                    <option value="">Toyota</option>
-                    <option value="">Mazda</option>
-                    <option value="">Other</option>
+                    <option value="Mercedes Benz">Mercedes Benz</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Mazda">Mazda</option>
                   </select>
                 </div>
 
@@ -185,10 +184,10 @@
                     "
                   >
                     <option value="" selected disabled>Driving Type</option>
-                    <option value="">4wd</option>
-                    <option value="">awd</option>
-                    <option value="">fwd</option>
-                    <option value="">rwd</option>
+                    <option value="4wd">4wd</option>
+                    <option value="awd">awd</option>
+                    <option value="fwd">fwd</option>
+                    <option value="rwd">rwd</option>
                   </select>
                 </div>
 
@@ -249,7 +248,7 @@
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="number_gears"
+                        v-model="num_gear"
                         type="text"
                         placeholder="Number of Gears"
                         class="
@@ -290,11 +289,11 @@
                       "
                     >
                       <option value="" selected disabled>Owner</option>
-                      <option value="">1st</option>
-                      <option value="">2nd</option>
-                      <option value="">3rd</option>
-                      <option value="">4th</option>
-                      <option value="">5th</option>
+                      <option value="1st">1st</option>
+                      <option value="2nd">2nd</option>
+                      <option value="3rd">3rd</option>
+                      <option value="4th">4th</option>
+                      <option value="5th">5th</option>
                     </select>
                   </div>
                 </div>
@@ -303,7 +302,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
-                      v-model="compulsory_insurance"
+                      v-model="car_act"
                       type="text"
                       class="
                         appearance-none
@@ -418,18 +417,18 @@
                     "
                     >
                       <option value="" selected disabled>Color</option>
-                      <option value="">White</option>
-                      <option value="">Black</option>
-                      <option value="">Gray</option>
-                      <option value="">Bronze</option>
-                      <option value="">Blue</option>
-                      <option value="">Red</option>
-                      <option value="">Green</option>
-                      <option value="">Brown</option>
-                      <option value="">Orange</option>
-                      <option value="">Gold</option>
-                      <option value="">Sliver</option>
-                      <option value="">Other</option>
+                      <option value="White">White</option>
+                      <option value="Black">Black</option>
+                      <option value="Gray">Gray</option>
+                      <option value="Bronze">Bronze</option>
+                      <option value="Blue">Blue</option>
+                      <option value="Red">Red</option>
+                      <option value="Green">Green</option>
+                      <option value="Brown">Brown</option>
+                      <option value="Orange">Orange</option>
+                      <option value="Gold">Gold</option>
+                      <option value="Sliver">Sliver</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                 </div>
@@ -445,7 +444,7 @@
                   >
                   <div class="relative">
                     <input
-                      v-model="selling_price"
+                      v-model="car_price"
                       type="text"
                       class="
                         appearance-none
@@ -759,6 +758,7 @@
                 <!-- button addproduct -->
                 <div class="flex w-full" v-show="page3">
                   <button
+                    @click="addProduct()"
                     type="button"
                     class="
                     flex
@@ -820,25 +820,30 @@ export default {
       page: true,
       page2: false,
       page3: false,
-      carbrand: "",
+      car_brand: "",
       car_model: "",
-      car_modelyear: "",
-      number_doors: "",
+      car_modelyear: null,
+      car_type: "",
+      color: "",
+      desciption: "",
+      number_doors: null,
       driving_type: "",
       car_engine: "",
       gear_transmission: "",
-      number_gears: "",
+      num_gear: null,
       owner: "",
-      compulsory_insurance: "",
+      car_act: "",
       car_register: "",
-      mileage: "",
-      registration_year: "",
-      color: "",
-      selling_price: "",
-      desciption: "",
-      boxupimg: 0,
-      images: []
+      mileage: null,
+      registration_year: null,
+      car_price: null,
+      boxupimg: null,
+      images: [],
+      user: [] 
     };
+  },
+  mounted() {
+    this.getUser();
   },
   methods: {
     addpic(event) {
@@ -853,6 +858,40 @@ export default {
       this.images = Array.from(this.images);
       this.images.splice(index, 1);
       this.boxupimg -= 1;
+    },
+    addProduct() {
+      let formData = new FormData();
+      formData.append("car_brand", this.car_brand);
+      formData.append("car_model", this.car_model);
+      //FIXME edit datatype
+      formData.append("car_year", parseInt(this.car_modelyear));
+      formData.append("car_color", this.color);
+      formData.append("car_desc", this.description);
+      formData.append("car_price", this.car_price);
+      formData.append("car_regis", this.car_register);
+      formData.append("car_distance", this.mileage);
+      formData.append("car_engine", this.car_engine);
+      formData.append("car_gear", this.gear_transmission);
+      formData.append("car_type", this.car_type);
+      formData.append("car_yearbought", this.registration_year);
+      formData.append("car_owner", this.owner);
+      formData.append("car_num_of_gear", this.num_gear);
+      formData.append("car_drive_type", this.driving_type);
+      formData.append("car_act", this.car_act);
+      formData.append("car_num_of_door", this.number_doors);
+      this.images.forEach(image => {
+        console.log(image);
+        formData.append("imgCar", image[0]);
+      });
+      axios.post(`/addCar/${this.user.user_id}`, formData).then(res => {
+        console.log(formData);
+        //TODO go to page myCar
+      }).catch(err => {
+        return next(err);
+      });
+    },
+    getUser() {
+      this.user = JSON.parse(localStorage.getItem("user_account"));
     }
   }
 };
