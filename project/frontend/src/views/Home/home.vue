@@ -1,4 +1,5 @@
 <template>
+<welcome-layout>
   <div class="min-h-screen bg-gradient-to-br">
     <div class="hero-bg flex items-center justify-center text-center">
       <div
@@ -90,6 +91,7 @@
     </div> -->
     <!-- Section 5 -->
     <section
+      id="footer"
       class="flex items-center justify-center py-20 bg-white min-w-screen"
     >
       <div class="px-16 bg-white">
@@ -241,22 +243,24 @@
                   </p>
                 </div>
               </div>
-              <!-- <blockquote class="mt-8 text-lg text-gray-500">"Packed with awesome content and exactly what I was
-                        looking
-                        for. I would highly recommend this to anyone."</blockquote> -->
             </div>
           </div>
         </div>
       </div>
     </section>
   </div>
+  </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
+import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "Home",
+  components :{
+    WelcomeLayout
+  },
   // data() {
   //   return {
   // },

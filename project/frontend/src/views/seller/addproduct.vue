@@ -1,4 +1,5 @@
 <template>
+<welcome-layout>
   <div id="app">
     <!-- component -->
     <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20 pb-20">
@@ -49,7 +50,7 @@
                     "
                   >
                     <option value="" selected disabled>Car Brand</option>
-                    <option value="">Mercedes Ben</option>
+                    <option value="">Mercedes Benz</option>
                     <option value="">BMW</option>
                     <option value="">Nissan</option>
                     <option value="">Honda</option>
@@ -673,13 +674,18 @@
       </div>
     </div>
   </div>
+</welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
+import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "addproduct",
+  components :{
+    WelcomeLayout
+  },
   data() {
     return {
       page: true,
