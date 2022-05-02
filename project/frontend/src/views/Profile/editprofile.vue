@@ -56,7 +56,7 @@
                 บลาๆๆๆๆ
               </div>
             </div>
-            <!-- button -->
+            <!-- button home-->
             <div
               class="flex 
                 items-center 
@@ -76,12 +76,8 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m19 12l-4-4m4 4l-4 4m4-4H9m5 9a9 9 0 1 1 0-18"
+                    fill="currentColor"
+                    d="M4 21V9l8-6l8 6v12h-6v-7h-4v7Z"
                   />
                 </svg>
               </a>
@@ -364,46 +360,41 @@
                   </div>
                 </div>
 
-                <!-- button -->
-                <div class="flex w-full">
-                  <button
-                    @click="login()"
-                    type="button"
-                    class="
-                      flex
-                      mt-2
-                      items-center
-                      justify-center
-                      focus:outline-none
-                      text-white text-sm
-                      sm:text-base
-                      bg-orange-500
-                      hover:bg-orange-600
-                      rounded-3xl
-                      py-3
-                      w-full
-                      transition
-                      duration-150
-                      ease-in
-                    "
+                <!-- button edit -->
+                <div
+                  class="flex 
+                items-center 
+                justify-center 
+                w-full 
+                mt-10
+                "
+                >
+                  <a
+                    href="#"
+                    class="bg-sky-700 hover:bg-sky-00 text-white text-center py-2 px-4 rounded-full h-14 w-14 inline-flex items-center"
                   >
-                    <span class="mr-2 uppercase">edit</span>
-                    <span>
-                      <svg
-                        class="h-6 w-6"
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
                         fill="none"
+                        stroke="currentColor"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
                       >
                         <path
-                          d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                          d="m16.474 5.408l2.118 2.117m-.756-3.982L12.109 9.27a2.118 2.118 0 0 0-.58 1.082L11 13l2.648-.53c.41-.082.786-.283 1.082-.579l5.727-5.727a1.853 1.853 0 1 0-2.621-2.621Z"
                         />
-                      </svg>
-                    </span>
-                  </button>
+                        <path
+                          d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3"
+                        />
+                      </g>
+                    </svg>
+                  </a>
                 </div>
               </form>
             </div>
