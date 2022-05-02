@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <!-- component -->
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20">
+    <div
+      class="min-h-screen flex items-center justify-center bg-gray-100 pt-20"
+    >
       <!-- pic logo -->
       <div class="px-10">
         <img
@@ -81,6 +83,13 @@
                     placeholder="Enter your username"
                   />
                 </div>
+                <!-- validate -->
+                <span
+                  v-show="fill_user"
+                  class="text-xs text-red-700 mt-2"
+                  id="passwordHelp"
+                  >Please fill in Username.</span
+                >
               </div>
 
               <!-- password -->
@@ -128,6 +137,18 @@
                     placeholder="Enter your password"
                   />
                 </div>
+                <span
+                  v-show="fill_password"
+                  class="text-xs text-red-700 mt-2"
+                  id="passwordHelp"
+                  >Please fill in Password.</span
+                >
+                <span
+                  v-show="wrong"
+                  class="text-xs text-red-700 mt-2"
+                  id="passwordHelp"
+                  >Your username or password is wrong!</span
+                >
               </div>
 
               <div class="flex w-full">
@@ -152,7 +173,7 @@
                   ease-in
                 "
                 >
-                  <span class="mr-2 uppercase" >sign in</span>
+                  <span class="mr-2 uppercase">sign in</span>
                   <span>
                     <svg
                       class="h-6 w-6"
@@ -189,7 +210,9 @@
           >
             <span class="ml-2"
               >You don't have an account?
-              <router-link to="/register" class="text-sm ml-2 text-orange-500 font-semibold"
+              <router-link
+                to="/register"
+                class="text-sm ml-2 text-orange-500 font-semibold"
                 >Register now</router-link
               ></span
             >
@@ -205,27 +228,48 @@ import axios from "axios";
 // @ is an alias to /src
 export default {
   name: "login",
-  
+
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      fill_user: false,
+      fill_password: false,
+      wrong: false,
     };
   },
   methods: {
     login() {
-      axios.post('http://localhost:3000/goto', {
-        username: this.username,
-        password: this.password
-      }).then( res => {
-        if ( res.data == 'error') {
-          alert('Username or Password incorrect!');
-        } else {
-          localStorage.setItem( 'user_account', JSON.stringify(res.data))
-          this.$router.push({ name : 'home'})
-        }
-      }).catch(err => console.log(err))
-      
+      if (this.username == '' && this.password == '') {
+        this.fill_user = true;
+        this.fill_password = true;
+      }
+      else if (this.username == '') {
+        this.fill_user = true;
+        this.fill_password = false;
+      }
+      else if (this.password == '') {
+        this.fill_password = true;
+        this.fill_user = false;
+      } 
+      else {
+        axios
+        .post("http://localhost:3000/goto", {
+          username: this.username,
+          password: this.password
+        })
+        .then(res => {
+          if (res.data == "error") {
+            this.wrong = true;
+            this.fill_user = false;
+            this.fill_password = false;
+          } else {
+            localStorage.setItem("user_account", JSON.stringify(res.data));
+            this.$router.push({ name: "home" });
+          }
+        })
+        .catch(err => console.log(err));
+      }
     }
   }
 };

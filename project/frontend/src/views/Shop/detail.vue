@@ -1,4 +1,5 @@
 <template>
+<welcome-layout>
   <div class="container mx-auto pt-20 pb-20">
     <div class="carousel relative shadow-2xl bg-white w-full mt-4">
       <div class="carousel-inner relative overflow-hidden">
@@ -13,84 +14,89 @@
 
       </div>
     </div>
-    <div class="mt-10 text-center bg-gray-100 p-2 w-30 h-10">
+    <div class="mt-10 text-center bg-gray-100 p-2 w-full">
       200,000 ฿
     </div>
     <div>
-      <div class="w-1/2 mx-auto mt-10">
+      <div class="w-2/3 mx-auto mt-10 rounded-lg">
         <!-- Tabs -->
-        <ul id="tabs" class="w-full grid grid-cols-2 border-b">
-          <li
+        <div class="w-full bg-gray-100  rounded-full grid grid-cols-2">
+          <div
             v-for="(item, index) of tabPageItems"
             :key="`tab-item-${index}`"
-            :class="`px-4 text-black font-bold rounded-t cursor-pointer ${tabPage === item.key ? '-mb-px bg-orange-500' : ''}`"
+            :class="`px-4 text-blue-900 text-xl font-bold rounded-full cursor-pointer mr-5 ${tabPage === item.key ? '-mb-px bg-gray-300' : ''}`"
             @click="tabPage = item.key"
           >
             <span>{{ item.title }}</span>
-          </li>
-        </ul>
+          </div>
+        </div>
 
         <div class="cursor-pointer" v-show="tabPage === 'detail'">
           <div class="grid grid-cols-2">
             <div class="m-3">
-                <p>	<i class="fa-solid fa-id-badge"></i> ID </p><hr>
-                <p> <i class="fa-solid fa-car-mirrors"></i>Type</p><hr>
-                <p> Model</p><hr>
-                <p> Model year</p>
+                <p class="pt-2">	<i class="fa-solid fa-id-badge"></i> ID </p><hr>
+                <p class="pt-2"> <i class="fa-solid fa-car-mirrors"></i>Type</p><hr>
+                <p class="pt-2"> Model</p><hr>
+                <p class="pt-2"> Model year</p>
             </div>
             <div class="m-3">
-                <p> car registration</p><hr>
-                <p> distance</p><hr>
-                <p> Owner</p><hr>
-                <p> Gear system</p>
+                <p class="pt-2"> car registration</p><hr>
+                <p class="pt-2"> distance</p><hr>
+                <p class="pt-2"> Owner</p><hr>
+                <p > Gear system</p>
             </div>
           </div>
         </div>
         <div class="cursor-pointer" v-show="tabPage === 'spec'">
-          <div class="grid grid-cols-2">
+          <div v-for="(item, index) of spec" :key="`color-${index}`" class="grid grid-cols-2">
             <div class="m-3">
-                <p>	Color </p><hr>
-                <p> Car engine</p><hr>
-                <p> Year bought</p><hr>
-                <p> Number of gears</p>
+                <p class="pt-2">	Color: {{item.color}}</p><hr>
+                <p class="pt-2"> Car engine</p><hr>
+                <p class="pt-2"> Year bought</p><hr>
+                <p class="pt-2"> Number of gears</p>
             </div>
             <div class="m-3">
-                <p> Drive type</p><hr>
-                <p> CMI</p><hr>
-                <p> Number of doors</p><hr>
-                <p> Manufactured</p>
+                <p class="pt-2"> Drive type</p><hr>
+                <p class="pt-2"> CMI</p><hr>
+                <p class="pt-2"> Number of doors</p><hr>
+                <p class="pt-2"> Manufactured</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
+import WelcomeLayout from '../layouts/welcome.vue'
 // @ is an alias to /src
 export default {
   name: "detail",
+  components :{
+    WelcomeLayout
+  },
   data() {
     return {
       loginuser: [],
       allItems: [0, 0, 0, 0, 0],
       carouselItems: [
         {
-          title: "Slide 1",
+          title: "Image 1",
           checked: true,
           prev: "carousel-3",
           next: "carousel-2"
         },
         {
-          title: "Slide 2",
+          title: "Image 2",
           checked: false,
           prev: "carousel-1",
           next: "carousel-3"
         },
         {
-          title: "Slide 3",
+          title: "Image 3",
           checked: false,
           prev: "carousel-2",
           next: "carousel-1"
@@ -106,6 +112,9 @@ export default {
           key: 'spec',
           title: 'Spec'
         }
+      ],
+      spec: [
+        {id:1, color: "Black"}
       ]
     };
   },
@@ -136,23 +145,6 @@ export default {
   right: 0;
   text-align: center;
   z-index: 10;
-}
-#carousel-1:checked
-  ~ .control-1
-  ~ .carousel-indicators
-  li:nth-child(1)
-  .carousel-bullet,
-#carousel-2:checked
-  ~ .control-2
-  ~ .carousel-indicators
-  li:nth-child(2)
-  .carousel-bullet,
-#carousel-3:checked
-  ~ .control-3
-  ~ .carousel-indicators
-  li:nth-child(3)
-  .carousel-bullet {
-  color: #ffb317; /*Set to match the Tailwind colour you want the active one to be */
 }
 
 </style>
