@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- component -->
-    <div class="py-12 flex items-center justify-center bg-gray-100 pb-18 pt-10">
+    <div class="py-4 flex items-center justify-center bg-gray-100">
       <div class="flex">
         <!-- left card -->
         <div>
