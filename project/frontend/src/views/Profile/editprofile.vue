@@ -773,8 +773,6 @@
 
 <script>
 import axios from "axios";
-import WelcomeLayout from "../layouts/welcome.vue";
-// @ is an alias to /src
 export default {
   name: "profile",
   data() {
