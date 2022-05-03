@@ -1,7 +1,7 @@
 const express = require("express");
 const pool = require("../config");
 const router = express.Router();
-router.post("/profile/:userId", async (req, res, next) => {
+router.post("/profile/:userId", async (req, _res, next) => {
     let userId = req.params.userId;
     let fname = req.body.fname;
     let lname = req.body.lname;
