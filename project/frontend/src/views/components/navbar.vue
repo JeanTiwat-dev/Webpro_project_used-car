@@ -3,6 +3,7 @@
     <section class="w-full px-4 text-gray-700 bg-white fixed top-0 z-40">
       <div
         class="
+          py-5
           container
           flex
           items-center
