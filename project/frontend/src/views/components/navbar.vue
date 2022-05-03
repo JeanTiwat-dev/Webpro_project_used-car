@@ -1,15 +1,16 @@
 <template>
   <div class="w-full" id="app">
-    <section class="w-full px-4 text-gray-700 bg-white fixed top-0 h-20 z-40">
+    <section class="w-full px-4 text-gray-700 bg-white fixed top-0 z-40 drop-shadow-md">
       <div
         class="
+          py-5
           container
-          flex flex-col flex-wrap
+          flex
           items-center
           justify-between
-          py-5
           mx-auto
           md:flex-row
+          
         "
       >
         <div class="relative flex flex-col md:flex-row">
@@ -18,7 +19,7 @@
             class="
               flex
               items-center
-              mb-5
+              
               font-medium
               text-gray-900
               lg:w-auto lg:items-center lg:justify-center
@@ -75,18 +76,7 @@
             >
           </nav>
         </div>
-        <!-- <div class="relative items-center">
-                <input
-                type="text"
-                class="h-14 w-96 pr-8 pl-5 rounded border border-gray-200 focus:outline-none focus:border-orange-200 focus:ring-1 focus:ring-orange-200"
-                placeholder="Search anything..."
-                />
-                <div class="absolute top-4 right-3">
-                <i
-                    class="fa fa-search text-gray-400 z-20 hover:text-gray-500"
-                ></i>
-                </div>
-            </div> -->
+
 
         <div
           class="inline-flex items-center ml-5 space-x-6 lg:justify-end"
@@ -135,21 +125,6 @@
             Sign in
           </router-link>
         </div>
-        <!-- 
-        <div class="dropdown ml-3 relative" @mouseover="menu = true" @mouseleave="menu = false">
-          <div>
-            <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span class="sr-only">Open user menu</span>
-              <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-            </button>
-          </div>
-
-          <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-            Active: "bg-gray-100", Not Active: ""
-            <router-link to="/profile" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</router-link>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-          </div>
-        </div> -->
         
         <div
           class="dropdown inline-block relative"
