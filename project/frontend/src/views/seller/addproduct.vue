@@ -2,7 +2,9 @@
 <welcome-layout>
   <div id="app">
     <!-- component -->
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 pt-20 pb-20">
+    <div
+      class="min-h-screen flex items-center justify-center bg-gray-100 pt-20 pb-20"
+    >
       <!-- card -->
       <div>
         <div
@@ -19,20 +21,42 @@
             mt-10
           "
         >
-          <div
-            class="font-medium self-center text-xl sm:text-3xl text-orange-500"
-          >
-            Addproduct
+          <!-- head -->
+          <div class="flex flex-col items-center justify-center">
+            <svg
+              width="90"
+              height="90"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="text-orange-500"
+                cx="14"
+                cy="13.5"
+                r="1.5"
+                fill="currentColor"
+              />
+              <path
+                class="text-orange-500"
+                fill="currentColor"
+                d="M16.1 9h-1.6c-.6-2.7-3.2-4.5-5.9-3.9C6.6 5.5 5 7 4.6 9h-.7c-1 0-1.9.9-1.9 1.9v1.3c0 .7.6 1.3 1.3 1.3h.3c0-1.3 1.1-2.4 2.4-2.4c1.3 0 2.4 1.1 2.4 2.4h3.2c0-1.3 1.1-2.4 2.4-2.4c1.3 0 2.4 1.1 2.4 2.4h.3c.7 0 1.3-.6 1.3-1.3V11c0-1.1-.9-2-1.9-2zM6.2 9c.5-1.9 2.5-2.9 4.3-2.4c1.1.3 2 1.2 2.4 2.4H6.2zM6 12c-.8 0-1.5.7-1.5 1.5S5.2 15 6 15s1.5-.7 1.5-1.5S6.8 12 6 12z"
+              />
+            </svg>
+            <div
+              class="font-medium self-center text-xl sm:text-3xl text-gray-700"
+            >
+              Addproduct
+            </div>
           </div>
           <!-- form -->
-          <div class="mt-14">
+          <div class="mt-8">
             <form>
               <!-- page1 -->
               <div v-show="page">
-                <!-- PAGE1 carbrand (select)-->
-                <div class="flex items-center mb-5 w-full">
+                <!-- PAGE1 car_brand (select)-->
+                <div class="flex flex-col mb-5">
                   <select
-                    v-model="carbrand"
+                    v-model="car_brand"
                     id="grid-state"
                     type="text"
                     required
@@ -50,27 +74,27 @@
                     "
                   >
                     <option value="" selected disabled>Car Brand</option>
-                    <option value="">Mercedes Benz</option>
-                    <option value="">BMW</option>
-                    <option value="">Nissan</option>
-                    <option value="">Honda</option>
-                    <option value="">Toyota</option>
-                    <option value="">Mazda</option>
-                    <option value="">Other</option>
+                    <option value="Mercedes Benz">Mercedes Benz</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Mazda">Mazda</option>
                   </select>
                 </div>
 
                 <!-- PAGE1 model car/year -->
-                <div class="grid grid-cols-2 gap-2 mb-5">
+                <div class="grid grid-cols-2 gap-4">
                   <!-- model car -->
-                  <div class="relative">
-                    <input
-                      v-model="car_model"
-                      id="car_model"
-                      type="text"
-                      name="car_model"
-                      placeholder="Car Model"
-                      class="
+                  <div class="flex flex-col mb-5">
+                    <div class="relative">
+                      <input
+                        v-model="car_model"
+                        id="car_model"
+                        type="text"
+                        name="car_model"
+                        placeholder="Car Model"
+                        class="
                         appearance-none
                         bg-transparent
                         border-b border-gray-400
@@ -83,17 +107,19 @@
                         leading-tight
                         focus:outline-none focus:border-orange-400
                       "
-                    />
+                      />
+                    </div>
                   </div>
                   <!-- model year -->
-                  <div class="relative">
-                    <input
-                      v-model="car_modelyear"
-                      id="car_modelyear"
-                      type="text"
-                      name="car_modelyear"
-                      placeholder="Car Model Year"
-                      class="
+                  <div class="flex flex-col mb-5">
+                    <div class="relative">
+                      <input
+                        v-model="car_modelyear"
+                        id="car_modelyear"
+                        type="text"
+                        name="car_modelyear"
+                        placeholder="Car Model Year"
+                        class="
                         appearance-none
                         bg-transparent
                         border-b border-gray-400
@@ -106,7 +132,8 @@
                         leading-tight
                         focus:outline-none focus:border-orange-400
                       "
-                    />
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -137,7 +164,7 @@
                 </div>
 
                 <!-- PAGE1 Driving Type (select) -->
-                <div class="flex items-center mb-5 w-full">
+                <div class="flex flex-col mb-5">
                   <select
                     v-model="driving_type"
                     id="driving_type"
@@ -157,16 +184,16 @@
                     "
                   >
                     <option value="" selected disabled>Driving Type</option>
-                    <option value="">4wd</option>
-                    <option value="">awd</option>
-                    <option value="">fwd</option>
-                    <option value="">rwd</option>
+                    <option value="4wd">4wd</option>
+                    <option value="awd">awd</option>
+                    <option value="fwd">fwd</option>
+                    <option value="rwd">rwd</option>
                   </select>
                 </div>
 
                 <!-- PAGE1 car engine -->
                 <div class="flex flex-col mb-5">
-                  <div class="flex items-center">
+                  <div class="relative">
                     <input
                       v-model="car_engine"
                       type="text"
@@ -187,10 +214,13 @@
                     />
                   </div>
                 </div>
+              </div>
 
-                <!-- PAGE1 gear/numgear/owner -->
-                <div class="grid grid-cols-3 gap-2">
-                  <!-- gear transmission -->
+              <!-- page 2 -->
+              <div v-show="page2">
+                <!-- PAGE2 gear/numgear/owner -->
+                <div class="grid grid-cols-3 gap-4">
+                  <!-- page2 gear transmission -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
@@ -214,11 +244,11 @@
                     </div>
                   </div>
 
-                  <!-- PAGE1 number of gears -->
+                  <!-- PAGE2 number of gears -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="number_gears"
+                        v-model="num_gear"
                         type="text"
                         placeholder="Number of Gears"
                         class="
@@ -238,8 +268,8 @@
                     </div>
                   </div>
 
-                  <!-- PAGE1 Owner (select)-->
-                  <div class="flex items-center mb-5 w-full">
+                  <!-- PAGE2 Owner (select)-->
+                  <div class="flex items-center mb-5">
                     <select
                       v-model="owner"
                       id="owner"
@@ -259,20 +289,20 @@
                       "
                     >
                       <option value="" selected disabled>Owner</option>
-                      <option value="">1st</option>
-                      <option value="">2nd</option>
-                      <option value="">3rd</option>
-                      <option value="">4th</option>
-                      <option value="">5th</option>
+                      <option value="1st">1st</option>
+                      <option value="2nd">2nd</option>
+                      <option value="3rd">3rd</option>
+                      <option value="4th">4th</option>
+                      <option value="5th">5th</option>
                     </select>
                   </div>
                 </div>
 
-                <!-- PAGE1 compulsory insurance -->
-                <div class="flex flex-col mb-5 w-full">
-                  <div class="flex items-center">
+                <!-- PAGE2 compulsory insurance -->
+                <div class="flex flex-col mb-5">
+                  <div class="relative">
                     <input
-                      v-model="compulsory_insurance"
+                      v-model="car_act"
                       type="text"
                       class="
                         appearance-none
@@ -293,9 +323,9 @@
                   </div>
                 </div>
 
-                <!-- PAGE1 car register -->
+                <!-- PAGE2 car register -->
                 <div class="flex flex-col mb-5">
-                  <div class="flex items-center">
+                  <div class="relative">
                     <input
                       v-model="car_register"
                       type="text"
@@ -317,7 +347,7 @@
                   </div>
                 </div>
 
-                <!-- PAGE1 Mileage -->
+                <!-- PAGE2 Mileage -->
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
@@ -341,7 +371,7 @@
                   </div>
                 </div>
 
-                <!-- PAGE1 registration year -->
+                <!-- PAGE2 registration year -->
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
@@ -365,7 +395,7 @@
                   </div>
                 </div>
 
-                <!-- PAGE1 color (select) -->
+                <!-- PAGE2 color (select) -->
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <select
@@ -387,26 +417,26 @@
                     "
                     >
                       <option value="" selected disabled>Color</option>
-                      <option value="">White</option>
-                      <option value="">Black</option>
-                      <option value="">Gray</option>
-                      <option value="">Bronze</option>
-                      <option value="">Blue</option>
-                      <option value="">Red</option>
-                      <option value="">Green</option>
-                      <option value="">Brown</option>
-                      <option value="">Orange</option>
-                      <option value="">Gold</option>
-                      <option value="">Sliver</option>
-                      <option value="">Other</option>
+                      <option value="White">White</option>
+                      <option value="Black">Black</option>
+                      <option value="Gray">Gray</option>
+                      <option value="Bronze">Bronze</option>
+                      <option value="Blue">Blue</option>
+                      <option value="Red">Red</option>
+                      <option value="Green">Green</option>
+                      <option value="Brown">Brown</option>
+                      <option value="Orange">Orange</option>
+                      <option value="Gold">Gold</option>
+                      <option value="Sliver">Sliver</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                 </div>
               </div>
 
-              <!-- page2 -->
-              <div v-show="!page">
-                <!--PAGE2 selling price -->
+              <!-- page3 -->
+              <div v-show="page3">
+                <!--PAGE3 selling price -->
                 <div class="flex flex-col mb-5">
                   <label
                     class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
@@ -414,7 +444,7 @@
                   >
                   <div class="relative">
                     <input
-                      v-model="selling_price"
+                      v-model="car_price"
                       type="text"
                       class="
                         appearance-none
@@ -433,7 +463,7 @@
                   </div>
                 </div>
 
-                <!--PAGE2 desciption -->
+                <!--PAGE3 desciption -->
                 <div class="flex flex-col mb-5">
                   <label
                     class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
@@ -463,7 +493,7 @@
                   </div>
                 </div>
 
-                <!--PAGE2 picture -->
+                <!--PAGE3 picture -->
                 <div class="flex flex-col mb-5 ">
                   <div class="relative ">
                     <label
@@ -541,7 +571,7 @@
               </div>
 
               <!-- button -->
-              <!-- button next -->
+              <!--page1 button next -->
               <div class="flex w-full" v-show="page">
                 <button
                   type="button"
@@ -562,7 +592,10 @@
                     duration-150
                     ease-in
                   "
-                  @click="page = false"
+                  @click="
+                    page = false;
+                    page2 = true;
+                  "
                 >
                   <span class="mr-2 uppercase">next</span>
                   <span>
@@ -582,10 +615,10 @@
                   </span>
                 </button>
               </div>
-              <!-- button back/add -->
+              <!--psge2 button back/next -->
               <div class="grid grid-cols-2 gap-2">
                 <!-- button back-->
-                <div class="flex w-full" v-show="!page">
+                <div class="flex w-full" v-show="page2">
                   <button
                     type="button"
                     class="
@@ -605,7 +638,10 @@
                     duration-150
                     ease-in
                   "
-                    @click="page = true"
+                    @click="
+                      page = true;
+                      page2 = false;
+                    "
                   >
                     <span>
                       <svg
@@ -626,9 +662,103 @@
                   </button>
                 </div>
 
-                <!-- button add -->
-                <div class="flex w-full" v-show="!page">
+                <!-- button next -->
+                <div class="flex w-full" v-show="page2">
                   <button
+                    type="button"
+                    class="
+                    flex
+                    mt-2
+                    items-center
+                    justify-center
+                    focus:outline-none
+                    text-white text-sm
+                    sm:text-base
+                    bg-orange-500
+                    hover:bg-orange-600
+                    rounded-3xl
+                    py-3
+                    w-full
+                    transition
+                    duration-150
+                    ease-in
+                  "
+                    @click="
+                      page3 = true;
+                      page2 = false;
+                    "
+                  >
+                    <span class="mr-2 uppercase">next</span>
+                    <span>
+                      <svg
+                        class="h-6 w-6"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- page3 button back/add -->
+              <div class="grid grid-cols-2 gap-2">
+                <!-- button back-->
+                <div class="flex w-full" v-show="page3">
+                  <button
+                    type="button"
+                    class="
+                    flex
+                    mt-2
+                    items-center
+                    justify-center
+                    focus:outline-none
+                    text-white text-sm
+                    sm:text-base
+                    bg-gray-400
+                    hover:bg-gray-500
+                    rounded-3xl
+                    py-3
+                    w-full
+                    transition
+                    duration-150
+                    ease-in
+                  "
+                    @click="
+                      page3 = false;
+                      page2 = true;
+                    "
+                  >
+                    <span>
+                      <svg
+                        class="h-6 w-6 rotate-180"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="ml-2 uppercase">back</span>
+                  </button>
+                </div>
+
+                <!-- button addproduct -->
+                <div class="flex w-full" v-show="page3">
+                  <button
+                    @click="addProduct()"
                     type="button"
                     class="
                     flex
@@ -667,7 +797,6 @@
                   </button>
                 </div>
               </div>
-
             </form>
           </div>
         </div>
@@ -689,25 +818,32 @@ export default {
   data() {
     return {
       page: true,
-      carbrand: "",
+      page2: false,
+      page3: false,
+      car_brand: "",
       car_model: "",
-      car_modelyear: "",
-      number_doors: "",
+      car_modelyear: null,
+      car_type: "",
+      color: "",
+      desciption: "",
+      number_doors: null,
       driving_type: "",
       car_engine: "",
       gear_transmission: "",
-      number_gears: "",
+      num_gear: null,
       owner: "",
-      compulsory_insurance: "",
+      car_act: "",
       car_register: "",
-      mileage: "",
-      registration_year: "",
-      color: "",
-      selling_price: "",
-      desciption: "",
-      boxupimg: 0,
-      images: []
+      mileage: null,
+      registration_year: null,
+      car_price: null,
+      boxupimg: null,
+      images: [],
+      user: [] 
     };
+  },
+  mounted() {
+    this.getUser();
   },
   methods: {
     addpic(event) {
@@ -722,6 +858,40 @@ export default {
       this.images = Array.from(this.images);
       this.images.splice(index, 1);
       this.boxupimg -= 1;
+    },
+    addProduct() {
+      let formData = new FormData();
+      formData.append("car_brand", this.car_brand);
+      formData.append("car_model", this.car_model);
+      //FIXME edit datatype
+      formData.append("car_year", parseInt(this.car_modelyear));
+      formData.append("car_color", this.color);
+      formData.append("car_desc", this.description);
+      formData.append("car_price", this.car_price);
+      formData.append("car_regis", this.car_register);
+      formData.append("car_distance", this.mileage);
+      formData.append("car_engine", this.car_engine);
+      formData.append("car_gear", this.gear_transmission);
+      formData.append("car_type", this.car_type);
+      formData.append("car_yearbought", this.registration_year);
+      formData.append("car_owner", this.owner);
+      formData.append("car_num_of_gear", this.num_gear);
+      formData.append("car_drive_type", this.driving_type);
+      formData.append("car_act", this.car_act);
+      formData.append("car_num_of_door", this.number_doors);
+      this.images.forEach(image => {
+        console.log(image);
+        formData.append("imgCar", image[0]);
+      });
+      axios.post(`/addCar/${this.user.user_id}`, formData).then(res => {
+        console.log(formData);
+        //TODO go to page myCar
+      }).catch(err => {
+        return next(err);
+      });
+    },
+    getUser() {
+      this.user = JSON.parse(localStorage.getItem("user_account"));
     }
   }
 };
