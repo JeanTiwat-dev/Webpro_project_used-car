@@ -1,11 +1,9 @@
 <template>
 <welcome-layout>
-<div class="pt-20 pb-20">
-       
     <div class="w-full grid grid-cols-12">
-        <div class="col-start-1 col-end-3 text-center text-bold grid grid-cols-1 divide-y py-4 h-screen overflow-y-auto fixed">
+        <div class="col-start-1 col-end-3 text-center text-bold grid grid-cols-1 divide-y h-screen overflow-y-auto fixed">
           
-            <div class="rounded shadow border p-2 w-full mt-3 bg-gray-50">
+            <div class="rounded shadow border px-8 w-full py-8 bg-gray-50">
               <div>
               <input type="text" v-model="search" class=" text-base placeholder-gray-500 pl-6 pb-1 rounded-3xl border border-orange-400 max-w-screen-2xl py-2 focus:outline-none focus:border-orange-400"/>
                 <i class="fa fa-search text-gray-400 z-20 m-2 hover:text-gray-500" ></i></div>
@@ -113,7 +111,6 @@
         </div>
         </div>
     </div>
-  </div>
 </welcome-layout>
 </template>
 

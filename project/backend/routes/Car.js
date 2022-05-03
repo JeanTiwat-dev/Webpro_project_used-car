@@ -58,6 +58,22 @@ router.get("/CarsData", async function (_req, res, next) {
     }
 });
 
+router.get("/getCarsData/:id", async function (_req, res, next) {
+    try {
+        const [cars] = await pool.query(
+            `SELECT * FROM Car WHERE car_id = ${_req.params.id}`
+        );
+        const [carImages] = await pool.query(
+            `SELECT * FROM Car_images WHERE car_id = ${_req.params.id}`
+        );
+        console.log(carImages)
+        return res.json({ ...cars[0], car_images: carImages });
+    } catch (err) {
+        return next(err);
+    }
+});
+
+
 router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, res, next) {
         try {
             await checkValidate.validateAsync(req.body, { abortEarly: false });

@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full" id="app">
-    <section class="w-full px-4 text-gray-700 bg-white fixed top-0 z-40 drop-shadow-md">
+  <div class="w-full px-4 text-gray-700 bg-white sticky top-0 z-40 drop-shadow-md" id="app">
+    <section class="w-full">
       <div
         class="
           py-5
