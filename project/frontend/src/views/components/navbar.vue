@@ -10,7 +10,6 @@
           justify-between
           mx-auto
           md:flex-row
-          
         "
       >
         <div class="relative flex flex-col md:flex-row">
@@ -19,7 +18,6 @@
             class="
               flex
               items-center
-              
               font-medium
               text-gray-900
               lg:w-auto lg:items-center lg:justify-center
@@ -216,7 +214,7 @@
         
       </div>
     </section>
-  </div>
+    </div>
 </template>
     <script>
 export default {

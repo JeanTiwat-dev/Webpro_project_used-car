@@ -110,12 +110,13 @@
                 </div>
   
               </div>
-         </div>
+        </div>
         </div>
     </div>
   </div>
 </welcome-layout>
 </template>
+
 
 <script>
 import axios from "axios";
