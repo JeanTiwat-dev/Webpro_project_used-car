@@ -1,6 +1,6 @@
 <template>
   <div class="w-full" id="app">
-    <section class="w-full px-4 text-gray-700 bg-white fixed top-0 z-40">
+    <section class="w-full px-4 text-gray-700 bg-white fixed top-0 z-40 drop-shadow-md">
       <div
         class="
           py-5
@@ -10,6 +10,7 @@
           justify-between
           mx-auto
           md:flex-row
+          
         "
       >
         <div class="relative flex flex-col md:flex-row">
