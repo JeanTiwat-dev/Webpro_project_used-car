@@ -31,6 +31,21 @@ return next(err);
 }
 });
 
+router.get("/CarsData/:id", async function (_req, res, next) {
+    try {
+        const [cars] = await pool.query(
+            `SELECT * FROM Car WHERE car_id = ${_req.params.id}`
+        );
+        const [carImages] = await pool.query(
+            `SELECT * FROM Car_images WHERE car_id = ${_req.params.id}`
+        );
+        console.log(carImages)
+        return res.json({ ...cars[0], car_images: carImages });
+    } catch (err) {
+        return next(err);
+    }
+});
+
 router.post("/addCar/:userId", upload.array("imgCar", 6), async function (req, res, next) {
     let userId = req.params.userId;
     let car_model = req.body.car_model;
