@@ -50,9 +50,14 @@ const routes = [
     component: () => import("../views/seller/manageseller.vue")
   },
   {
-    path: "/comparecar",
+    path: "/comparecar/:car1/:car2",
     name: "comparecar",
     component: () => import("../views/Shop/compare.vue")
+  },
+  {
+    path: "/changepassword",
+    name: "changepassword",
+    component: () => import("../views/Profile/changepassword.vue")
   },
 
 ];
