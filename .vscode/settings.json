@@ -11,6 +11,8 @@
         "Desciption",
         "editproduct",
         "editprofile",
+        "firstname",
+        "lastname",
         "manageseller",
         "modelyear",
         "numberofdoors",

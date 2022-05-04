@@ -25,7 +25,6 @@ var storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // ValidityState (Validate Car)
-
 const checkValidate = Joi.object({
     car_model: Joi.string().required(),
     car_modelyear: Joi.number().integer().required(),
@@ -44,7 +43,7 @@ const checkValidate = Joi.object({
     car_drive_type: Joi.string().required(),
     car_act: Joi.string().required(),
     car_num_of_door: Joi.number().integer().required()
-})
+});
 
 // HTTP Method
 // Get All cars
@@ -150,7 +149,7 @@ router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, re
         }
     });
 
-// edit car 
+// Edit car 
 router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res, next) {
     try {
         await checkValidate.validateAsync(req.body, { abortEarly: false });
@@ -238,8 +237,8 @@ router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res
         // commit
         await conn.commit();
         return res.json(cars);
-    } catch (error) {
-        return next(error);
+    } catch (err) {
+        return next(err);
     }
 });
 
