@@ -24,8 +24,7 @@ var storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// ValidityState
-
+// ValidityState (Validate Car)
 const checkValidate = Joi.object({
     car_model: Joi.string().required(),
     car_modelyear: Joi.number().integer().required(),
@@ -44,9 +43,10 @@ const checkValidate = Joi.object({
     car_drive_type: Joi.string().required(),
     car_act: Joi.string().required(),
     car_num_of_door: Joi.number().integer().required()
-})
+});
 
 // HTTP Method
+// Get All cars
 router.get("/CarsData", async function (_req, res, next) {
     try {
         const [cars] = await pool.query(
@@ -58,8 +58,8 @@ router.get("/CarsData", async function (_req, res, next) {
     }
 });
 
+// Get car by id
 router.get("/getCarsData/:id", async function (req, res, next) {
-    // console.log(1);
     try {
         const [cars] = await pool.query(
             `SELECT * FROM Car WHERE car_id = ${req.params.id}`
@@ -74,7 +74,7 @@ router.get("/getCarsData/:id", async function (req, res, next) {
     }
 });
 
-
+// Add car
 router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, res, next) {
         try {
             await checkValidate.validateAsync(req.body, { abortEarly: false });
@@ -129,9 +129,9 @@ router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, re
             );
             // check index of imgCar
             let checkindex = true;
-            file.forEach((file) => {
-                let path = [file.path.substring(6), cars.insertId, checkindex];
-                pathArray.push(path);
+            file.forEach((files) => {
+                let paths = [files.path.substring(6), cars.insertId, checkindex];
+                pathArray.push(paths);
                 if (checkindex == true) {
                     checkindex = false;
                 }
@@ -148,7 +148,8 @@ router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, re
             return next(err);
         }
     });
-// edit car 
+
+// Edit car 
 router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res, next) {
     try {
         await checkValidate.validateAsync(req.body, { abortEarly: false });
@@ -203,32 +204,26 @@ router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res
                     car_id
                     ]
         );
-        const [
-            images,
-            imageFields,
-        ] = await conn.query(
+        const [images] = await conn.query(
             "SELECT car_img FROM Car_images WHERE car_id = ?",
             [req.params.carId]
         );
-        console.log(images);
         // Delete car images
         const appDir = path.dirname (require.main.filename);
         images.forEach (img =>{
-            console.log(1);
             const p = path.join(appDir, 'static', img.car_img);
             fs.unlinkSync(p);
         });
-        console.log(2);
-        const [delimages] = await conn.query(
+        await conn.query(
             `DELETE FROM Car_images WHERE car_id=?`,
             [req.params.carId]
         );
         // check index of imgCar
         let checkindex = true;
         console.log(file);
-        file.forEach((file) => {
-            let path = [file.path.substring(6), car_id, checkindex];
-            pathArray.push(path);
+        file.forEach((files) => {
+            let paths = [files.path.substring(6), car_id, checkindex];
+            pathArray.push(paths);
             if (checkindex == true) {
                 checkindex = false;
             }
@@ -242,8 +237,8 @@ router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res
         // commit
         await conn.commit();
         return res.json(cars);
-    } catch (error) {
-        return next(error);
+    } catch (err) {
+        return next(err);
     }
 });
 

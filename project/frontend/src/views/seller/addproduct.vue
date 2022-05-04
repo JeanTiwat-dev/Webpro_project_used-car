@@ -918,15 +918,12 @@ export default {
         console.log(image);
         formData.append("imgCar", image[0]);
       });
-      axios
-        .post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
-        .then(res => {
-          console.log(formData);
-          //TODO go to page myCar
-        })
-        .catch(err => {
-          return console.log(err);
-        });
+      axios.post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
+      .then(_res => {
+        //TODO go to page myCar
+      }).catch(err => {
+        return console.log(err);
+      });
     },
     getUser() {
       this.user = JSON.parse(localStorage.getItem("user_account"));
