@@ -496,7 +496,7 @@ export default {
             this.$router.push("/login");
           })
           .catch(err => {
-            console.log(err.res.data.message);
+            console.log(err);
           });
       }
     }

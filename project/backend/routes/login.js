@@ -23,8 +23,7 @@ router.post('/goto', async function(req, res, next) {
         [username]
     )
     // Check if user exist and password is correct
-    if (login[0][0].user_id == undefined || login[0][0].login_password != password) {
-        console.log(login[0][0]);
+    if (login[0][0] == undefined || login[0][0].login_password != password) {
         res.json('error');
     } else {
         try {
