@@ -73,7 +73,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, _from, next) => {
-  const isLoggedIn = !!localStorage.getItem('token')
+  const isLoggedIn = !!localStorage.getItem('user_account')
 
   if (to.meta.login && !isLoggedIn) {
     alert('Please login first!')
