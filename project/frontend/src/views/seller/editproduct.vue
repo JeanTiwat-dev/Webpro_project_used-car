@@ -2,31 +2,20 @@
 <welcome-layout>
 <div id="app">
     <!-- component -->
-    <div
-    class="
-        min-h-screen
-        flex
-        items-center
-        justify-center
-        bg-gray-100
-        pt-20
-        pb-20
-    "
-    >
+    <div class="flex items-center justify-center bg-gray-100 py-10">
     <!-- card -->
     <div>
         <div
         class="
-            flex flex-col
-            bg-white
-            shadow-md
-            sm:px-6
-            md:px-8
-            lg:px-10
-            py-5
-            rounded-xl
-            max-w-2xl
-            mt-10
+        flex flex-col
+        bg-white
+        shadow-md
+        sm:px-6
+        md:px-8
+        lg:px-10
+        py-5
+        rounded-xl
+        max-w-2xl
         "
         >
         <!-- head -->
@@ -51,15 +40,9 @@
             />
             </svg>
             <div
-            class="
-                font-medium
-                self-center
-                text-xl
-                sm:text-3xl
-                text-gray-700
-            "
+            class="font-medium self-center text-xl sm:text-3xl text-gray-700"
             >
-            Addproduct
+            Edit Car
             </div>
         </div>
         <!-- form -->
@@ -67,13 +50,15 @@
             <form>
             <!-- page1 -->
             <div v-show="page">
-                <!-- PAGE1 car_brand (select)-->
+                <!-- PAGE1 car_brand (select)/ car model-->
+                <div class="grid grid-cols-2 gap-4">
+                <!-- car brand -->
                 <div class="flex flex-col mb-5">
-                <select
+                    <select
+                    required
                     v-model="car_brand"
                     id="grid-state"
                     type="text"
-                    required
                     class="
                     appearance-none
                     bg-transparent
@@ -85,8 +70,8 @@
                     px-2
                     leading-tight
                     focus:outline-none focus:border-orange-400
-                    "
-                >
+                "
+                    >
                     <option value="" selected disabled>Car Brand</option>
                     <option value="Mercedes Benz">Mercedes Benz</option>
                     <option value="BMW">BMW</option>
@@ -94,12 +79,9 @@
                     <option value="Honda">Honda</option>
                     <option value="Toyota">Toyota</option>
                     <option value="Mazda">Mazda</option>
-                </select>
+                    </select>
                 </div>
-
-                <!-- PAGE1 model car/year -->
-                <div class="grid grid-cols-2 gap-4">
-                <!-- model car -->
+                <!-- car model -->
                 <div class="flex flex-col mb-5">
                     <div class="relative">
                     <input
@@ -109,21 +91,25 @@
                         name="car_model"
                         placeholder="Car Model"
                         class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        mr-3
-                        pl-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
-                        "
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    mr-3
+                    pl-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
+                    "
                     />
                     </div>
                 </div>
+                </div>
+
+                <!-- PAGE1 model car/year -->
+                <div class="grid grid-cols-2 gap-4">
                 <!-- model year -->
                 <div class="flex flex-col mb-5">
                     <div class="relative">
@@ -134,20 +120,49 @@
                         name="car_modelyear"
                         placeholder="Car Model Year"
                         class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        mr-3
-                        pl-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
-                        "
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    mr-3
+                    pl-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
+                    "
                     />
                     </div>
+                </div>
+                <!-- car type -->
+                <div class="flex flex-col mb-5">
+                    <select
+                    required
+                    v-model="car_type"
+                    id="grid-state"
+                    type="text"
+                    class="
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
+                "
+                    >
+                    <option value="" selected disabled>Car Type</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="Pickup">Pickup</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="SUV">SUV</option>
+                    <option value="7 seater">7 seater</option>
+                    <option value="MPV">MPV</option>
+                    </select>
                 </div>
                 </div>
 
@@ -155,23 +170,23 @@
                 <div class="flex flex-col mb-5">
                 <div class="relative">
                     <input
-                    v-model="number_doors"
+                    v-model="car_num_of_door"
                     id="numberofdoors"
                     type="number"
                     name="numberofdoors"
                     placeholder="Number of Doors"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        mr-3
-                        pl-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    mr-3
+                    pl-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     />
                 </div>
@@ -180,8 +195,8 @@
                 <!-- PAGE1 Driving Type (select) -->
                 <div class="flex flex-col mb-5">
                 <select
-                    v-model="driving_type"
-                    id="driving_type"
+                    v-model="car_drive_type"
+                    id="car_drive_type"
                     type="text"
                     required
                     class="
@@ -195,7 +210,7 @@
                     px-2
                     leading-tight
                     focus:outline-none focus:border-orange-400
-                    "
+                "
                 >
                     <option value="" selected disabled>Driving Type</option>
                     <option value="4wd">4wd</option>
@@ -213,17 +228,17 @@
                     type="text"
                     placeholder="Car Engine"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     />
                 </div>
@@ -237,8 +252,9 @@
                 <!-- page2 gear transmission -->
                 <div class="flex flex-col mb-5">
                     <div class="relative">
-                    <input
-                        v-model="gear_transmission"
+                    <select
+                        required
+                        v-model="car_gear"
                         type="text"
                         placeholder="Gear Transmission"
                         class="
@@ -254,7 +270,13 @@
                         leading-tight
                         focus:outline-none focus:border-orange-400
                         "
-                    />
+                    >
+                        <option value="" selected disabled
+                        >Gear transmission</option
+                        >
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                    </select>
                     </div>
                 </div>
 
@@ -262,7 +284,7 @@
                 <div class="flex flex-col mb-5">
                     <div class="relative">
                     <input
-                        v-model="num_gear"
+                        v-model="car_num_of_gear"
                         type="number"
                         placeholder="Number of Gears"
                         class="
@@ -277,7 +299,7 @@
                         px-2
                         leading-tight
                         focus:outline-none focus:border-orange-400
-                        "
+                    "
                     />
                     </div>
                 </div>
@@ -285,21 +307,21 @@
                 <!-- PAGE2 Owner (select)-->
                 <div class="flex items-center mb-5">
                     <select
-                    v-model="owner"
-                    id="owner"
+                    v-model="car_owner"
+                    id="car_owner"
                     type="text"
                     required
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     >
                     <option value="" selected disabled>Owner</option>
@@ -319,17 +341,17 @@
                     v-model="car_act"
                     type="text"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     placeholder="Compulsory Insurance"
                     onfocus="(this.type='date')"
@@ -341,44 +363,44 @@
                 <div class="flex flex-col mb-5">
                 <div class="relative">
                     <input
-                    v-model="car_register"
+                    v-model="car_regis"
                     type="text"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     placeholder="Car Register"
                     />
                 </div>
                 </div>
 
-                <!-- PAGE2 Mileage -->
+                <!-- PAGE2 car_distance -->
                 <div class="flex flex-col mb-5">
                 <div class="relative">
                     <input
-                    v-model="mileage"
+                    v-model="car_distance"
                     type="number"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     placeholder="Mileage"
                     />
@@ -389,20 +411,20 @@
                 <div class="flex flex-col mb-5">
                 <div class="relative">
                     <input
-                    v-model="registration_year"
+                    v-model="car_yearbought"
                     type="number"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     placeholder="Registration Year"
                     />
@@ -413,22 +435,22 @@
                 <div class="flex flex-col mb-5">
                 <div class="relative">
                     <select
-                    v-model="color"
-                    id="color"
+                    v-model="car_color"
+                    id="car_color"
                     type="text"
                     required
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
-                    "
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
+                "
                     >
                     <option value="" selected disabled>Color</option>
                     <option value="White">White</option>
@@ -441,7 +463,7 @@
                     <option value="Brown">Brown</option>
                     <option value="Orange">Orange</option>
                     <option value="Gold">Gold</option>
-                    <option value="Sliver">Sliver</option>
+                    <option value="Silver">Silver</option>
                     <option value="Other">Other</option>
                     </select>
                 </div>
@@ -453,13 +475,7 @@
                 <!--PAGE3 selling price -->
                 <div class="flex flex-col mb-5">
                 <label
-                    class="
-                    mb-1
-                    text-xs
-                    sm:text-sm
-                    tracking-wide
-                    text-gray-600
-                    "
+                    class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
                     >Selling Price:</label
                 >
                 <div class="relative">
@@ -467,69 +483,57 @@
                     v-model="car_price"
                     type="number"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border-b border-gray-400
-                        w-full
-                        text-gray-700
-                        mr-3
-                        pl-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border-b border-gray-400
+                    w-full
+                    text-gray-700
+                    mr-3
+                    pl-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     />
                 </div>
                 </div>
 
-                <!--PAGE3 desciption -->
+                <!--PAGE3 description -->
                 <div class="flex flex-col mb-5">
                 <label
-                    class="
-                    mb-1
-                    text-xs
-                    sm:text-sm
-                    tracking-wide
-                    text-gray-600
-                    "
-                    >Desciption:</label
+                    class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+                    >Description:</label
                 >
                 <div class="relative">
                     <textarea
-                    v-model="desciption"
-                    id="desciption"
-                    name="desciption"
+                    v-model="car_desc"
+                    id="car_desc"
+                    name="car_desc"
                     type="text"
                     class="
-                        appearance-none
-                        bg-transparent
-                        border border-gray-400
-                        rounded-lg
-                        w-full
-                        text-gray-700
-                        pl-3
-                        mr-3
-                        py-2
-                        px-2
-                        leading-tight
-                        focus:outline-none focus:border-orange-400
+                    appearance-none
+                    bg-transparent
+                    border border-gray-400
+                    rounded-lg
+                    w-full
+                    text-gray-700
+                    pl-3
+                    mr-3
+                    py-2
+                    px-2
+                    leading-tight
+                    focus:outline-none focus:border-orange-400
                     "
                     />
                 </div>
                 </div>
 
                 <!--PAGE3 picture -->
-                <div class="flex flex-col mb-5">
-                <div class="relative">
+                <div class="flex flex-col mb-5 ">
+                <div class="relative ">
                     <label
-                    class="
-                        mb-1
-                        text-xs
-                        sm:text-sm
-                        tracking-wide
-                        text-gray-600
-                    "
+                    class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
                     >Picture:</label
                     >
                     <div
@@ -537,32 +541,14 @@
                     class="flex items-center justify-center w-full"
                     >
                     <label
-                        class="
-                        flex flex-col
-                        w-full
-                        h-32
-                        border-4 border-gray-200 border-dashed
-                        duration-500
-                        cursor-pointer
-                        hover:bg-orange-100 hover:border-orange-300
-                        "
+                        class="flex flex-col w-full h-32 border-4 border-gray-200 border-dashed duration-500 cursor-pointer hover:bg-orange-100 hover:border-orange-300"
                     >
                         <div
-                        class="
-                            flex flex-col
-                            items-center
-                            justify-center
-                            pt-7
-                        "
+                        class="flex flex-col items-center justify-center pt-7"
                         >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="
-                            w-8
-                            h-8
-                            text-gray-400
-                            group-hover:text-orange-600
-                            "
+                            class="w-8 h-8 text-gray-400 group-hover:text-orange-600 "
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -575,13 +561,7 @@
                             />
                         </svg>
                         <p
-                            class="
-                            pt-1
-                            text-sm
-                            tracking-wider
-                            text-gray-400
-                            group-hover:text-orange-600
-                            "
+                            class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-orange-600"
                         >
                             Attach a file
                         </p>
@@ -632,21 +612,21 @@
                 <button
                 type="button"
                 class="
-                    flex
-                    mt-2
-                    items-center
-                    justify-center
-                    focus:outline-none
-                    text-white text-sm
-                    sm:text-base
-                    bg-orange-500
-                    hover:bg-orange-600
-                    rounded-3xl
-                    py-3
-                    w-full
-                    transition
-                    duration-150
-                    ease-in
+                flex
+                mt-2
+                items-center
+                justify-center
+                focus:outline-none
+                text-white text-sm
+                sm:text-base
+                bg-orange-500
+                hover:bg-orange-600
+                rounded-3xl
+                py-3
+                w-full
+                transition
+                duration-150
+                ease-in
                 "
                 @click="
                     page = false;
@@ -678,22 +658,22 @@
                 <button
                     type="button"
                     class="
-                    flex
-                    mt-2
-                    items-center
-                    justify-center
-                    focus:outline-none
-                    text-white text-sm
-                    sm:text-base
-                    bg-gray-400
-                    hover:bg-gray-500
-                    rounded-3xl
-                    py-3
-                    w-full
-                    transition
-                    duration-150
-                    ease-in
-                    "
+                flex
+                mt-2
+                items-center
+                justify-center
+                focus:outline-none
+                text-white text-sm
+                sm:text-base
+                bg-gray-400
+                hover:bg-gray-500
+                rounded-3xl
+                py-3
+                w-full
+                transition
+                duration-150
+                ease-in
+                "
                     @click="
                     page = true;
                     page2 = false;
@@ -723,22 +703,22 @@
                 <button
                     type="button"
                     class="
-                    flex
-                    mt-2
-                    items-center
-                    justify-center
-                    focus:outline-none
-                    text-white text-sm
-                    sm:text-base
-                    bg-orange-500
-                    hover:bg-orange-600
-                    rounded-3xl
-                    py-3
-                    w-full
-                    transition
-                    duration-150
-                    ease-in
-                    "
+                flex
+                mt-2
+                items-center
+                justify-center
+                focus:outline-none
+                text-white text-sm
+                sm:text-base
+                bg-orange-500
+                hover:bg-orange-600
+                rounded-3xl
+                py-3
+                w-full
+                transition
+                duration-150
+                ease-in
+                "
                     @click="
                     page3 = true;
                     page2 = false;
@@ -771,22 +751,22 @@
                 <button
                     type="button"
                     class="
-                    flex
-                    mt-2
-                    items-center
-                    justify-center
-                    focus:outline-none
-                    text-white text-sm
-                    sm:text-base
-                    bg-gray-400
-                    hover:bg-gray-500
-                    rounded-3xl
-                    py-3
-                    w-full
-                    transition
-                    duration-150
-                    ease-in
-                    "
+                flex
+                mt-2
+                items-center
+                justify-center
+                focus:outline-none
+                text-white text-sm
+                sm:text-base
+                bg-gray-400
+                hover:bg-gray-500
+                rounded-3xl
+                py-3
+                w-full
+                transition
+                duration-150
+                ease-in
+                "
                     @click="
                     page3 = false;
                     page2 = true;
@@ -811,42 +791,40 @@
                 </button>
                 </div>
 
-                <!-- button addproduct -->
+                <!-- button save -->
                 <div class="flex w-full" v-show="page3">
                 <button
-                    @click="addProduct()"
+                    @click="updateProduct()"
                     type="button"
                     class="
-                    flex
-                    mt-2
-                    items-center
-                    justify-center
-                    focus:outline-none
-                    text-white text-sm
-                    sm:text-base
-                    bg-orange-500
-                    hover:bg-orange-600
-                    rounded-3xl
-                    py-3
-                    w-full
-                    transition
-                    duration-150
-                    ease-in
-                    "
+                flex
+                mt-2
+                items-center
+                justify-center
+                focus:outline-none
+                text-white text-sm
+                sm:text-base
+                bg-green-500
+                hover:bg-green-600
+                rounded-3xl
+                py-3
+                w-full
+                transition
+                duration-150
+                ease-in
+                "
                 >
-                    <span class="mr-2 uppercase">add product</span>
+                    <span class="mr-2 uppercase">save</span>
                     <span>
                     <svg
-                        class="h-6 w-6"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        width="24"
+                        height="24"
                         viewBox="0 0 24 24"
-                        stroke="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
-                        d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        fill="currentColor"
+                        d="M21 7v12q0 .825-.587 1.413Q19.825 21 19 21H5q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h12Zm-9 11q1.25 0 2.125-.875T15 15q0-1.25-.875-2.125T12 12q-1.25 0-2.125.875T9 15q0 1.25.875 2.125T12 18Zm-6-8h9V6H6Z"
                         />
                     </svg>
                     </span>
@@ -867,7 +845,7 @@ import axios from "axios";
 import WelcomeLayout from "../layouts/welcome.vue";
 // @ is an alias to /src
 export default {
-name: "addproduct",
+name: "updateProduct",
 components: {
 WelcomeLayout
 },
@@ -880,26 +858,28 @@ return {
     car_model: "",
     car_modelyear: "",
     car_type: "",
-    color: "",
-    desciption: "",
-    number_doors: "",
-    driving_type: "",
+    car_color: "",
+    car_desc: "",
+    car_num_of_door: "",
+    car_drive_type: "",
     car_engine: "",
-    gear_transmission: "",
-    num_gear: "",
-    owner: "",
+    car_gear: "",
+    car_num_of_gear: "",
+    car_owner: "",
     car_act: "",
-    car_register: "",
-    mileage: "",
-    registration_year: "",
+    car_regis: "",
+    car_distance: "",
+    car_yearbought: "",
     car_price: "",
     boxupimg: null,
     images: [],
-    user: []
+    user: [],
+    car: [],
 };
 },
 mounted() {
 this.getUser();
+this.getCar();
 },
 methods: {
 addpic(event) {
@@ -915,54 +895,80 @@ deleteSelectImage(index) {
     this.images.splice(index, 1);
     this.boxupimg -= 1;
 },
-addProduct() {
+updateProduct() {
     let formData = new FormData();
     formData.append("car_brand", this.car_brand);
     formData.append("car_model", this.car_model);
-    formData.append("car_year", this.car_modelyear);
-    formData.append("car_color", this.color);
-    formData.append("car_desc", this.description);
+    formData.append("car_modelyear", this.car_modelyear);
+    formData.append("car_color", this.car_color);
+    formData.append("car_desc", this.car_desc);
     formData.append("car_price", this.car_price);
-    formData.append("car_regis", this.car_register);
-    formData.append("car_distance", this.mileage);
+    formData.append("car_regis", this.car_regis);
+    formData.append("car_distance", this.car_distance);
     formData.append("car_engine", this.car_engine);
-    formData.append("car_gear", this.gear_transmission);
+    formData.append("car_gear", this.car_gear);
     formData.append("car_type", this.car_type);
-    formData.append("car_yearbought", this.registration_year);
-    formData.append("car_owner", this.owner);
-    formData.append("car_num_of_gear", this.num_gear);
-    formData.append("car_drive_type", this.driving_type);
+    formData.append("car_yearbought", this.car_yearbought);
+    formData.append("car_owner", this.car_owner);
+    formData.append("car_num_of_gear", this.car_num_of_gear);
+    formData.append("car_drive_type", this.car_drive_type);
     formData.append("car_act", this.car_act);
-    formData.append("car_num_of_door", this.number_doors);
+    formData.append("car_num_of_door", this.car_num_of_door);
     this.images.forEach(image => {
     console.log(image);
     formData.append("imgCar", image[0]);
     });
     axios
-    .post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
+    .put(`http://localhost:3000/editCar/${this.$route.params.carId}`, formData)
     .then(res => {
-        console.log(formData);
-        //TODO go to page myCar
+        // TODO go to page my car
     })
     .catch(err => {
-        return next(err);
+        return console.log(err);
     });
 },
 getUser() {
     this.user = JSON.parse(localStorage.getItem("user_account"));
+},
+getCar() {
+    axios
+    .get(`http://localhost:3000/getCarsData/${this.$route.params.carId}`)
+    .then(res => {
+        this.car = res.data;
+        this.car_brand = this.car.car_brand;
+        this.car_model = this.car.car_model;
+        this.car_modelyear = this.car.car_modelyear;
+        this.car_type = this.car.car_type;
+        this.car_num_of_door = this.car.car_num_of_door;
+        this.car_drive_type = this.car.car_drive_type;
+        this.car_engine = this.car.car_engine;
+        this.car_gear = this.car.car_gear;
+        this.car_num_of_gear = this.car.car_num_of_gear;
+        this.car_owner = this.car.car_owner;
+        this.car_act = this.car.car_act;
+        this.car_regis = this.car.car_regis;
+        this.car_distance = this.car.car_distance;
+        this.car_yearbought = this.car.car_yearbought;
+        this.car_color = this.car.car_color;
+        this.car_price = this.car.car_price;
+        this.car_desc = this.car.car_desc;
+    })
+    .catch(err => {
+        return console.log(err);
+    });
 }
 }
 };
 </script>
 
 <style>
-    select:required:invalid {
-        color: #9ca3af;
-    }
-    option[value=""][disabled] {
-        display: none;
-    }
-    option {
-        color: #000;
-    }
+select:required:invalid {
+color: #9ca3af;
+}
+option[value=""][disabled] {
+display: none;
+}
+option {
+color: #000;
+}
 </style>

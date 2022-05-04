@@ -63,12 +63,12 @@ router.get("/CarsData", async function (_req, res, next) {
 router.get("/getCarsData/:id", async function (_req, res, next) {
     try {
         const [cars] = await pool.query(
-            `SELECT * FROM Car WHERE car_id = ${_req.params.id}`
+            `SELECT * FROM Car WHERE car_id = ${req.params.id}`
         );
         const [carImages] = await pool.query(
-            `SELECT * FROM Car_images WHERE car_id = ${_req.params.id}`
+            `SELECT * FROM Car_images WHERE car_id = ${req.params.id}`
         );
-        console.log(carImages)
+        // console.log(req.params.id)
         return res.json({ ...cars[0], car_images: carImages });
     } catch (err) {
         return next(err);
@@ -210,23 +210,23 @@ router.put("/editCar/:carId", async function (req, res, next) {
             imageFields,
         ] = await conn.query(
             "SELECT car_img FROM Car_images WHERE car_id = ?",
-            [req.params.id]
+            [req.params.carId]
         );
         // Delete car images
         const appDir = path.dirname (require.main.filename);
-        images.forEach(img => {
+        images.forEach (img =>{
             const p = path.join(appDir, 'static', img.car_img);
             fs.unlinkSync(p);
         });
-
         const [delimages] = await conn.query(
             `DELETE FROM Car_images WHERE car_id=?`,
-            [req.params.id]
+            [req.params.carId]
         );
         // check index of imgCar
         let checkindex = true;
-        file.foreach((file) => {
-            let path = [file.path.substring(6), car.insertId, checkindex];
+        console.log(file);
+        file.forEach((file) => {
+            let path = [file.path.substring(6), car_id, checkindex];
             pathArray.push(path);
             if (checkindex == true) {
                 checkindex = false;
