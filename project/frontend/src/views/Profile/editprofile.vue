@@ -11,7 +11,7 @@
               flex flex-col
               items-center 
               justify-center
-              bg-orange-400
+              bg-orange-300
               shadow-l-md
               px-4
               sm:px-6
@@ -49,13 +49,15 @@
               justify-center"
             >
               <div
-                class="font-medium mt-4 self-center text-xl sm:text-3xl text-gray-800"
+                class="font-medium mt-4 self-center text-xl sm:text-3xl text-gray-800 cursor-default"
               >
                 {{ firstname + " " + lastname }}
               </div>
-              <!-- <div class="mt-4 self-center text-xl sm:text-sm text-gray-800">
-                บลาๆๆๆๆ
-              </div> -->
+              <router-link to="/changepassword">
+                <div class="mt-4 self-center text-md text-red-600 border-b border-red-600">
+                  Change Password
+                </div>
+              </router-link>
             </div>
             <!-- button home-->
             <div
@@ -132,7 +134,7 @@
                     </div>
 
                     <input
-                    disabled="disabled"
+                      disabled="disabled"
                       v-model="firstname"
                       id="firstname"
                       type="text"
@@ -178,7 +180,7 @@
                     </div>
 
                     <input
-                    disabled="disabled"
+                      disabled="disabled"
                       v-model="lastname"
                       id="lastname"
                       type="text"
@@ -235,7 +237,7 @@
                     </div>
 
                     <input
-                    disabled="disabled"
+                      disabled="disabled"
                       v-model="phone"
                       id="phone"
                       type="text"
@@ -291,8 +293,8 @@
                     </div>
 
                     <textarea
-                    disabled="disabled"
-                    rows="3"
+                      disabled="disabled"
+                      rows="3"
                       v-model="address"
                       id="address"
                       type="text"
@@ -350,7 +352,7 @@
                     </div>
 
                     <input
-                    disabled="disabled"
+                      disabled="disabled"
                       v-model="email"
                       id="email"
                       type="email"
@@ -382,7 +384,10 @@
                 >
                   <a
                     class="bg-sky-700 hover:bg-sky-600 cursor-pointer duration-150 text-white text-center py-2 px-4 rounded-full h-14 w-14 inline-flex items-center"
-                    @click="isActive = false; showButton = false"
+                    @click="
+                      isActive = false;
+                      showButton = false;
+                    "
                   >
                     <svg
                       width="24"
@@ -591,7 +596,7 @@
                     </div>
 
                     <textarea
-                    rows="3"
+                      rows="3"
                       v-model="address2"
                       id="address2"
                       type="text"
@@ -729,7 +734,11 @@
                     duration-150
                     ease-in
                   "
-                      @click="showButton = true; isActive = true; cancel()"
+                      @click="
+                        showButton = true;
+                        isActive = true;
+                        cancel();
+                      "
                     >
                       <span class="ml-2 uppercase">cancel</span>
                     </button>
@@ -756,7 +765,7 @@
                     duration-150
                     ease-in
                   "
-                  @click="saveprofile()"
+                      @click="saveprofile()"
                     >
                       <span class="mr-2 uppercase">save</span>
                     </button>
@@ -808,7 +817,6 @@ export default {
       this.phone2 = this.user.user_phone;
       this.address2 = this.user.user_address;
       this.email2 = this.user.user_email;
-      
     },
     saveprofile() {
       this.firstname = this.firstname2;
@@ -818,16 +826,17 @@ export default {
       this.email = this.email2;
       this.isActive = true;
       this.showButton = true;
-      axios.put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
-        fname: this.firstname,
-        lname: this.lastname,
-        phone: this.phone,
-        address: this.address,
-        email: this.email
-      })
-      .then(res => {
-        localStorage.setItem("user_account", JSON.stringify(res.data));
-      });
+      axios
+        .put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
+          fname: this.firstname,
+          lname: this.lastname,
+          phone: this.phone,
+          address: this.address,
+          email: this.email
+        })
+        .then(res => {
+          localStorage.setItem("user_account", JSON.stringify(res.data));
+        });
     },
     cancel() {
       this.firstname2 = this.user.user_firstname;

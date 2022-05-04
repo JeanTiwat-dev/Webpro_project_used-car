@@ -147,7 +147,7 @@
                   v-show="wrong"
                   class="text-xs text-red-700 mt-2"
                   id="passwordHelp"
-                  >Your username or password is wrong!</span
+                  >Your username or password is incorrect!</span
                 >
               </div>
 

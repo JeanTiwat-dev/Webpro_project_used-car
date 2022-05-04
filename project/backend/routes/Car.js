@@ -60,6 +60,7 @@ router.get("/CarsData", async function (_req, res, next) {
 
 // Get car by id
 router.get("/getCarsData/:id", async function (req, res, next) {
+    console.log(1);
     try {
         const [cars] = await pool.query(
             `SELECT * FROM Car WHERE car_id = ${req.params.id}`
