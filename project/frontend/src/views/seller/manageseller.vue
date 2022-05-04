@@ -1,6 +1,6 @@
 <template>
   <welcome-layout>
-    <div class="pt-20 pb-20" id="app">
+    <div id="app">
       <div class="min-h-screen flex items-center justify-center bg-gray-100 ">
         <div class="flex flex-col">
           <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -48,7 +48,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="bg-white border-b">
+                    <tr class="bg-white border-b ">
                       <!-- id -->
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"

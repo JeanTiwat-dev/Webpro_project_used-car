@@ -40,8 +40,8 @@ const routes = [
     component: () => import("../views/Profile/editprofile.vue")
   },
   {
-    path: "/editproduct/:carId",
-    name: "profile",
+    path: "/editcar/:carId",
+    name: "editproduct",
     component: () => import("../views/seller/editproduct.vue")
   },
   {
