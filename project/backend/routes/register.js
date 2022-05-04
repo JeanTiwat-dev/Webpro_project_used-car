@@ -1,7 +1,28 @@
 const express = require("express");
 const pool = require("../config");
-
+const Joi = require("joi");
 const router = express.Router();
+const { joiPassword } = require('joi-password');
+
+// ValidityState (Validate register)
+const checkValidate = Joi.object({
+    username: Joi.string().min(8).required(),
+    password: joiPassword
+                        .string()
+                        .minOfSpecialCharacters(2)
+                        .minOfLowercase(2)
+                        .minOfUppercase(2)
+                        .minOfNumeric(2)
+                        .noWhiteSpaces()
+                        .messages({
+                            'password.minOfUppercase': '{#label} should contain at least {#min} uppercase character',
+                            'password.minOfSpecialCharacters':
+                            '{#label} should contain at least {#min} special character',
+                            'password.minOfLowercase': '{#label} should contain at least {#min} lowercase character',
+                            'password.minOfNumeric': '{#label} should contain at least {#min} numeric character',
+                            'password.noWhiteSpaces': '{#label} should not contain white spaces',
+                        })
+});
 
 router.post("/register", async function (req, res, next) {
     let username = req.body.username;

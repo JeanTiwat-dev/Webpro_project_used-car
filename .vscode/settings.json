@@ -12,13 +12,16 @@
         "editproduct",
         "editprofile",
         "firstname",
+        "getuser",
         "lastname",
         "manageseller",
         "modelyear",
         "numberofdoors",
         "numgear",
         "originalname",
-        "psge"
+        "psge",
+        "saveprofile",
+        "บลาๆๆๆๆ"
     ],
     "cSpell.ignoreWords": [
         "yearbought"
