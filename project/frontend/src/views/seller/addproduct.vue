@@ -853,7 +853,6 @@ export default {
   },
   data() {
     return {
-      // FIXME edit gear_transmission to ENUM , add input car_type
       page: true,
       page2: false,
       page3: false,

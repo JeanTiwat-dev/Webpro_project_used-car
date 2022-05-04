@@ -921,7 +921,7 @@ updateProduct() {
     axios
     .put(`http://localhost:3000/editCar/${this.$route.params.carId}`, formData)
     .then(res => {
-        // TODO my car
+        // TODO go to page my car
     })
     .catch(err => {
         return console.log(err);
