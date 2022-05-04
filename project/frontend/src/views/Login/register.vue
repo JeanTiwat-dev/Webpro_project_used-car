@@ -492,8 +492,13 @@ export default {
             phone: this.phone,
             address: this.address
           })
-          .then(_res => {
-            this.$router.push("/login");
+          .then(res => {
+            if (res.data != "success") {
+              alert(res.data);
+              } else {
+                alert("Register Success");
+                this.$router.push("/login");
+              }
           })
           .catch(err => {
             console.log(err.res.data.message);
