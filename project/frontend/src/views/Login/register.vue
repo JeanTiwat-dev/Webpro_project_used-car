@@ -141,7 +141,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
-                      v-model="email"
+                      v-model="$v.email.$model"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="email"
                       placeholder="Email"
@@ -193,7 +193,7 @@
                 </div>
 
                 <!--PAGE2 Confirm password -->
-                <div class="flex flex-col mb-5">
+                <div class="">
                   <div class="relative">
                     <input
                       v-model="password_con"
@@ -379,7 +379,9 @@
 
       <!-- Description right side -->
       <div class="px-16">
-        <p class="mb-4 text-2xl text-orange-500 font-bold">Why create a Car247 account?</p>
+        <p class="mb-4 text-2xl text-orange-500 font-bold">
+          Why create a Car247 account?
+        </p>
         <div class="grid grid-rows-4 gap-4 text-gray-700">
           <!-- search -->
           <div class="flex items-center">
@@ -453,8 +455,8 @@
 
 <script>
 import axios from "axios";
-import WelcomeLayout from "../layouts/welcome.vue";
-// @ is an alias to /src
+import { required, email } from "vuelidate/lib/validators";
+
 export default {
   name: "register",
 
@@ -473,6 +475,12 @@ export default {
       password_con: "",
       address: ""
     };
+  },
+  validations: {
+    email: {
+      required,
+      email
+    }
   },
   methods: {
     register() {
