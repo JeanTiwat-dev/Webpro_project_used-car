@@ -47,6 +47,7 @@ const checkValidate = Joi.object({
 })
 
 // HTTP Method
+// Get All cars
 router.get("/CarsData", async function (_req, res, next) {
     try {
         const [cars] = await pool.query(
@@ -58,6 +59,7 @@ router.get("/CarsData", async function (_req, res, next) {
     }
 });
 
+// Get car by id
 router.get("/getCarsData/:id", async function (_req, res, next) {
     try {
         const [cars] = await pool.query(
@@ -73,7 +75,7 @@ router.get("/getCarsData/:id", async function (_req, res, next) {
     }
 });
 
-
+// Add car
 router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, res, next) {
         try {
             await checkValidate.validateAsync(req.body, { abortEarly: false });
@@ -147,8 +149,9 @@ router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, re
             return next(err);
         }
     });
+
 // edit car 
-router.put("/editCar/:carId", async function (req, _res, next) {
+router.put("/editCar/:carId", async function (req, res, next) {
     try {
         await checkValidate.validateAsync(req.body, { abortEarly: false });
     } catch (error) {
@@ -158,6 +161,8 @@ router.put("/editCar/:carId", async function (req, _res, next) {
     await conn.beginTransaction();
 
     try {
+        const file = req.files;
+        let pathArray = [];
         let car_id = req.params.carId;
         let car_model = req.body.car_model;
         let car_modelyear = req.body.car_modelyear;
@@ -200,9 +205,16 @@ router.put("/editCar/:carId", async function (req, _res, next) {
                     car_id
                     ]
         );
+        const [
+            images,
+            imageFields,
+        ] = await conn.query(
+            "SELECT car_img FROM Car_images WHERE car_id = ?",
+            [req.params.id]
+        );
         // Delete car images
         const appDir = path.dirname (require.main.filename);
-        images.forEach(img =>{
+        images.forEach(img => {
             const p = path.join(appDir, 'static', img.car_img);
             fs.unlinkSync(p);
         });
