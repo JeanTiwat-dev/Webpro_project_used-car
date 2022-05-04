@@ -125,7 +125,7 @@
         </div>
         
         <div
-          class="dropdown inline-block relative"
+          class="dropdown inline-block relative cursor-pointer"
           @mouseover="menu = true"
           @mouseleave="menu = false"
           v-else
@@ -192,7 +192,7 @@
             <div @click="islogOut()">
               <li
                 class="
-                  rounded-t
+                  rounded-b
                   bg-white
                   hover:bg-gray-200
                   py-2
