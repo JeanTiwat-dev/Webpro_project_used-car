@@ -150,11 +150,11 @@ router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, re
     });
 // edit car 
 router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res, next) {
-    // try {
-    //     await checkValidate.validateAsync(req.body, { abortEarly: false });
-    // } catch (error) {
-    //     return res.status(400).send(error);
-    // }
+    try {
+        await checkValidate.validateAsync(req.body, { abortEarly: false });
+    } catch (error) {
+        return res.status(400).send(error);
+    }
     const conn = await pool.getConnection();
     await conn.beginTransaction();
 
