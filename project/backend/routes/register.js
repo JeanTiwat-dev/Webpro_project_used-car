@@ -5,8 +5,57 @@ const router = express.Router();
 const { joiPassword } = require('joi-password');
 
 // ValidityState (Validate register)
+// Check username
+const usernameValidator = async (value) => {
+    const [rows] = await pool.query(
+        "SELECT login_username FROM Login WHERE login_username = ?",
+        [value]
+    );
+    if (rows.length > 0) {
+        return res.json("This username is already taken");
+    } else {
+        return value;
+    }
+};
+// check email
+const emailValidator = async (value) => {
+    const [rows] = await pool.query(
+        "SELECT user_email FROM Users WHERE user_email = ?",
+        [value]
+    );
+    if (rows.length > 0) {
+        return res.json("This email is already taken");
+    } else {
+        return value;
+    }
+};
+// check idcard
+const idcardValidator = async (value) => {
+    const [rows] = await pool.query(
+        "SELECT user_idcard FROM Users WHERE user_idcard = ?",
+        [value]
+    );
+    if (rows.length > 0) {
+        return res.json("This ID card is already taken");
+    } else {
+        return value;
+    }
+};
+// check phone
+const phoneValidator = async (value) => {
+    const [rows] = await pool.query(
+        "SELECT user_phone FROM Users WHERE user_phone = ?",
+        [value]
+    );
+    if (rows.length > 0) {
+        return res.json("This phone is already taken");
+    } else {
+        return value;
+    }
+};
+
 const checkValidate = Joi.object({
-    username: Joi.string().min(8).required(),
+    username: Joi.string().min(8).required().external(usernameValidator),
     password: joiPassword
                         .string()
                         .minOfSpecialCharacters(2)
