@@ -58,15 +58,16 @@ router.get("/CarsData", async function (_req, res, next) {
     }
 });
 
-router.get("/getCarsData/:id", async function (_req, res, next) {
+router.get("/getCarsData/:id", async function (req, res, next) {
+    // console.log(1);
     try {
         const [cars] = await pool.query(
-            `SELECT * FROM Car WHERE car_id = ${_req.params.id}`
+            `SELECT * FROM Car WHERE car_id = ${req.params.id}`
         );
         const [carImages] = await pool.query(
-            `SELECT * FROM Car_images WHERE car_id = ${_req.params.id}`
+            `SELECT * FROM Car_images WHERE car_id = ${req.params.id}`
         );
-        console.log(carImages)
+        // console.log(req.params.id)
         return res.json({ ...cars[0], car_images: carImages });
     } catch (err) {
         return next(err);
@@ -148,16 +149,18 @@ router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, re
         }
     });
 // edit car 
-router.put("/editCar/:carId", async function (req, _res, next) {
-    try {
-        await checkValidate.validateAsync(req.body, { abortEarly: false });
-    } catch (error) {
-        return res.status(400).send(error);
-    }
-    const conn = pool.getConnection();
+router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res, next) {
+    // try {
+    //     await checkValidate.validateAsync(req.body, { abortEarly: false });
+    // } catch (error) {
+    //     return res.status(400).send(error);
+    // }
+    const conn = await pool.getConnection();
     await conn.beginTransaction();
 
     try {
+        const file = req.files;
+        let pathArray = [];
         let car_id = req.params.carId;
         let car_model = req.body.car_model;
         let car_modelyear = req.body.car_modelyear;
@@ -200,21 +203,31 @@ router.put("/editCar/:carId", async function (req, _res, next) {
                     car_id
                     ]
         );
+        const [
+            images,
+            imageFields,
+        ] = await conn.query(
+            "SELECT car_img FROM Car_images WHERE car_id = ?",
+            [req.params.carId]
+        );
+        console.log(images);
         // Delete car images
         const appDir = path.dirname (require.main.filename);
-        images.forEach(img =>{
+        images.forEach (img =>{
+            console.log(1);
             const p = path.join(appDir, 'static', img.car_img);
             fs.unlinkSync(p);
         });
-
+        console.log(2);
         const [delimages] = await conn.query(
             `DELETE FROM Car_images WHERE car_id=?`,
-            [req.params.id]
+            [req.params.carId]
         );
         // check index of imgCar
         let checkindex = true;
-        file.foreach((file) => {
-            let path = [file.path.substring(6), car.insertId, checkindex];
+        console.log(file);
+        file.forEach((file) => {
+            let path = [file.path.substring(6), car_id, checkindex];
             pathArray.push(path);
             if (checkindex == true) {
                 checkindex = false;
