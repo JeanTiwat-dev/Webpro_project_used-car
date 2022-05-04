@@ -706,9 +706,9 @@
                   </a>
                 </div>
 
-                <!-- button cancle/save -->
+                <!-- button cancel/save -->
                 <div class="grid grid-cols-2 gap-2 mt-8" v-show="!showButton">
-                  <!-- button cancle-->
+                  <!-- button cancel-->
                   <div class="flex w-full">
                     <button
                       type="button"
@@ -729,9 +729,9 @@
                     duration-150
                     ease-in
                   "
-                      @click="showButton = true; isActive = true; cancle()"
+                      @click="showButton = true; isActive = true; cancel()"
                     >
-                      <span class="ml-2 uppercase">cancle</span>
+                      <span class="ml-2 uppercase">cancel</span>
                     </button>
                   </div>
 
@@ -815,11 +815,21 @@ export default {
       this.lastname = this.lastname2;
       this.phone = this.phone2;
       this.address = this.address2;
-      this.email = this.email;
+      this.email = this.email2;
       this.isActive = true;
       this.showButton = true;
+      axios.put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
+        fname: this.firstname,
+        lname: this.lastname,
+        phone: this.phone,
+        address: this.address,
+        email: this.email
+      })
+      .then(res => {
+        localStorage.setItem("user_account", JSON.stringify(res.data));
+      });
     },
-    cancle() {
+    cancel() {
       this.firstname2 = this.user.user_firstname;
       this.lastname2 = this.user.user_lastname;
       this.phone2 = this.user.user_phone;

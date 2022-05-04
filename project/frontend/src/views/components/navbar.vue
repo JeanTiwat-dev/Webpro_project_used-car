@@ -178,20 +178,16 @@
             style="width: 200px"
             v-show="menu"
           >
-            <li class="">
-              <router-link
-                to="/profile"
-                class="
-                  rounded-t
+            <li
+                  @click="goToEdit()"
+                  class="rounded-t
                   bg-white
                   hover:bg-gray-200
                   py-2
                   px-4
                   block
-                  whitespace-no-wrap
-                "
-                >My Profile
-              </router-link>
+                  whitespace-no-wrap">
+              My Profile
             </li>
             <div @click="islogOut()">
               <li
@@ -236,6 +232,9 @@ export default {
       localStorage.removeItem("user_account");
       //   this.$router.push("/");
       location.reload();
+    },
+    goToEdit() {
+      this.$router.push(`/profile/${this.user.user_id}`);
     },
   },
 };

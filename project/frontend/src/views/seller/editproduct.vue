@@ -915,7 +915,6 @@ updateProduct() {
     formData.append("car_act", this.car_act);
     formData.append("car_num_of_door", this.car_num_of_door);
     this.images.forEach(image => {
-    console.log(image);
     formData.append("imgCar", image[0]);
     });
     axios
