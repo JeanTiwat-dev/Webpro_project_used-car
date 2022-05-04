@@ -919,8 +919,7 @@ export default {
         formData.append("imgCar", image[0]);
       });
       axios.post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
-      .then(res => {
-        console.log(formData);
+      .then(_res => {
         //TODO go to page myCar
       }).catch(err => {
         return console.log(err);
