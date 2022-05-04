@@ -74,12 +74,15 @@ const checkValidate = Joi.object({
 });
 
 router.post("/register", async function (req, res, next) {
-    // try {
-    //     await checkValidate.validateAsync(req.body, { abortEarly: false });
-    // } catch (error) {
-    //     return res.status(400).send(error);
-    // }
-
+    let errMassage = [];
+    try {
+        await checkValidate.validateAsync(req.body, { abortEarly: false });
+    } catch (error) {
+        error.details.forEach(element => {
+            errMassage.push(element.message);
+        });
+        return res.json(errMassage);
+    }
     let username = req.body.username;
     let password = req.body.password;
     let firstname = req.body.firstname;
