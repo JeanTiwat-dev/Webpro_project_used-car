@@ -97,8 +97,10 @@
               <!-- <button class="rounded-full px-4 py-2 w-full bg-orange-500 text-white hover:bg-orange-300 duration-300">Compare Cars</button> -->
               <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-2">
                 <div class="card m-2  border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 mt-4" v-for="(item, index) of getCars" :key="`car-card-${index}`">
-                  <div class="m-3">
-                    <img class="rounded" :src=getCarImage(item.car_img)>
+                  <div class="m-3" >
+                    <router-link :to="`/detail/${item.car_id}`">
+                    <img class="rounded" :src=getCarImage(item.car_img) >
+                    </router-link>
                   <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-gray-100 inline rounded-full px-2 mt-3">{{item.car_price}} ฿</span></button>
                   <h2 class="text-s mt-6 mb-2">Brand: {{item.car_brand}}</h2>
                   <router-link :to="`/detail/${item.car_id}`" class="cursor-pointer float-right"><i class="fa-solid fa-circle-info"></i></router-link>

@@ -164,6 +164,7 @@ router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, re
 
 // Edit car 
 router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res, next) {
+    console.log("editCar");
     try {
         await checkValidate.validateAsync(req.body, { abortEarly: false });
     } catch (error) {
@@ -233,7 +234,6 @@ router.put("/editCar/:carId", upload.array('imgCar', 6),async function (req, res
         );
         // check index of imgCar
         let checkindex = true;
-        console.log(file);
         file.forEach((files) => {
             let paths = [files.path.substring(6), car_id, checkindex];
             pathArray.push(paths);

@@ -94,9 +94,9 @@ const checkValidate = Joi.object({
     email: Joi.string().email().required()
     .external(emailValidator),
     birthdate: Joi.date().required(),
-    idcard: Joi.string().required()
+    idcard: Joi.string().min(13).max(13).required()
     .external(idcardValidator),
-    phone: Joi.string().required()
+    phone: Joi.string().min(10).max(10).required()
     .external(phoneValidator),
 });
 
