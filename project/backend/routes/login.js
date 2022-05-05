@@ -40,21 +40,34 @@ router.post('/goto', async function(req, res, next) {
 
 // Reset password
 router.put("/resetPassword/:userId", async (req, res, next) => {
-    try {
-        await checkValidate.validateAsync(req.body, { abortEarly: false });
-    } catch (error) {
-        return res.status(400).send(error);
-    }
+    console.log(1);
+    // try {
+    //     await checkValidate.validateAsync(req.body, { abortEarly: false });
+    // } catch (error) {
+    //     return res.status(400).send(error);
+    // }
 
     try {
         let userId = req.params.userId;
         let password = req.body.password;
-        // FIXME : Change password
-        // Update password
+        let newpassword = req.body.newpassword;
+        let confirmpassword = req.body.confirmpassword;
+
+        const [oldpass] = await pool.query(
+            'SELECT login_password FROM Login WHERE user_id = ? AND login_password = ?',
+            [userId, password]
+        )
+        if (oldpass[0] == undefined) {
+            return res.json('password incorrect');
+        }
+        if (newpassword != confirmpassword) {
+            return res.json("confirmpassword doesn't match");
+        }
         await pool.query(
             "UPDATE Login SET login_password = ? WHERE user_id = ?", 
-            [password, userId]
+            [newpassword, userId]
         );
+        return res.json('success');
     } catch (err) {
         next(err);
     }

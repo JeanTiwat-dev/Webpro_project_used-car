@@ -88,10 +88,12 @@
                     placeholder="Enter your password"
                   />
                 </div>
-                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
+                <span
+                  v-if="$v.Password.$error && !$v.Password.required"
+                  class="text-xs text-red-700 mt-2"
                   >Please fill in password.</span
                 >
-                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
+                <span v-show="oldPassword" class="text-xs text-red-700 mt-2"
                   >Your password is incorrect!</span
                 >
               </div>
@@ -123,7 +125,7 @@
                   </div>
 
                   <input
-                    v-model="newPassword"
+                    v-model="$v.newPassword.$model"
                     id="newPassword"
                     type="Password"
                     name="newPassword"
@@ -141,9 +143,35 @@
                     placeholder="Enter your new password"
                   />
                 </div>
-                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
-                  >Please fill in new password.</span
+                <div
+                  class="text-xs text-red-700 mt-2"
+                  v-if="$v.newPassword.$error"
                 >
+                  <span v-if="!$v.newPassword.required"
+                    >Please fill in new password.</span
+                  >
+                  <!-- must have -->
+                  <p
+                    v-if="
+                      !$v.newPassword.complexup ||
+                        !$v.newPassword.complexlow ||
+                        !$v.newPassword.complexnumber ||
+                        !$v.newPassword.complexspecial ||
+                        !$v.newPassword.complexwhitespace
+                    "
+                  >
+                    Password must have
+                    <span v-if="!$v.newPassword.complexup">2 Uppercase </span>
+                    <span v-if="!$v.newPassword.complexlow">2 Lowercase </span>
+                    <span v-if="!$v.newPassword.complexnumber">2 Number </span>
+                    <span v-if="!$v.newPassword.complexspecial"
+                      >2 Special characters
+                    </span>
+                    <span v-if="!$v.newPassword.complexwhitespace"
+                      >No Whitespace
+                    </span>
+                  </p>
+                </div>
               </div>
 
               <!-- confirm new password -->
@@ -173,7 +201,7 @@
                   </div>
 
                   <input
-                    v-model="conNewPassword"
+                    v-model="$v.conNewPassword.$model"
                     id="confirmNewPassword"
                     type="password"
                     name="conNewPassword"
@@ -191,10 +219,16 @@
                     placeholder="Enter your new password"
                   />
                 </div>
-                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
+                <span
+                  v-if="$v.conNewPassword.$error && !$v.conNewPassword.required"
+                  class="text-xs text-red-700 mt-2"
+                  id="passwordHelp"
                   >Please fill in new password.</span
                 >
-                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
+                <span
+                  v-if="$v.conNewPassword.$error && !$v.conNewPassword.sameAs"
+                  class="text-xs text-red-700 mt-2"
+                  id="passwordHelp"
                   >Your new password don't match!</span
                 >
               </div>
@@ -287,19 +321,44 @@
 
 <script>
 import axios from "axios";
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+import { required, sameAs } from "vuelidate/lib/validators";
 
-function complexPassword (value) {
-  if (!(value.match(/[a-z]/) && value.match(/[A-Z]/) && value.match(/[0-9]/))) {
-    return false
+function complexlow(value) {
+  if (!value.match(/[a-z]{2}/)) {
+    return false;
   }
-  return true
+  return true;
+}
+function complexup(value) {
+  if (!value.match(/[A-Z]{2}/)) {
+    return false;
+  }
+  return true;
+}
+function complexnumber(value) {
+  if (!value.match(/[0-9]{2}/)) {
+    return false;
+  }
+  return true;
+}
+function complexwhitespace(value) {
+  if (!!value.match(/(\s)/)) {
+    return false;
+  }
+  return true;
+}
+function complexspecial(value) {
+  if (!value.match(/[!@#$%^&*(),.?":{}|<>]{2}/)) {
+    return false;
+  }
+  return true;
 }
 
 export default {
   name: "changepassword",
   data() {
     return {
+      oldPassword: false,
       Password: "",
       newPassword: "",
       conNewPassword: ""
@@ -307,29 +366,46 @@ export default {
   },
   validations: {
     Password: {
-      required: required
+      required: required,
+      sameAs: sameAs("oldPassword")
     },
     newPassword: {
       required: required,
+      complexup: complexup,
+      complexlow: complexlow,
+      complexnumber: complexnumber,
+      complexwhitespace: complexwhitespace,
+      complexspecial: complexspecial
     },
     conNewPassword: {
       required: required,
+      sameAs: sameAs("newPassword")
     }
   },
   methods: {
     savepassword() {
-      axios
-        .put(`/resetPassword/${this.$route.params.userId}`, {
-          password: this.Password,
-          newpassword: this.newpassword,
-          confirmpassword: this.confirmpassword
-        })
-        .then(res => {
-          this.$router.push("/profile");
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      // if (this.$v.$invalid) {
+      //   this.$v.$touch();
+      // } else {
+        axios
+          .put(`http://localhost:3000/resetPassword/${this.$route.params.userId}`, {
+            password: this.Password,
+            newpassword: this.newPassword,
+            confirmpassword: this.conNewPassword
+          })
+          .then(res => {
+            if (res.data != "success") {
+              this.oldPassword = true;
+            } else {
+              this.oldPassword = false;
+              alert("Change Password Success!");
+              this.$router.push(`/profile/${this.$route.params.userId}`);
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      // }
     }
   }
 };
