@@ -988,10 +988,6 @@ import axios from "axios";
 import WelcomeLayout from "../layouts/welcome.vue";
 import {
   required,
-  email,
-  minLength,
-  maxLength,
-  sameAs
 } from "vuelidate/lib/validators";
 // @ is an alias to /src
 export default {
