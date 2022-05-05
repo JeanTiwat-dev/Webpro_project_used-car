@@ -6,13 +6,14 @@ const { joiPassword } = require('joi-password');
 
 // ValidityState (Validate register)
 // Check username
-const usernameValidator = async (value) => {
-    const [rows] = await pool.query(
+const usernameValidator = async (value, helpers) => {
+    console.log(2);
+    const [rows, _] = await pool.query(
         "SELECT login_username FROM Login WHERE login_username = ?",
         [value]
     );
     if (rows.length > 0) {
-        return res.json("This username is already taken");
+        throw new Joi.ValidationError('This username is already taken')
     } else {
         return value;
     }
@@ -55,7 +56,7 @@ const phoneValidator = async (value) => {
 };
 
 const checkValidate = Joi.object({
-    username: Joi.string().min(8).required().external(usernameValidator),
+    username: Joi.string().required().external(usernameValidator),
     password: joiPassword
                         .string()
                         .minOfSpecialCharacters(2)
@@ -64,15 +65,23 @@ const checkValidate = Joi.object({
                         .minOfNumeric(2)
                         .noWhiteSpaces()
                         .messages({
-                            'password.minOfUppercase': '{#label} should contain at least {#min} uppercase character',
-                            'password.minOfSpecialCharacters':
-                            '{#label} should contain at least {#min} special character',
-                            'password.minOfLowercase': '{#label} should contain at least {#min} lowercase character',
-                            'password.minOfNumeric': '{#label} should contain at least {#min} numeric character',
-                            'password.noWhiteSpaces': '{#label} should not contain white spaces',
-                        })
+                            'password.minOfUppercase': 'password should contain at least {#min} uppercase character',
+                            'password.minOfSpecialCharacters': 'password should contain at least {#min} special character',
+                            'password.minOfLowercase': 'password should contain at least {#min} lowercase character',
+                            'password.minOfNumeric': 'password should contain at least {#min} numeric character',
+                            'password.noWhiteSpaces': 'password should not contain white spaces',
+                        }),
+    firstname: Joi.string().required(),
+    lastname: Joi.string().required(),
+    address: Joi.string().required(),
+    gender: Joi.string().required(),
+    email: Joi.string().email().required().external(emailValidator),
+    birthdate: Joi.date().required(),
+    idcard: Joi.string().required().external(idcardValidator),
+    phone: Joi.string().required().external(phoneValidator),
 });
 
+// Register
 router.post("/register", async function (req, res, next) {
     let errMassage = [];
     try {
@@ -81,6 +90,7 @@ router.post("/register", async function (req, res, next) {
         error.details.forEach(element => {
             errMassage.push(element.message);
         });
+        console.log(errMassage);
         return res.json(errMassage);
     }
     let username = req.body.username;
