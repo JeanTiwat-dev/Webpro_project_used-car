@@ -198,9 +198,9 @@
                   block
                   whitespace-no-wrap
                   
-                " @click=goToMyCar()>
+                " 
+                @click="goToMyCar()">
               My Car
-            
             </li>
             <div @click="islogOut()">
               <li

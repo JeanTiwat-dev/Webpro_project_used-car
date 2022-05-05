@@ -49,8 +49,9 @@ export default {
       console.log(this);
         },
         getCar() {
+            console.log(this.$route.params.userId);
         axios
-        .get("http://localhost:3000/mycar/${this.user.user_id}`);")
+        .get(`http://localhost:3000/CarsData/${this.$route.params.userId}`)
         .then(res => {
           this.car = res.data
           console.log(this.car)

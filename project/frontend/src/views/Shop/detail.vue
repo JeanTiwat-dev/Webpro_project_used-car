@@ -1,6 +1,6 @@
 <template>
 <welcome-layout>
-  <div class="container mx-auto">
+  <div v-if="car" class="container mx-auto">
      <div class="carousel relative shadow-2xl bg-white w-full mt-4">
     <div class="carousel-inner relative overflow-hidden w-full">
       <!--Slide 1-->
