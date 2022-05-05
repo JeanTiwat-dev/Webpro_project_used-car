@@ -11,6 +11,7 @@ const checkValidate = Joi.object({
         phone: Joi.string().required(),
         address: Joi.string().required(),
 });
+//TODO: add data to edit
 
 // HTTP Method
 // Add user

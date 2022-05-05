@@ -510,12 +510,15 @@ export default {
             address: this.address
           })
           .then(res => {
+            let errMessage = "";
             if (res.data != "success") {
-              alert(res.data);
-            } else {
-              alert("Register Success");
-              this.$router.push("/login");
-            }
+              res.data.forEach(element => {
+                errMessage += element + "\n"; 
+              });
+              alert(errMessage);
+              } else {
+                this.$router.push("/login");
+              }
           })
           .catch(err => {
             console.log(err);
