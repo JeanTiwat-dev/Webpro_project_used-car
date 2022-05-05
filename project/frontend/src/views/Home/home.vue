@@ -90,7 +90,7 @@
       </div>
     </div> -->
     <!-- Section 5 -->
-    <!-- <section
+    <section
       id="footer"
       class="flex items-center justify-center py-20 bg-white min-w-screen"
     >
@@ -247,7 +247,7 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
   </div>
   </welcome-layout>
 </template>
