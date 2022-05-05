@@ -14,7 +14,7 @@ const usernameValidator = async (value) => {
     );
     if (rows.length > 0) {
         alert('This username is already taken')
-        return res.status(400).send("This username is already taken");
+        return res.status(400).send(error);
     } else {
         return value;
     }
@@ -39,7 +39,7 @@ const emailValidator = async (value) => {
     );
     if (rows.length > 0) {
         alert("This email is already taken");
-        return res.status(400).send("This email is already taken");
+        return res.status(400).send(error);
     } else {
         return value;
     }
@@ -101,7 +101,7 @@ const checkValidate = Joi.object({
 });
 
 // Register
-router.post("/register", async function (req, res, next) {
+router.post("/register",async function (req, res, next) {
     // let errMassage = [];
     try {
         await checkValidate.validateAsync(req.body, { abortEarly: false });

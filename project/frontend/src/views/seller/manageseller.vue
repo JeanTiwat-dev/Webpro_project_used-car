@@ -48,45 +48,45 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="bg-white border-b ">
+                    <tr class="bg-white border-b " v-for="(seller, index) in sellers " :key="seller.user_id">
                       <!-- id -->
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                       >
-                        1
+                        {{ seller.user_id }}
                       </td>
                       <!-- firstname -->
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        firstname
+                        {{ seller.user_firstname }}
                       </td>
                       <!-- lastname -->
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        lastname
+                        {{ seller.user_lastname }}
                       </td>
-                      <!-- tel -->
+                      <!-- phone -->
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        08xxxxxxxx
+                        {{ seller.user_phone }}
                       </td>
                       <!-- email -->
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        xxxx@gmail.com
+                        {{ seller.user_email }}
                       </td>
                       <!-- button -->
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
                         <!-- confirm -->
-                        <div class="w-24" v-show="showConfirm">
+                        <div class="w-24" v-show="seller.s_vertified == 'Not-Vertified'">
                           <button
-                            @click="confirm()"
+                            @click="confirm(seller.user_id, index)"
                             type="button"
                             class="flex
                                     items-center
@@ -107,9 +107,9 @@
                           </button>
                         </div>
                         <!-- cancel -->
-                        <div class="w-24" v-show="showCancel">
+                        <div class="w-24" v-show="seller.s_vertified == 'Vertified'">
                           <button
-                            @click="cancel()"
+                            @click="cancel(seller.user_id, index)"
                             type="button"
                             class="flex
                                     items-center
@@ -158,8 +158,7 @@ export default {
       phone: "",
       address: "",
       email: "",
-      showCancel: false,
-      showConfirm: true,
+      sellers: []
     };
   },
   mounted() {
@@ -168,20 +167,34 @@ export default {
   methods: {
     getuser() {
       this.user = JSON.parse(localStorage.getItem("user_account"));
+      if(this.user.role != 'admin') {
+        alert("You are not admin");
+        this.$router.push("/");
+      }
       this.firstname = this.user.user_firstname;
       this.lastname = this.user.user_lastname;
       this.phone = this.user.user_phone;
       this.address = this.user.user_address;
       this.email = this.user.user_email;
+      axios.get(`http://localhost:3000/getSellerData`).then(res => {
+        this.sellers = res.data;
+      });
     },
-    confirm() {
-      this.showConfirm = false;
-      this.showCancel = true;
-      
+    confirm(user_id, index) {
+      axios.put(`http://localhost:3000/vertified/${user_id}`)
+      .then(
+        this.sellers[index].s_vertified = "Vertified"
+      ).catch(err => {
+        console.log(err);
+      });
     },
-    cancel() {
-      this.showConfirm = true;
-      this.showCancel = false;
+    cancel(user_id, index) {
+      axios.put(`http://localhost:3000/unvertified/${user_id}`)
+      .then(
+        this.sellers[index].s_vertified = "Not-Vertified"
+      ).catch(err => {
+        console.log(err);
+      });
     }
   }
 };
