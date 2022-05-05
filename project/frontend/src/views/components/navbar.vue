@@ -189,6 +189,21 @@
                   whitespace-no-wrap">
               My Profile
             </li>
+            <li class="">
+              <router-link
+                to="/myCar"
+                class="
+                  rounded-t
+                  bg-white
+                  hover:bg-gray-200
+                  py-2
+                  px-4
+                  block
+                  whitespace-no-wrap
+                "
+                >My Car
+              </router-link>
+            </li>
             <div @click="islogOut()">
               <li
                 class="
@@ -226,7 +241,7 @@ export default {
   methods: {
     isLoggedin() {
       this.user = JSON.parse(localStorage.getItem("user_account"));
-      console.log(this);
+      // console.log(this);
     },
     islogOut() {
       localStorage.removeItem("user_account");
