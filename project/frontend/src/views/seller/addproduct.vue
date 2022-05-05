@@ -16,6 +16,7 @@
             py-5
             rounded-xl
             max-w-2xl
+            px-4
           "
           >
             <!-- head -->
@@ -187,8 +188,7 @@
                         <option value="7 seater">7 seater</option>
                         <option value="MPV">MPV</option>
                       </select>
-                    </div>
-                    <div
+                      <div
                         v-if="$v.car_type.$error"
                         class="text-xs text-red-700 mt-2"
                       >
@@ -196,6 +196,7 @@
                           Please select car type.
                         </p>
                       </div>
+                    </div>
                   </div>
 
                   <!-- PAGE1  number of doors -->
@@ -223,13 +224,13 @@
                       />
                     </div>
                     <div
-                        v-if="$v.car_num_of_door.$error"
-                        class="text-xs text-red-700 mt-2"
-                      >
-                        <p v-if="!$v.car_num_of_door.required">
-                          Please enter number of doors.
-                        </p>
-                      </div>
+                      v-if="$v.car_num_of_door.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_num_of_door.required">
+                        Please enter number of doors.
+                      </p>
+                    </div>
                   </div>
 
                   <!-- PAGE1 Driving Type (select) -->
@@ -259,13 +260,13 @@
                       <option value="rwd">rwd</option>
                     </select>
                     <div
-                        v-if="$v.car_drive_type.$error"
-                        class="text-xs text-red-700 mt-2"
-                      >
-                        <p v-if="!$v.car_drive_type.required">
-                          Please select driving type.
-                        </p>
-                      </div>
+                      v-if="$v.car_drive_type.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_drive_type.required">
+                        Please select driving type.
+                      </p>
+                    </div>
                   </div>
 
                   <!-- PAGE1 car engine -->
@@ -291,13 +292,13 @@
                       />
                     </div>
                     <div
-                        v-if="$v.car_engine.$error"
-                        class="text-xs text-red-700 mt-2"
-                      >
-                        <p v-if="!$v.car_engine.required">
-                          Please enter car engine.
-                        </p>
-                      </div>
+                      v-if="$v.car_engine.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_engine.required">
+                        Please enter car engine.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -310,7 +311,7 @@
                       <div class="relative">
                         <select
                           required
-                          v-model="car_gear"
+                          v-model="$v.car_gear.$model"
                           type="text"
                           placeholder="Gear Transmission"
                           class="
@@ -327,12 +328,20 @@
                           focus:outline-none focus:border-orange-400
                           "
                         >
-                          <option value="" selected disabled
+                          <option value selected disabled
                             >Gear transmission</option
                           >
                           <option value="Automatic">Automatic</option>
                           <option value="Manual">Manual</option>
                         </select>
+                        <div
+                          v-if="$v.car_gear.$error"
+                          class="text-xs text-red-700 mt-2"
+                        >
+                          <p v-if="!$v.car_gear.required">
+                            Please select car gear.
+                          </p>
+                        </div>
                       </div>
                     </div>
 
@@ -340,7 +349,7 @@
                     <div class="flex flex-col mb-5">
                       <div class="relative">
                         <input
-                          v-model="car_num_of_gear"
+                          v-model="$v.car_num_of_gear.$model"
                           type="number"
                           placeholder="Number of Gears"
                           class="
@@ -358,12 +367,20 @@
                         "
                         />
                       </div>
+                      <div
+                        v-if="$v.car_num_of_gear.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_num_of_gear.required">
+                          Please enter car num of gear.
+                        </p>
+                      </div>
                     </div>
 
                     <!-- PAGE2 Owner (select)-->
-                    <div class="flex items-center mb-5">
+                    <div class="flex flex-col mb-5">
                       <select
-                        v-model="car_owner"
+                        v-model="$v.car_owner.$model"
                         id="car_owner"
                         type="text"
                         required
@@ -380,21 +397,28 @@
                         focus:outline-none focus:border-orange-400
                       "
                       >
-                        <option value="" selected disabled>Owner</option>
+                        <option value selected disabled>Owner</option>
                         <option value="1st">1st</option>
                         <option value="2nd">2nd</option>
                         <option value="3rd">3rd</option>
                         <option value="4th">4th</option>
                         <option value="5th">5th</option>
                       </select>
+                      <div
+                        v-if="$v.car_owner.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_owner.required">
+                          Please select car owner.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <!-- TODO type month -->
                   <!-- PAGE2 compulsory insurance -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="car_act"
+                        v-model="$v.car_act.$model"
                         type="text"
                         class="
                         appearance-none
@@ -413,13 +437,21 @@
                         onfocus="(this.type='date')"
                       />
                     </div>
+                    <div
+                      v-if="$v.car_act.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_act.required">
+                        Please select compulsory insurance.
+                      </p>
+                    </div>
                   </div>
 
                   <!-- PAGE2 car register -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="car_register"
+                        v-model="$v.car_register.$model"
                         type="text"
                         class="
                         appearance-none
@@ -437,13 +469,21 @@
                         placeholder="Car Register"
                       />
                     </div>
+                    <div
+                      v-if="$v.car_register.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_register.required">
+                        Please enter car register.
+                      </p>
+                    </div>
                   </div>
 
                   <!-- PAGE2 Mileage -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="car_distance"
+                        v-model="$v.car_distance.$model"
                         type="number"
                         class="
                         appearance-none
@@ -461,13 +501,21 @@
                         placeholder="Mileage"
                       />
                     </div>
+                    <div
+                      v-if="$v.car_distance.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_distance.required">
+                        Please enter mileage.
+                      </p>
+                    </div>
                   </div>
 
                   <!-- PAGE2 registration year -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="car_yearbought"
+                        v-model="$v.car_yearbought.$model"
                         type="number"
                         class="
                         appearance-none
@@ -485,13 +533,21 @@
                         placeholder="Registration Year"
                       />
                     </div>
+                    <div
+                      v-if="$v.car_yearbought.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_yearbought.required">
+                        Please enter Registration Year.
+                      </p>
+                    </div>
                   </div>
 
                   <!-- PAGE2 color (select) -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <select
-                        v-model="car_color"
+                        v-model="$v.car_color.$model"
                         id="car_color"
                         type="text"
                         required
@@ -508,7 +564,7 @@
                       focus:outline-none focus:border-orange-400
                     "
                       >
-                        <option value="" selected disabled>Color</option>
+                        <option value selected disabled>Color</option>
                         <option value="White">White</option>
                         <option value="Black">Black</option>
                         <option value="Gray">Gray</option>
@@ -523,6 +579,14 @@
                         <option value="Other">Other</option>
                       </select>
                     </div>
+                    <div
+                      v-if="$v.car_color.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_color.required">
+                        Please select color.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -536,7 +600,7 @@
                     >
                     <div class="relative">
                       <input
-                        v-model="car_price"
+                        v-model="$v.car_price.$model"
                         type="number"
                         class="
                         appearance-none
@@ -553,6 +617,14 @@
                       "
                       />
                     </div>
+                    <div
+                      v-if="$v.car_price.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_price.required">
+                        Please enter car price.
+                      </p>
+                    </div>
                   </div>
 
                   <!--PAGE3 description -->
@@ -563,7 +635,7 @@
                     >
                     <div class="relative">
                       <textarea
-                        v-model="car_desc"
+                        v-model="$v.car_desc.$model"
                         id="car_desc"
                         name="car_desc"
                         type="text"
@@ -582,6 +654,14 @@
                         focus:outline-none focus:border-orange-400
                       "
                       />
+                    </div>
+                    <div
+                      v-if="$v.car_desc.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.car_desc.required">
+                        Please enter description.
+                      </p>
                     </div>
                   </div>
 
@@ -630,6 +710,11 @@
                             accept="image/png, image/jpeg, image/webp"
                           />
                         </label>
+                      </div>
+                      <div class="text-xs text-red-700 mt-2">
+                        <p v-show="boxupimg < 6">
+                          Please upload 6 images.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -938,7 +1023,7 @@ export default {
       car_price: "",
       boxupimg: null,
       images: [],
-      user: []
+      user: [],
     };
   },
   validations: {
@@ -1034,15 +1119,23 @@ export default {
         console.log(image);
         formData.append("imgCar", image[0]);
       });
-      axios
-        .post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
-        .then(_res => {
-          //TODO go to page myCar
-          this.$router.push(`/mycar/${this.user.user_id}`);
-        })
-        .catch(err => {
-          return console.log(err);
-        });
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+      } else {
+        if (this.images.length != 6) {
+          alert("Please upload 6 image")
+        } else {
+          axios
+          .post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
+          .then(_res => {
+            //TODO go to page myCar
+            this.$router.push(`/mycar/${this.user.user_id}`);
+          })
+          .catch(err => {
+            return console.log(err);
+          });
+        }
+      }
     },
     getUser() {
       this.user = JSON.parse(localStorage.getItem("user_account"));
