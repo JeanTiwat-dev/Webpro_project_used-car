@@ -1,9 +1,9 @@
 <template>
 <welcome-layout>
     <div class="w-full grid grid-cols-12" id="app">
-        <div class="col-start-1 col-end-3 text-center text-bold grid grid-cols-1 divide-y py-4 h-screen overflow-y-auto fixed">
+        <div class="col-start-1 col-end-3 text-center text-bold grid grid-cols-1 divide-y h-screen overflow-y-auto fixed">
           
-            <div class="rounded shadow border p-5 w-full mt-3 bg-gray-50">
+            <div class="rounded shadow border px-5 py-10 w-full bg-gray-50">
               <div>
               <input type="text" v-model="search" class=" text-base placeholder-gray-500 pl-6 pb-1 rounded-3xl border border-orange-400 max-w-screen-2xl py-2 focus:outline-none focus:border-orange-400"/>
                 <i class="fa fa-search text-gray-400 z-20 m-2 hover:text-gray-500" ></i></div>
@@ -21,8 +21,8 @@
                 </ul>
               </div>
               <div class="dropdown  text-left mt-6">
-                 <button class="col-span-2 px-4 py-2 w-full rounded-full bg-orange-500 text-white hover:bg-orange-300 duration-300" @click="priceClick = !priceClick"><i class="fa-solid text-white mr-2 fa-money-bill"></i>Price</button>
-                 <ul class="text-center items-center text-gray-700 pt-2 " v-show="priceClick == true">
+                <button class="col-span-2 px-4 py-2 w-full rounded-full bg-orange-500 text-white hover:bg-orange-300 duration-300" @click="priceClick = !priceClick"><i class="fa-solid text-white mr-2 fa-money-bill"></i>Price</button>
+                <ul class="text-center items-center text-gray-700 pt-2 " v-show="priceClick == true">
                     <li class="flex items-center mb-3"><i class="fa-solid fa-baht-sign mr-4"></i><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="PriceFiltered(1)">Higher than 10,000,000</button></li>
                     <li class="flex items-center mb-3"><i class="fa-solid fa-baht-sign mr-4"></i><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="PriceFiltered(2)">5,000,000 - 10,000,000</button></li>
                     <li class="flex items-center mb-3"><i class="fa-solid fa-baht-sign mr-4"></i><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="PriceFiltered(3)">2,000,000 - 4,999,999</button></li>
@@ -32,9 +32,9 @@
                 </ul>
               </div>
 
-               <div class="dropdown  text-left mt-6">
-                 <button class="col-span-2 px-4 py-2 w-full rounded-full bg-orange-500 text-white hover:bg-orange-300 duration-300" @click="yearClick = !yearClick"><i class="fa-solid text-white mr-2 fa-calendar"></i>Year</button>
-                 <ul class="text-center  items-center text-gray-700 pt-2 " v-show="yearClick == true">
+              <div class="dropdown  text-left mt-6">
+                <button class="col-span-2 px-4 py-2 w-full rounded-full bg-orange-500 text-white hover:bg-orange-300 duration-300" @click="yearClick = !yearClick"><i class="fa-solid text-white mr-2 fa-calendar"></i>Year</button>
+                <ul class="text-center  items-center text-gray-700 pt-2 " v-show="yearClick == true">
                     <li class="flex items-center mb-3"><i class="fa-solid fa-circle-chevron-right mr-4"></i><a class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="yearFiltered(1)">2020 - 2022</a></li>
                     <li class="flex items-center mb-3"><i class="fa-solid fa-circle-chevron-right mr-4"></i><a class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="yearFiltered(2)">2016 - 2019</a></li>
                     <li class="flex items-center mb-3"><i class="fa-solid fa-circle-chevron-right mr-4"></i><a class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="yearFiltered(3)">2011 - 2015</a></li>

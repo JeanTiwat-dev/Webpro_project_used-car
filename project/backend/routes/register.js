@@ -3,21 +3,34 @@ const pool = require("../config");
 const Joi = require("joi");
 const router = express.Router();
 const { joiPassword } = require('joi-password');
+const alert = require("alert");
 
 // ValidityState (Validate register)
 // Check username
-const usernameValidator = async (value, helpers) => {
-    console.log(2);
-    const [rows, _] = await pool.query(
+const usernameValidator = async (value) => {
+    const [rows] = await pool.query(
         "SELECT login_username FROM Login WHERE login_username = ?",
         [value]
     );
     if (rows.length > 0) {
-        throw new Joi.ValidationError('This username is already taken')
+        // alert('This username is already taken')
+        return res.status(400).send("This username is already taken");
     } else {
         return value;
     }
 };
+// Check password
+const passwordValidator = async (value) => {
+    if (value.length < 8) {
+        // return res.json('Password must contain at least 8 characters');
+        return res.status(400).send("Password must contain at least 8 characters");
+    }
+    if (!(value.match(/[a-z]/) && value.match(/[A-Z]/) && value.match(/[0-9]/))) {
+        // return res.json('Password must be harder');
+        return res.status(400).send("Password must be harder");
+    }
+    return value
+}
 // check email
 const emailValidator = async (value) => {
     const [rows] = await pool.query(
@@ -25,7 +38,8 @@ const emailValidator = async (value) => {
         [value]
     );
     if (rows.length > 0) {
-        return res.json("This email is already taken");
+        // alert("This email is already taken");
+        return res.status(400).send("This email is already taken");
     } else {
         return value;
     }
@@ -37,7 +51,8 @@ const idcardValidator = async (value) => {
         [value]
     );
     if (rows.length > 0) {
-        return res.json("This ID card is already taken");
+        // alert("This ID card is already taken");
+        return res.status(400).send("This ID card is already taken");
     } else {
         return value;
     }
@@ -49,7 +64,8 @@ const phoneValidator = async (value) => {
         [value]
     );
     if (rows.length > 0) {
-        return res.json("This phone is already taken");
+        // alert("This phone is already taken");
+        return res.status(400).send("This phone is already taken");
     } else {
         return value;
     }
@@ -57,41 +73,45 @@ const phoneValidator = async (value) => {
 
 const checkValidate = Joi.object({
     username: Joi.string().required().external(usernameValidator),
-    password: joiPassword
-                        .string()
-                        .minOfSpecialCharacters(2)
-                        .minOfLowercase(2)
-                        .minOfUppercase(2)
-                        .minOfNumeric(2)
-                        .noWhiteSpaces()
-                        .messages({
-                            'password.minOfUppercase': 'password should contain at least {#min} uppercase character',
-                            'password.minOfSpecialCharacters': 'password should contain at least {#min} special character',
-                            'password.minOfLowercase': 'password should contain at least {#min} lowercase character',
-                            'password.minOfNumeric': 'password should contain at least {#min} numeric character',
-                            'password.noWhiteSpaces': 'password should not contain white spaces',
-                        }),
+    password: Joi.string().required().external(passwordValidator),
+                        // .string()
+                        // .minOfSpecialCharacters(2)
+                        // .minOfLowercase(2)
+                        // .minOfUppercase(2)
+                        // .minOfNumeric(2)
+                        // .noWhiteSpaces()
+                        // .messages({
+                        //     'password.minOfUppercase': 'password should contain at least {#min} uppercase character',
+                        //     'password.minOfSpecialCharacters': 'password should contain at least {#min} special character',
+                        //     'password.minOfLowercase': 'password should contain at least {#min} lowercase character',
+                        //     'password.minOfNumeric': 'password should contain at least {#min} numeric character',
+                        //     'password.noWhiteSpaces': 'password should not contain white spaces',
+                        // }),
     firstname: Joi.string().required(),
     lastname: Joi.string().required(),
     address: Joi.string().required(),
     gender: Joi.string().required(),
-    email: Joi.string().email().required().external(emailValidator),
+    email: Joi.string().email().required()
+    .external(emailValidator),
     birthdate: Joi.date().required(),
-    idcard: Joi.string().required().external(idcardValidator),
-    phone: Joi.string().required().external(phoneValidator),
+    idcard: Joi.string().required()
+    .external(idcardValidator),
+    phone: Joi.string().required()
+    .external(phoneValidator),
 });
 
 // Register
 router.post("/register", async function (req, res, next) {
-    let errMassage = [];
+    // let errMassage = [];
     try {
         await checkValidate.validateAsync(req.body, { abortEarly: false });
     } catch (error) {
-        error.details.forEach(element => {
-            errMassage.push(element.message);
-        });
-        console.log(errMassage);
-        return res.json(errMassage);
+        // error.details.forEach(element => {
+        //     errMassage.push(element.message);
+        // });
+        // console.log(errMassage);
+        // return res.json(errMassage);
+        return res.status(400).send(error);
     }
     let username = req.body.username;
     let password = req.body.password;
