@@ -70,7 +70,7 @@
                   </div>
 
                   <input
-                    v-model="Password"
+                    v-model="$v.Password.$model"
                     id="password"
                     type="Password"
                     name="Password"
@@ -88,14 +88,10 @@
                     placeholder="Enter your password"
                   />
                 </div>
-                <span
-                  class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
-                  >Please fill in Password.</span
+                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
+                  >Please fill in password.</span
                 >
-                <span
-                  class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
+                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
                   >Your password is incorrect!</span
                 >
               </div>
@@ -145,10 +141,8 @@
                     placeholder="Enter your new password"
                   />
                 </div>
-                <span
-                  class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
-                  >Please fill in Password.</span
+                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
+                  >Please fill in new password.</span
                 >
               </div>
 
@@ -197,14 +191,10 @@
                     placeholder="Enter your new password"
                   />
                 </div>
-                <span
-                  class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
-                  >Please fill in Password.</span
+                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
+                  >Please fill in new password.</span
                 >
-                <span
-                  class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
+                <span class="text-xs text-red-700 mt-2" id="passwordHelp"
                   >Your new password don't match!</span
                 >
               </div>
@@ -252,6 +242,7 @@
                 <!-- save -->
                 <button
                   type="button"
+                  @click="savepassword()"
                   class="
             flex
             mt-2
@@ -296,21 +287,50 @@
 
 <script>
 import axios from "axios";
+import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+
+function complexPassword (value) {
+  if (!(value.match(/[a-z]/) && value.match(/[A-Z]/) && value.match(/[0-9]/))) {
+    return false
+  }
+  return true
+}
+
 export default {
   name: "changepassword",
   data() {
     return {
-      Password: '',
-      newPassword: '',
-      conNewPassword: '',
+      Password: "",
+      newPassword: "",
+      conNewPassword: ""
     };
   },
-  mounted() {
-    
+  validations: {
+    Password: {
+      required: required
+    },
+    newPassword: {
+      required: required,
+    },
+    conNewPassword: {
+      required: required,
+    }
   },
   methods: {
-    
+    savepassword() {
+      axios
+        .put(`/resetPassword/${this.$route.params.userId}`, {
+          password: this.Password,
+          newpassword: this.newpassword,
+          confirmpassword: this.confirmpassword
+        })
+        .then(res => {
+          this.$router.push("/profile");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 </script>
-

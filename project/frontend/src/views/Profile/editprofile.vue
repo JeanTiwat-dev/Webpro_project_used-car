@@ -53,11 +53,9 @@
               >
                 {{ firstname + " " + lastname }}
               </div>
-              <router-link to="/changepassword">
-                <div class="mt-4 self-center text-md text-red-600 border-b border-red-600">
+                <div class="mt-4 self-center text-md text-red-600 border-b border-red-600 cursor-pointer" @click="changepassword()">
                   Change Password
                 </div>
-              </router-link>
             </div>
             <!-- button home-->
             <div
@@ -844,7 +842,10 @@ export default {
       this.phone2 = this.user.user_phone;
       this.address2 = this.user.user_address;
       this.email2 = this.user.user_email;
-    }
+    },
+    changepassword() {
+      this.$router.push(`/changepassword/${this.user.user_id}`);
+    },
   }
 };
 </script>

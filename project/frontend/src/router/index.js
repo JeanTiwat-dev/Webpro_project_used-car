@@ -61,7 +61,7 @@ const routes = [
     component: () => import("../views/Shop/compare.vue")
   },
   {
-    path: "/changepassword",
+    path: "/changepassword/:userId",
     name: "changepassword",
     component: () => import("../views/Profile/changepassword.vue")
   },
