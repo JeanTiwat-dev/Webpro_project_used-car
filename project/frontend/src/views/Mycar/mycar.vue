@@ -9,10 +9,10 @@
                   <router-link :to="`/detail/${item.car_id}`">
                   <div class="m-3">
                     <img class="rounded" :src=getCarImage(item.car_img)>
-                  <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-gray-200 inline rounded-full px-2 mt-3">{{item.car_price}} ฿</span></button>
+                  <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-gray-200 inline rounded-full px-2 mt-3">{{convertprice(item.car_price)}} </span></button>
                   <h2 class="text-lg mt-6 mb-2">{{item.car_brand}}</h2>
-                  <router-link :to="`/editcar/${item.car_id}`" ><i class="mt-6 float-right cursor-pointer font-3xl text-sky-900 fa-solid fa-pen-to-square"></i></router-link>
-                    <h2 class="text-s mt-2 mb-2">Distance: {{item.car_distance}}</h2>
+                  <router-link :to="`/editcar/${item.car_id}`" ><i class="mt-12 float-right cursor-pointer font-3xl text-sky-900 fa-solid fa-pen-to-square"></i></router-link>
+                    <h2 class="text-s mt-2 mb-2">Distance: {{convertdis(item.car_distance)}}</h2>
                     <h2 class="text-s mt-6 mb-2">{{item.car_modelyear}}</h2>
                   <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">{{item.car_desc}}</p>
                   </div>
@@ -20,7 +20,7 @@
                 </div>
   
               </div>
-         </div>
+        </div>
         </div>
     </div>
   </welcome-layout>
@@ -65,6 +65,20 @@ export default {
           return "http://localhost:3000/" + path
         }
       },
+      convertprice(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' ฿';
+      },
+      convertdis(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' KM';
+    },
       }
     };
 </script>

@@ -18,7 +18,7 @@
             </div>
             <!-- ราคา -->
             <div class="p-4 border-b-2 border-white">
-              <p>{{ car1.car_price }}</p>
+              <p>{{ convertprice(car1.car_price) }}</p>
             </div>
             <!-- ประเภทรถ -->
             <div class="p-4 border-b-2 border-white">
@@ -54,11 +54,11 @@
             </div>
             <!-- ระยะทางที่ขับ -->
             <div class="p-4 border-b-2 border-white">
-              <p>{{ car1.car_distance }}</p>
+              <p>{{ convertdis(car1.car_distance) }}</p>
             </div>
             <!-- พ.ร.บ -->
             <div class="p-4">
-              <p>{{ car1.car_act }}</p>
+              <p>{{ convertDate(car1.car_act) }}</p>
             </div>
           </div>
           <!-- col 2 -->
@@ -116,7 +116,7 @@
             </div>
             <!-- ราคา -->
             <div class="p-4 border-b-2 border-white">
-              <p>{{ car2.car_price }}</p>
+              <p>{{ convertprice(car2.car_price) }}</p>
             </div>
             <!-- ประเภทรถ -->
             <div class="p-4 border-b-2 border-white">
@@ -152,11 +152,11 @@
             </div>
             <!-- ระยะทางที่ขับ -->
             <div class="p-4 border-b-2 border-white">
-              <p>{{ car2.car_distance }}</p>
+              <p>{{ convertdis(car2.car_distance) }}</p>
             </div>
             <!-- พ.ร.บ -->
             <div class="p-4">
-              <p>{{ car2.car_act }}</p>
+              <p>{{ convertDate(car2.car_act) }}</p>
             </div>
           </div>
         </div>
@@ -195,7 +195,24 @@ export default {
         if (path) {
           return "http://localhost:3000/" + path
         }
-      },
+    },
+    convertDate(date) {
+          return date.slice(0, 10);
+    },
+    convertprice(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' ฿';
+    },
+    convertdis(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' KM';
+    },
   }
 };
 </script>

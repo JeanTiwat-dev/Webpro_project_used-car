@@ -73,7 +73,7 @@
       </ol>
 
     </div>
-     </div>
+    </div>
     <div class="mt-10 text-center bg-gray-100 p-2 w-full">
       {{convertprice(car.car_price)}}
     </div>
@@ -100,8 +100,8 @@
                 <p class="pt-2"> Model year: {{car.car_modelyear}}</p>
             </div>
             <div class="m-3">
-                <p class="pt-2"> car registration: {{car.car_regis}}</p><hr>
-                <p class="pt-2">Distance: {{car.car_distance}}</p><hr>
+                <p class="pt-2"> Car registration: {{car.car_regis}}</p><hr>
+                <p class="pt-2">Distance: {{convertdis(car.car_distance)}}</p><hr>
                 <p class="pt-2"> Owner: {{car.car_owner}}</p><hr>
                 <p >Year bought: {{car.car_yearbought}}</p>
             </div>
@@ -110,14 +110,14 @@
         <div class="cursor-pointer" v-show="tabPage === 'spec'">
           <div  class="grid grid-cols-2">
             <div class="m-3">
-                <p class="pt-2">	Act: {{convertDate(car.car_act)}}</p><hr>
+                
                 <p class="pt-2"> Car engine: {{car.car_engine}}</p><hr>
                 <p class="pt-2">  Gear system: {{car.car_gear}}</p><hr>
                 <p class="pt-2"> Number of gears: {{car.car_num_of_gear}}</p>
             </div>
             <div class="m-3">
+              <p class="pt-2">	Compulsory Insurance: {{convertDate(car.car_act)}}</p><hr>
                 <p class="pt-2"> Drive type: {{car.car_drive_type}}</p><hr>
-                <p class="pt-2"> CMI: {{car.car_act}}</p><hr>
                 <p class="pt-2"> Number of doors: {{car.car_num_of_door}}</p><hr>
                 
             </div>
@@ -185,6 +185,13 @@ export default {
           currency: "THB"
           }).format(price);
           return price2.slice(4, price2.length - 3) + ' ฿';
+    },
+    convertdis(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' KM';
     },
       }
     };
