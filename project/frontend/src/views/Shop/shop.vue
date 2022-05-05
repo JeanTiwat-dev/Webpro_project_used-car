@@ -636,26 +636,34 @@ export default {
           console.log(this.car);
         })
         .catch(err => console.log(err));
+      },
+      getCarImage(path) {
+        if (path) {
+          return "http://localhost:3000/" + path
+        }
+      },
+      setFilter(key, value){
+        if(this.filters[key] == value){
+          this.filters[key] = null
+        }else{
+          this.filters[key] = value
+        }
+      },
+      setSort(method){
+        this.sort = method
+      },
+      BrandFiltered(brand) {
+        this.brandValue = this.brandValue == brand ? "" : brand
+        this.car.filter((val) => val.car_brand == this.brandValue)
+      },
+      convertprice(price) {
+        let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+        }).format(price);
+        return price2.slice(4, price2.length - 3) + ' ฿'
     },
-    getCarImage(path) {
-      if (path) {
-        return "http://localhost:3000/" + path;
-      }
-    },
-    setFilter(key, value) {
-      if (this.filters[key] == value) {
-        this.filters[key] = null;
-      } else {
-        this.filters[key] = value;
-      }
-    },
-    setSort(method) {
-      this.sort = method;
-    },
-    BrandFiltered(brand) {
-      this.brandValue = this.brandValue == brand ? "" : brand;
-      this.car.filter(val => val.car_brand == this.brandValue);
-    }
+    
   }
 };
 </script>

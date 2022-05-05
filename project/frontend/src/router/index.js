@@ -78,6 +78,24 @@ const routes = [
     meta: { login: true },
     component: () => import("../views/seller/requestseller.vue")
   },
+  {
+    path: "/saleDataAdmin/:userId",
+    name: "saleDataAdmin",
+    meta: { login: true },
+    component: () => import("../views/saledata/saleDataAdmin.vue")
+  },
+  {
+    path: "/saleDataCus/:userId",
+    name: "saleDataCus",
+    meta: { login: true },
+    component: () => import("../views/saledata/saleDataCus.vue")
+  },
+  {
+    path: "/saleDataSeller/:userId",
+    name: "saleDataSeller",
+    meta: { login: true },
+    component: () => import("../views/saledata/saleDataSeller.vue")
+  },
 
 
 ];
