@@ -222,13 +222,11 @@
                 <span
                   v-if="$v.conNewPassword.$error && !$v.conNewPassword.required"
                   class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
                   >Please fill in new password.</span
                 >
                 <span
                   v-if="$v.conNewPassword.$error && !$v.conNewPassword.sameAs"
                   class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
                   >Your new password don't match!</span
                 >
               </div>
@@ -342,7 +340,7 @@ function complexnumber(value) {
   return true;
 }
 function complexwhitespace(value) {
-  if (!!value.match(/(\s)/)) {
+  if (value.match(/(\s)/)) {
     return false;
   }
   return true;
@@ -395,10 +393,11 @@ export default {
           })
           .then(res => {
             if (res.data != "success") {
+              alert("Can't change password!")
               this.oldPassword = true;
             } else {
               this.oldPassword = false;
-              alert("Change Password Success!");
+              alert("Change password success!");
               this.$router.push(`/profile/${this.$route.params.userId}`);
             }
           })

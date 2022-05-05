@@ -13,7 +13,7 @@ const usernameValidator = async (value) => {
         [value]
     );
     if (rows.length > 0) {
-        // alert('This username is already taken')
+        alert('This username is already taken')
         return res.status(400).send("This username is already taken");
     } else {
         return value;
@@ -23,11 +23,11 @@ const usernameValidator = async (value) => {
 const passwordValidator = async (value) => {
     if (value.length < 8) {
         // return res.json('Password must contain at least 8 characters');
-        return res.status(400).send("Password must contain at least 8 characters");
+        return res.status(400).send(error);
     }
     if (!(value.match(/[a-z]/) && value.match(/[A-Z]/) && value.match(/[0-9]/))) {
         // return res.json('Password must be harder');
-        return res.status(400).send("Password must be harder");
+        return res.status(400).send(error);
     }
     return value
 }
@@ -38,7 +38,7 @@ const emailValidator = async (value) => {
         [value]
     );
     if (rows.length > 0) {
-        // alert("This email is already taken");
+        alert("This email is already taken");
         return res.status(400).send("This email is already taken");
     } else {
         return value;
@@ -51,8 +51,8 @@ const idcardValidator = async (value) => {
         [value]
     );
     if (rows.length > 0) {
-        // alert("This ID card is already taken");
-        return res.status(400).send("This ID card is already taken");
+        alert("This ID card is already taken");
+        return res.status(400).send(error);
     } else {
         return value;
     }
@@ -64,8 +64,8 @@ const phoneValidator = async (value) => {
         [value]
     );
     if (rows.length > 0) {
-        // alert("This phone is already taken");
-        return res.status(400).send("This phone is already taken");
+        alert("This phone is already taken");
+        return res.status(400).send(error);
     } else {
         return value;
     }

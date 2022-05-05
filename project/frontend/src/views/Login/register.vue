@@ -47,7 +47,7 @@
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="firstname"
+                        v-model="$v.firstname.$model"
                         id="firstname"
                         type="text"
                         name="firstname"
@@ -63,6 +63,11 @@
                             "
                         placeholder="First name"
                       />
+                      <span
+                        v-if="$v.firstname.$error && !$v.firstname.required"
+                        class="text-xs text-red-700 mt-2"
+                        >Please enter firstname.</span
+                      >
                     </div>
                   </div>
 
@@ -70,7 +75,7 @@
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="lastname"
+                        v-model="$v.lastname.$model"
                         id="lastname"
                         type="text"
                         name="lastname"
@@ -78,6 +83,11 @@
                         placeholder="Last name"
                       />
                     </div>
+                    <span
+                      v-if="$v.lastname.$error && !$v.lastname.required"
+                      class="text-xs text-red-700 mt-2"
+                      >Please enter lastname.</span
+                    >
                   </div>
                 </div>
 
@@ -87,29 +97,40 @@
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="birthdate"
+                        v-model="$v.birthdate.$model"
                         class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                         type="text"
                         placeholder="Date of Birth"
                         onfocus="(this.type='date')"
                       />
+                      <!-- TODO - validate -->
+                      <span
+                        v-if="$v.birthdate.$error && !$v.birthdate.required"
+                        class="text-xs text-red-700 mt-2"
+                        >Please enter Date of Birth.</span
+                      >
                     </div>
                   </div>
 
                   <!-- gender -->
                   <div class="flex flex-col mb-5">
                     <select
-                      v-model="gender"
+                      v-model="$v.gender.$model"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       id="grid-state"
                       type="text"
                       required
                     >
-                      <option value="Gender" selected disabled>Gender</option>
+                      <option value selected disabled>Gender</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                       <option value="Others">Others</option>
                     </select>
+                    <span
+                      v-if="$v.gender.$error && !$v.gender.required"
+                      class="text-xs text-red-700 mt-2"
+                      >Please select gender.</span
+                    >
                   </div>
                 </div>
 
@@ -117,11 +138,18 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
-                      v-model="idcard"
+                      v-model="$v.idcard.$model"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
-                      type="text"
+                      type="number"
                       placeholder="ID card"
                     />
+                    <div
+                      v-if="$v.idcard.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.idcard.required">Please enter ID card.</p>
+                      <p v-if="!$v.idcard.checkid">ID card format incorrect.</p>
+                    </div>
                   </div>
                 </div>
 
@@ -129,11 +157,16 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
-                      v-model="address"
+                      v-model="$v.address.$model"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="text"
                       placeholder="Address"
                     />
+                    <span
+                      v-if="$v.address.$error && !$v.address.required"
+                      class="text-xs text-red-700 mt-2"
+                      >Please enter address.</span
+                    >
                   </div>
                 </div>
 
@@ -147,26 +180,41 @@
                       placeholder="Email"
                     />
                   </div>
-                  <span class="text-xs text-red-700 mt-2"
-                  v-if="!$v.email.required && $v.email.$error"
+                  <span
+                    class="text-xs text-red-700 mt-2"
+                    v-if="!$v.email.required && $v.email.$error"
                     >Please enter Email.</span
                   >
-                  <span class="text-xs text-red-700 mt-2"
-                  v-if="!$v.email.email && $v.email.$error"
+                  <span
+                    class="text-xs text-red-700 mt-2"
+                    v-if="!$v.email.email && $v.email.$error"
                     >Email format incorrect.</span
                   >
-
                 </div>
 
                 <!--PAGE1 phone -->
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
-                      v-model="phone"
+                      v-model="$v.phone.$model"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 pl-3 mr-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
-                      type="text"
+                      type="number"
                       placeholder="Phone number"
                     />
+                  </div>
+                  <div v-if="$v.phone.$error">
+                    <p
+                      v-if="!$v.phone.required"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      Please enter phone number.
+                    </p>
+                    <p
+                      v-if="!$v.phone.mobile"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      Phone format incorrect.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -177,11 +225,20 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
-                      v-model="username"
+                      v-model="$v.username.$model"
                       class="appearance-none bg-transparent border-b border-gray-400 w-full text-gray-700 mr-3 pl-3 py-2 px-2 leading-tight focus:outline-none focus:border-orange-400"
                       type="text"
                       placeholder="Username"
                     />
+                    <div
+                      v-if="$v.username.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.username.required">Please enter username.</p>
+                      <p v-if="!$v.username.minLength">
+                        Username minimum 4 characters.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -189,7 +246,7 @@
                 <div class="flex flex-col mb-5">
                   <div class="relative">
                     <input
-                      v-model="password"
+                      v-model="$v.password.$model"
                       id="password"
                       type="password"
                       name="password"
@@ -198,6 +255,32 @@
                   "
                       placeholder="Password"
                     />
+                    <div
+                      v-if="$v.password.$error"
+                      class="text-xs text-red-700 mt-2"
+                    >
+                      <p v-if="!$v.password.required">Please enter password.</p>
+                      <p
+                        v-if="
+                          !$v.password.complexup ||
+                            !$v.password.complexlow ||
+                            !$v.password.complexnumber ||
+                            !$v.password.complexspecial ||
+                            !$v.password.complexwhitespace
+                        "
+                      >
+                        Password must have
+                        <span v-if="!$v.password.complexup">2 Uppercase </span>
+                        <span v-if="!$v.password.complexlow">2 Lowercase </span>
+                        <span v-if="!$v.password.complexnumber">2 Number </span>
+                        <span v-if="!$v.password.complexspecial"
+                          >2 Special characters
+                        </span>
+                        <span v-if="!$v.password.complexwhitespace"
+                          >No Whitespace
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -205,7 +288,7 @@
                 <div class="">
                   <div class="relative">
                     <input
-                      v-model="password_con"
+                      v-model="$v.password_con.$model"
                       type="password"
                       name="password"
                       class="
@@ -225,6 +308,10 @@
                   "
                       placeholder="Confirm password"
                     />
+                    <div v-if="$v.password_con.$error" class="text-xs text-red-700 mt-2">
+                      <p v-if="!$v.password_con.required">Please enter comfirm password.</p>
+                      <p v-if="!$v.password_con.sameAs">Your password don't match!</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -273,7 +360,7 @@
               </div>
 
               <!-- button back/register -->
-              <div class="grid grid-cols-2 gap-2">
+              <div class="grid grid-cols-2 gap-2 mt-4">
                 <!-- button back-->
                 <div class="flex w-full" v-show="!page">
                   <button
@@ -464,7 +551,50 @@
 
 <script>
 import axios from "axios";
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+
+function checkid(value) {
+  if (!value) {
+    return true;
+  } else {
+    return value.length == 13;
+  }
+}
+
+function mobile(value) {
+  return !!value.match(/0[0-9]{9}/);
+}
+
+function complexlow(value) {
+  if (!value.match(/[a-z]{2}/)) {
+    return false;
+  }
+  return true;
+}
+function complexup(value) {
+  if (!value.match(/[A-Z]{2}/)) {
+    return false;
+  }
+  return true;
+}
+function complexnumber(value) {
+  if (!value.match(/[0-9]{2}/)) {
+    return false;
+  }
+  return true;
+}
+function complexwhitespace(value) {
+  if (value.match(/(\s)/)) {
+    return false;
+  }
+  return true;
+}
+function complexspecial(value) {
+  if (!value.match(/[!@#$%^&*(),.?":{}|<>]{2}/)) {
+    return false;
+  }
+  return true;
+}
 
 export default {
   name: "register",
@@ -475,7 +605,7 @@ export default {
       firstname: "",
       lastname: "",
       birthdate: null,
-      gender: "Gender",
+      gender: "",
       idcard: "",
       email: "",
       phone: "",
@@ -486,9 +616,48 @@ export default {
     };
   },
   validations: {
+    firstname: {
+      required
+    },
+    lastname: {
+      required
+    },
+    birthdate: {
+      required
+    },
+    gender: {
+      required
+    },
+    idcard: {
+      required,
+      checkid
+    },
+    address: {
+      required
+    },
     email: {
       required,
       email
+    },
+    phone: {
+      required,
+      mobile
+    },
+    username: {
+      required,
+      minLength: minLength(4)
+    },
+    password: {
+      required,
+      complexup: complexup,
+      complexlow: complexlow,
+      complexnumber: complexnumber,
+      complexwhitespace: complexwhitespace,
+      complexspecial: complexspecial
+    },
+    password_con: {
+      required,
+      sameAs: sameAs("password")
     }
   },
   methods: {
@@ -513,12 +682,12 @@ export default {
             let errMessage = "";
             if (res.data != "success") {
               res.data.forEach(element => {
-                errMessage += element + "\n"; 
+                errMessage += element + "\n";
               });
               alert(errMessage);
-              } else {
-                this.$router.push("/login");
-              }
+            } else {
+              this.$router.push("/login");
+            }
           })
           .catch(err => {
             console.log(err);
