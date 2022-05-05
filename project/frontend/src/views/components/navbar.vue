@@ -201,10 +201,7 @@
                   whitespace-no-wrap">
               My Profile
             </li>
-            <li class="">
-              <router-link
-                to="/myCar"
-                class="
+            <li class="
                   bg-white
                   hover:bg-gray-200
                   py-2
@@ -212,8 +209,7 @@
                   block
                   whitespace-no-wrap
                   
-                " 
-                @click="goToMyCar()">
+                "  @click="goToMyCar()">
               My Car
             </li>
             <div @click="islogOut()">
@@ -264,7 +260,7 @@ export default {
     },
     islogOut() {
       localStorage.removeItem("user_account");
-      //   this.$router.push("/");
+        this.$router.push("/");
       location.reload();
     },
     goToEdit() {

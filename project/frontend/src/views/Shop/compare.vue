@@ -2,8 +2,12 @@
   <welcome-layout>
     <div id="app">
       <div
-        class="min-h-screen w-full flex items-center justify-center bg-gray-100"
+        class="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100"
       >
+      <div class="grid grid-cols-2 gap-16 p-4">
+        <img class="drop-shadow-lg rounded-lg" :src="getCarImage(car1.car_images[0].car_img)">
+        <img class="drop-shadow-lg rounded-lg" :src="getCarImage(car2.car_images[0].car_img)">
+      </div>
         <!-- compare -->
         <div class="flex space-x-3 justify-center w-1/2">
           <!-- col 1 -->
@@ -11,7 +15,6 @@
             class="bg-orange-200 border-2 w-5/12 space-y-2 p-4 rounded-md text-center"
           >
           <div class="border-b-2 border-white">
-              <img :src="getCarImage(car1.car_images[0].car_img)">
             </div>
             <!-- ราคา -->
             <div class="p-4 border-b-2 border-white">
@@ -110,7 +113,6 @@
             class="bg-orange-200 border-2 w-5/12 space-y-2 p-4 rounded-md text-center"
           >
           <div class="border-b-2 border-white">
-              <img :src="getCarImage(car2.car_images[0].car_img)">
             </div>
             <!-- ราคา -->
             <div class="p-4 border-b-2 border-white">
