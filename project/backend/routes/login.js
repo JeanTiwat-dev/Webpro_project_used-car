@@ -40,7 +40,6 @@ router.post('/goto', async function(req, res, next) {
 
 // Reset password
 router.put("/resetPassword/:userId", async (req, res, next) => {
-    console.log(1);
     // try {
     //     await checkValidate.validateAsync(req.body, { abortEarly: false });
     // } catch (error) {
