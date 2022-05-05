@@ -38,4 +38,25 @@ router.post('/goto', async function(req, res, next) {
     }
 })
 
+// Reset password
+router.put("/resetPassword/:userId", async (req, res, next) => {
+    try {
+        await checkValidate.validateAsync(req.body, { abortEarly: false });
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+
+    try {
+        let userId = req.params.userId;
+        let password = req.body.password;
+        // FIXME : Change password
+        // Update password
+        await pool.query(
+            "UPDATE Login SET login_password = ? WHERE user_id = ?", 
+            [password, userId]
+        );
+    } catch (err) {
+        next(err);
+    }
+});
 exports.router = router
