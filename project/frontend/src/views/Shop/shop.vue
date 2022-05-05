@@ -101,7 +101,7 @@
                     <router-link :to="`/detail/${item.car_id}`">
                     <img class="rounded" :src=getCarImage(item.car_img) >
                     </router-link>
-                  <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-gray-100 inline rounded-full px-2 mt-3">{{item.car_price}} ฿</span></button>
+                  <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-gray-100 inline rounded-full px-2 mt-3">{{convertprice(item.car_price)}}</span></button>
                   <h2 class="text-s mt-6 mb-2">Brand: {{item.car_brand}}</h2>
                   <router-link :to="`/detail/${item.car_id}`" class="cursor-pointer float-right"><i class="fa-solid fa-circle-info"></i></router-link>
                     <h2 class="text-lg mt-2 mb-2">Distance: {{item.car_distance}}</h2>
@@ -293,6 +293,13 @@ export default {
         this.brandValue = this.brandValue == brand ? "" : brand
         this.car.filter((val) => val.car_brand == this.brandValue)
       },
+      convertprice(price) {
+        let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+        }).format(price);
+        return price2.slice(4, price2.length - 3) + ' ฿'
+    },
     
   }
   

@@ -8,7 +8,16 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-  
 });
+
+// const pool = mysql.createPool({
+//   host: "31.220.110.101",
+//   user: "u350327849_admin",
+//   password: "!Bacoom555!",
+//   database: "u350327849_webpro_project",
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+// }/
 
 module.exports = pool;
