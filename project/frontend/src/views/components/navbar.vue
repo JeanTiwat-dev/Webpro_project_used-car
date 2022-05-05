@@ -189,10 +189,7 @@
                   whitespace-no-wrap">
               My Profile
             </li>
-            <li class="">
-              <router-link
-                to="/myCar"
-                class="
+            <li class="
                   rounded-t
                   bg-white
                   hover:bg-gray-200
@@ -200,9 +197,10 @@
                   px-4
                   block
                   whitespace-no-wrap
-                "
-                >My Car
-              </router-link>
+                  
+                " @click=goToMyCar()>
+              My Car
+            
             </li>
             <div @click="islogOut()">
               <li
@@ -251,6 +249,9 @@ export default {
     goToEdit() {
       this.$router.push(`/profile/${this.user.user_id}`);
     },
+    goToMyCar() {
+      this.$router.push(`/mycar/${this.user.user_id}`);
+    }
   },
 };
 </script>

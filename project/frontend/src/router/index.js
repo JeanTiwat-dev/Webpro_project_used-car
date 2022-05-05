@@ -44,7 +44,7 @@ const routes = [
     component: () => import("../views/Profile/editprofile.vue")
   },
   {
-    path: "/myCar",
+    path: "/mycar/:userId",
     name: "mycar",
     component: () => import("../views/Mycar/mycar.vue")
   },

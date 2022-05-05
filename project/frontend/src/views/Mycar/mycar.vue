@@ -1,6 +1,6 @@
 <template>
 <welcome-layout>
-    <div class="min-h-screen bg-gradient-to-br pt-20">
+    <div class="min-h-screen bg-gradient-to-br">
         <h2 class="text-3xl m-6 mt-12">{{user.user_firstname}}'s Cars</h2>
     <div class="col-start-4 col-end-13 ">
             <div class="min-h-screen container mt-4 mx-auto" id="app">
@@ -50,7 +50,7 @@ export default {
         },
         getCar() {
         axios
-        .get("http://localhost:3000/CarsData")
+        .get("http://localhost:3000/mycar/${this.user.user_id}`);")
         .then(res => {
           this.car = res.data
           console.log(this.car)
