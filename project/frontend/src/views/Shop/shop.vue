@@ -423,7 +423,7 @@
                 <button class="align-top float-right">
                   <span
                     class="text-sm text-teal-800 font-mono bg-gray-100 inline rounded-full px-2 mt-3"
-                    >{{ item.car_price }} ฿</span
+                    >{{ convertprice(item.car_price) }} </span
                   >
                 </button>
                 <h2 class="text-xl font-bold mb-2 mt-6">{{ item.car_brand }}</h2>
@@ -504,16 +504,9 @@ export default {
     this.getCar();
   },
   computed: {
-    // searchcar() {
-    //   if (this.search != "") {
-    //     this.getCars.filters(car => {});
-    //   } else {
-    //   }
-    // },
     priceRange() {
       return (carPrice, range) => {
         if (range == null) return true;
-
         if (range[0] == 0) {
           return carPrice <= range[1];
         } else if (range[1] == 0) {
@@ -526,7 +519,6 @@ export default {
     yearRange() {
       return (carModelYear, range) => {
         if (range == null) return true;
-
         if (range[0] == 0) {
           return carModelYear <= range[1];
         } else if (range[1] == 0) {
