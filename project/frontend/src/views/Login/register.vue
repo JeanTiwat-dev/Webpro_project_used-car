@@ -147,6 +147,15 @@
                       placeholder="Email"
                     />
                   </div>
+                  <span class="text-xs text-red-700 mt-2"
+                  v-if="!$v.email.required && $v.email.$error"
+                    >Please enter Email.</span
+                  >
+                  <span class="text-xs text-red-700 mt-2"
+                  v-if="!$v.email.email && $v.email.$error"
+                    >Email format incorrect.</span
+                  >
+
                 </div>
 
                 <!--PAGE1 phone -->
@@ -503,10 +512,10 @@ export default {
           .then(res => {
             if (res.data != "success") {
               alert(res.data);
-              } else {
-                alert("Register Success");
-                this.$router.push("/login");
-              }
+            } else {
+              alert("Register Success");
+              this.$router.push("/login");
+            }
           })
           .catch(err => {
             console.log(err);

@@ -89,13 +89,11 @@
                   />
                 </div>
                 <span
-                  v-show="fill_password"
                   class="text-xs text-red-700 mt-2"
                   id="passwordHelp"
                   >Please fill in Password.</span
                 >
                 <span
-                  v-show="wrong"
                   class="text-xs text-red-700 mt-2"
                   id="passwordHelp"
                   >Your password is incorrect!</span
@@ -148,7 +146,6 @@
                   />
                 </div>
                 <span
-                  v-show="fill_password"
                   class="text-xs text-red-700 mt-2"
                   id="passwordHelp"
                   >Please fill in Password.</span
@@ -201,13 +198,11 @@
                   />
                 </div>
                 <span
-                  v-show="fill_password"
                   class="text-xs text-red-700 mt-2"
                   id="passwordHelp"
                   >Please fill in Password.</span
                 >
                 <span
-                  v-show="wrong"
                   class="text-xs text-red-700 mt-2"
                   id="passwordHelp"
                   >Your new password don't match!</span

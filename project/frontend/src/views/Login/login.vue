@@ -65,7 +65,7 @@
                   </div>
 
                   <input
-                    v-model="username"
+                    v-model="$v.username.$model"
                     id="username"
                     type="text"
                     name="username"
@@ -85,7 +85,7 @@
                 </div>
                 <!-- validate -->
                 <span
-                  v-show="fill_user"
+                  v-if="$v.username.$error && !$v.username.required"
                   class="text-xs text-red-700 mt-2"
                   id="passwordHelp"
                   >Please fill in Username.</span
@@ -119,7 +119,7 @@
                   </div>
 
                   <input
-                    v-model="password"
+                    v-model="$v.password.$model"
                     id="password"
                     type="password"
                     name="password"
@@ -137,18 +137,20 @@
                     placeholder="Enter your password"
                   />
                 </div>
-                <span
-                  v-show="fill_password"
-                  class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
-                  >Please fill in Password.</span
-                >
-                <span
-                  v-show="wrong"
-                  class="text-xs text-red-700 mt-2"
-                  id="passwordHelp"
-                  >Your username or password is incorrect!</span
-                >
+                <div>
+                  <span
+                    v-if="$v.password.$error && !$v.password.required"
+                    class="text-xs text-red-700 mt-2"
+                    id="passwordHelp"
+                    >Please fill in Password.</span
+                  >
+                  <span
+                    v-if="error"
+                    class="text-xs text-red-700 mt-2"
+                    id="passwordHelp"
+                    >Your username or password is incorrect!</span
+                  >
+                </div>
               </div>
 
               <div class="flex w-full">
@@ -225,7 +227,7 @@
 
 <script>
 import axios from "axios";
-// @ is an alias to /src
+import { required } from "vuelidate/lib/validators";
 export default {
   name: "login",
 
@@ -233,42 +235,36 @@ export default {
     return {
       username: "",
       password: "",
-      fill_user: false,
-      fill_password: false,
-      wrong: false,
+      error: false
     };
+  },
+  validations: {
+    username: {
+      required
+    },
+    password: {
+      required
+    }
   },
   methods: {
     login() {
-      if (this.username == '' && this.password == '') {
-        this.fill_user = true;
-        this.fill_password = true;
-      }
-      else if (this.username == '') {
-        this.fill_user = true;
-        this.fill_password = false;
-      }
-      else if (this.password == '') {
-        this.fill_password = true;
-        this.fill_user = false;
-      } 
-      else {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+      } else {
         axios
-        .post("http://localhost:3000/goto", {
-          username: this.username,
-          password: this.password
-        })
-        .then(res => {
-          if (res.data == "error") {
-            this.wrong = true;
-            this.fill_user = false;
-            this.fill_password = false;
-          } else {
-            localStorage.setItem("user_account", JSON.stringify(res.data));
-            this.$router.push({ name: "home" });
-          }
-        })
-        .catch(err => console.log(err));
+          .post("http://localhost:3000/goto", {
+            username: this.username,
+            password: this.password
+          })
+          .then(res => {
+            if (res.data == "error") {
+              this.error = true;
+            } else {
+              localStorage.setItem("user_account", JSON.stringify(res.data));
+              this.$router.push({ name: "home" });
+            }
+          })
+          .catch(err => console.log(err));
       }
     }
   }
