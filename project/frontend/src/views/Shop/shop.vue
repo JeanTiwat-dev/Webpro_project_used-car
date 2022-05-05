@@ -1,5 +1,5 @@
 <template>
-<welcome-layout>
+  <welcome-layout>
     <div class="w-full grid grid-cols-12" id="app">
 
         <div class="col-start-1 col-end-3 text-center text-bold grid grid-cols-1 divide-y h-screen overflow-y-auto fixed">
@@ -269,15 +269,17 @@
                 
   
               </div>
-         </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</welcome-layout>
+  </welcome-layout>
 </template>
 
 <script>
 import axios from "axios";
-import WelcomeLayout from '../layouts/welcome.vue'
+import WelcomeLayout from "../layouts/welcome.vue";
 
 export default {
   components: { WelcomeLayout },
@@ -290,7 +292,7 @@ export default {
       search: "",
       // filtered by
       brandClick: false,
-      brandValue : "",
+      brandValue: "",
       priceClick: false,
       yearClick: false,
       colorClick: false,
@@ -301,42 +303,47 @@ export default {
       car: [],
       compareList: [],
       sort: null,
-      filters:{
+      filters: {
         brand: null,
         price: null,
         modelYear: null,
         color: null
       }
+    };
+  },
+  mounted() {
+    this.getCar();
+  },
+  computed: {
+    // searchcar() {
+    //   if (this.search != "") {
+    //     this.getCars.filters(car => {});
+    //   } else {
+    //   }
+    // },
+    priceRange() {
+      return (carPrice, range) => {
+        if (range == null) return true;
+
+        if (range[0] == 0) {
+          return carPrice <= range[1];
+        } else if (range[1] == 0) {
+          return carPrice >= range[0];
+        } else {
+          return carPrice >= range[0] && carPrice <= range[1];
+        }
       };
     },
-    mounted() {
-      this.getCar();
-    },
-    computed: {
-      priceRange(){
-        return (carPrice, range) => {
-          if(range == null) return true
+    yearRange() {
+      return (carModelYear, range) => {
+        if (range == null) return true;
 
-          if(range[0] == 0){
-            return carPrice <= range[1]
-          }else if(range[1] == 0){
-            return carPrice >= range[0]
-          }else{
-            return ((carPrice >= range[0]) && (carPrice <= range[1]))
-          }
-        }
-      },
-      yearRange(){
-        return (carModelYear, range) => {
-          if(range == null) return true
-
-          if(range[0] == 0){
-            return carModelYear <= range[1]
-          }else if(range[1] == 0){
-            return carModelYear >= range[0]
-          }else{
-            return ((carModelYear >= range[0]) && (carModelYear <= range[1]))
-          }
+        if (range[0] == 0) {
+          return carModelYear <= range[1];
+        } else if (range[1] == 0) {
+          return carModelYear >= range[0];
+        } else {
+          return carModelYear >= range[0] && carModelYear <= range[1];
         }
       },
       showCars(){
@@ -347,85 +354,106 @@ export default {
           && (this.yearRange(item.car_modelyear, this.filters.modelYear) || this.filters.modelYear == null)
           && (this.filters.color == item.car_color || this.filters.color == null)
           ){
+      };
+      // setFilter('modelYear', [2007, 0])
+      // setFilter('modelYear', [0, 2004])
+    },
+    getCars() {
+      return this.car
+        .filter(item => {
+          if (
+            (this.filters.brand == item.car_brand ||
+              this.filters.brand == null) &&
+            (this.priceRange(item.car_price, this.filters.price) ||
+              this.filters.price == null) &&
+            (this.yearRange(item.car_modelyear, this.filters.modelYear) ||
+              this.filters.modelYear == null) &&
+            (this.filters.color == item.car_color || this.filters.color == null)
+          ) {
             return true;
           }
-        }).sort(this.sortMethod(this.sort))
-      },
-      isInCompareList(){
-        return (carId) => {
-          return this.compareList.includes(carId)
-        }
-      },
-      isUnavailableToCompare(){
-        return (carId) => {
-          return this.compareList.length == 2 && !this.compareList.includes(carId)
+        })
+        .sort(this.sortMethod(this.sort));
+    },
+    isInCompareList() {
+      return carId => {
+        return this.compareList.includes(carId);
+      };
+    },
+    isUnavailableToCompare() {
+      return carId => {
+        return (
+          this.compareList.length == 2 && !this.compareList.includes(carId)
+        );
+      };
+    }
+  },
+  methods: {
+    sortMethod(method) {
+      if (method == "distanceAsc") {
+        return function(a, b) {
+          if (a.car_distance < b.car_distance) {
+            return -1;
+          } else if (a.car_distance > b.car_distance) {
+            return 1;
+          }
+          return 0;
+        };
+      } else if (method == "distanceDesc") {
+        return function(a, b) {
+          if (a.car_distance > b.car_distance) {
+            return -1;
+          } else if (a.car_distance < b.car_distance) {
+            return 1;
+          }
+          return 0;
+        };
+      } else if (method == "priceAsc") {
+        return function(a, b) {
+          if (a.car_price < b.car_price) {
+            return -1;
+          } else if (a.car_price < b.car_price) {
+            return 1;
+          }
+          return 0;
+        };
+      } else if (method == "priceDesc") {
+        return function(a, b) {
+          if (a.car_price > b.car_price) {
+            return -1;
+          } else if (a.car_price < b.car_price) {
+            return 1;
+          }
+          return 0;
+        };
+      }
+    },
+    helloWorld(item) {
+      console.log(item);
+    },
+    addToCompare(id) {
+      if (this.compareList.includes(id)) {
+        this.compareList.splice(this.compareList.indexOf(id), 1);
+      } else {
+        if (this.compareList.length < 2) {
+          this.compareList.push(id);
         }
       }
     },
-    methods: {
-      sortMethod(method) {
-        if(method == "distanceAsc"){
-          return function (a, b) {
-            if (a.car_distance < b.car_distance) {
-              return -1;
-            } else if (a.car_distance > b.car_distance) {
-              return 1;
-            }
-            return 0;
-          }
-        }else if(method == "distanceDesc"){
-          return function (a, b) {
-            if (a.car_distance > b.car_distance) {
-              return -1;
-            } else if (a.car_distance < b.car_distance) {
-              return 1;
-            }
-            return 0;
-          }
-        }else if(method == "priceAsc"){
-          return function (a, b) {
-            if (a.car_price < b.car_price) {
-              return -1;
-            } else if (a.car_price < b.car_price) {
-              return 1;
-            }
-            return 0;
-          }
-        }else if(method == "priceDesc"){
-          return function (a, b) {
-            if (a.car_price > b.car_price) {
-              return -1;
-            } else if (a.car_price < b.car_price) {
-              return 1;
-            }
-            return 0;
-          }
-        }
-      },
-      helloWorld(item) {
-        console.log(item)
-      },
-      addToCompare(id) {
-          if(this.compareList.includes(id)){
-              this.compareList.splice(this.compareList.indexOf(id), 1)
-          }else{
-              if(this.compareList.length < 2){
-                this.compareList.push(id) 
-              } 
-          }
-      },
-      goToCompare() {
-        console.log(this.compareList)
-         if (this.compareList.length == 2) {
-           this.$router.push(`/comparecar/${this.compareList[0]}/${this.compareList[1]}`);
-         } 
-      },
-      getCar() {
-        axios
+    goToCompare() {
+      console.log(this.compareList);
+      if (this.compareList.length == 2) {
+        this.$router.push(
+          `/comparecar/${this.compareList[0]}/${this.compareList[1]}`
+        );
+      }
+    },
+    getCar() {
+      axios
         .get("http://localhost:3000/CarsData")
         .then(res => {
-          this.car = res.data
-          console.log(this.car)
+          this.car = res.data;
+          console.log(this.car);
         })
         .catch(err => console.log(err));
       },
@@ -445,6 +473,15 @@ export default {
       setSort(method){
         this.sort = method
       },
+
+      convertprice(price) {
+        let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+        }).format(price);
+        return price2.slice(4, price2.length - 3) + ' ฿'
+    },
+    
   }
 };
 </script>

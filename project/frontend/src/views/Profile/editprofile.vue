@@ -53,9 +53,12 @@
               >
                 {{ firstname + " " + lastname }}
               </div>
-                <div class="mt-4 self-center text-md text-red-600 border-b border-red-600 cursor-pointer" @click="changepassword()">
-                  Change Password
-                </div>
+              <div
+                class="mt-4 self-center text-md text-red-600 border-b border-red-600 cursor-pointer"
+                @click="changepassword()"
+              >
+                Change Password
+              </div>
             </div>
             <!-- button home-->
             <div
@@ -385,6 +388,7 @@
                     @click="
                       isActive = false;
                       showButton = false;
+                      edit();
                     "
                   >
                     <svg
@@ -439,7 +443,7 @@
                     </div>
 
                     <input
-                      v-model="firstname2"
+                      v-model="$v.firstname2.$model"
                       id="firstname2"
                       type="text"
                       name="firstname2"
@@ -455,6 +459,12 @@
                         focus:outline-none focus:border-orange-400
                       "
                     />
+                  </div>
+                  <div
+                    v-if="$v.firstname2.$error"
+                    class="text-xs text-red-700 mt-2"
+                  >
+                    <p v-if="!$v.firstname2.require">Please enter firstname.</p>
                   </div>
                 </div>
 
@@ -484,7 +494,7 @@
                     </div>
 
                     <input
-                      v-model="lastname2"
+                      v-model="$v.lastname2.$model"
                       id="lastname2"
                       type="text"
                       name="lastname2"
@@ -500,6 +510,12 @@
                         focus:outline-none focus:border-orange-400
                       "
                     />
+                  </div>
+                  <div
+                    v-if="$v.lastname2.$error"
+                    class="text-xs text-red-700 mt-2"
+                  >
+                    <p v-if="!$v.lastname2.require">Please enter firstname.</p>
                   </div>
                 </div>
 
@@ -539,9 +555,9 @@
                     </div>
 
                     <input
-                      v-model="phone2"
+                      v-model="$v.phone2.$model"
                       id="phone2"
-                      type="text"
+                      type="number"
                       name="phone2"
                       class="
                         text-base
@@ -555,6 +571,13 @@
                         focus:outline-none focus:border-orange-400
                       "
                     />
+                  </div>
+                  <div
+                    v-if="$v.phone2.$error"
+                    class="text-xs text-red-700 mt-2"
+                  >
+                    <p v-if="!$v.phone2.required">Please enter phone.</p>
+                    <p v-if="!$v.phone2.mobile || !$v.phone2.maxLength">Phone format incorrect.</p>
                   </div>
                 </div>
 
@@ -595,7 +618,7 @@
 
                     <textarea
                       rows="3"
-                      v-model="address2"
+                      v-model="$v.address2.$model"
                       id="address2"
                       type="text"
                       name="address2"
@@ -612,6 +635,12 @@
                         focus:outline-none focus:border-orange-400
                       "
                     />
+                  </div>
+                  <div
+                    v-if="$v.address2.$error"
+                    class="text-xs text-red-700 mt-2"
+                  >
+                    <p v-if="!$v.address2.required">Please enter address.</p>
                   </div>
                 </div>
 
@@ -652,7 +681,7 @@
                     </div>
 
                     <input
-                      v-model="email2"
+                      v-model="$v.email2.$model"
                       id="email2"
                       type="email"
                       name="email2"
@@ -669,44 +698,13 @@
                       "
                     />
                   </div>
-                </div>
-
-                <!-- button edit -->
-                <div
-                  class="flex 
-                items-center 
-                justify-center 
-                w-full 
-                mt-8
-                "
-                  v-show="showButton"
-                >
-                  <a
-                    class="bg-sky-700 hover:bg-sky-600 cursor-pointer duration-150 text-white text-center py-2 px-4 rounded-full h-14 w-14 inline-flex items-center"
-                    @click="showButton = false"
+                  <div
+                    v-if="$v.email2.$error"
+                    class="text-xs text-red-700 mt-2"
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      >
-                        <path
-                          d="m16.474 5.408l2.118 2.117m-.756-3.982L12.109 9.27a2.118 2.118 0 0 0-.58 1.082L11 13l2.648-.53c.41-.082.786-.283 1.082-.579l5.727-5.727a1.853 1.853 0 1 0-2.621-2.621Z"
-                        />
-                        <path
-                          d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3"
-                        />
-                      </g>
-                    </svg>
-                  </a>
+                    <p v-if="!$v.email2.required">Please enter email.</p>
+                    <p v-if="!$v.email2.email">Phone format incorrect.</p>
+                  </div>
                 </div>
 
                 <!-- button cancel/save -->
@@ -735,7 +733,6 @@
                       @click="
                         showButton = true;
                         isActive = true;
-                        cancel();
                       "
                     >
                       <span class="ml-2 uppercase">cancel</span>
@@ -780,6 +777,12 @@
 
 <script>
 import axios from "axios";
+import { required, email, maxLength } from "vuelidate/lib/validators";
+
+function mobile(value) {
+  return !!value.match(/0[0-9]{9}/);
+}
+
 export default {
   name: "profile",
   data() {
@@ -799,6 +802,26 @@ export default {
       email2: ""
     };
   },
+  validations: {
+    firstname2: {
+      required
+    },
+    lastname2: {
+      required
+    },
+    phone2: {
+      required,
+      mobile,
+      maxLength: maxLength(10),
+    },
+    address2: {
+      required
+    },
+    email2: {
+      required,
+      email
+    }
+  },
   mounted() {
     this.getuser();
   },
@@ -817,35 +840,40 @@ export default {
       this.email2 = this.user.user_email;
     },
     saveprofile() {
-      this.firstname = this.firstname2;
-      this.lastname = this.lastname2;
-      this.phone = this.phone2;
-      this.address = this.address2;
-      this.email = this.email2;
-      this.isActive = true;
-      this.showButton = true;
-      axios
-        .put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
-          fname: this.firstname,
-          lname: this.lastname,
-          phone: this.phone,
-          address: this.address,
-          email: this.email
-        })
-        .then(res => {
-          localStorage.setItem("user_account", JSON.stringify(res.data));
-        });
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+      } else {
+        axios
+          .put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
+            fname: this.firstname2,
+            lname: this.lastname2,
+            phone: this.phone2,
+            address: this.address2,
+            email: this.email2
+          })
+          .then(res => {
+            localStorage.setItem("user_account", JSON.stringify(res.data));
+            this.firstname = this.firstname2;
+            this.lastname = this.lastname2;
+            this.phone = this.phone2;
+            this.address = this.address2;
+            this.email = this.email2;
+            alert("Change profile success!");
+            this.isActive = true;
+            this.showButton = true;
+          });
+      }
     },
-    cancel() {
-      this.firstname2 = this.user.user_firstname;
-      this.lastname2 = this.user.user_lastname;
-      this.phone2 = this.user.user_phone;
-      this.address2 = this.user.user_address;
-      this.email2 = this.user.user_email;
+    edit() {
+      this.firstname2 = this.firstname;
+      this.lastname2 = this.lastname;
+      this.phone2 = this.phone;
+      this.address2 = this.address;
+      this.email2 = this.email;
     },
     changepassword() {
       this.$router.push(`/changepassword/${this.user.user_id}`);
-    },
+    }
   }
 };
 </script>

@@ -75,7 +75,7 @@
     </div>
      </div>
     <div class="mt-10 text-center bg-gray-100 p-2 w-full">
-      {{car.car_price}} ฿
+      {{convertprice(car.car_price)}}
     </div>
     <div>
       <div class="w-2/3 mx-auto mt-10 rounded-lg">
@@ -110,7 +110,7 @@
         <div class="cursor-pointer" v-show="tabPage === 'spec'">
           <div  class="grid grid-cols-2">
             <div class="m-3">
-                <p class="pt-2">	Act: {{car.car_act}}</p><hr>
+                <p class="pt-2">	Act: {{convertDate(car.car_act)}}</p><hr>
                 <p class="pt-2"> Car engine: {{car.car_engine}}</p><hr>
                 <p class="pt-2">  Gear system: {{car.car_gear}}</p><hr>
                 <p class="pt-2"> Number of gears: {{car.car_num_of_gear}}</p>
@@ -175,7 +175,17 @@ export default {
           if (path) {
             return "http://localhost:3000/" + path
           }
-        }
+        },
+        convertDate(date) {
+          return date.slice(0, 10);
+        },
+        convertprice(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' ฿';
+    },
       }
     };
 </script>

@@ -919,8 +919,8 @@ updateProduct() {
     });
     axios
     .put(`http://localhost:3000/editCar/${this.$route.params.carId}`, formData)
-    .then(res => {
-        // TODO go to page my car
+    .then(_res => {
+        this.$router.push(`/mycar/${this.user.user_id}`);
     })
     .catch(err => {
         return console.log(err);
@@ -944,18 +944,26 @@ getCar() {
         this.car_gear = this.car.car_gear;
         this.car_num_of_gear = this.car.car_num_of_gear;
         this.car_owner = this.car.car_owner;
-        this.car_act = this.car.car_act;
+        this.car_act = this.convertDate(this.car.car_act);
         this.car_regis = this.car.car_regis;
         this.car_distance = this.car.car_distance;
         this.car_yearbought = this.car.car_yearbought;
         this.car_color = this.car.car_color;
         this.car_price = this.car.car_price;
         this.car_desc = this.car.car_desc;
+
+        if(this.car.seller_id != this.user.user_id && this.user.role != "admin") {
+            alert("You can't edit other's car");
+            this.$router.push("/");
+        }
     })
     .catch(err => {
         return console.log(err);
     });
-}
+    } ,
+    convertDate(date) {
+        return date.slice(0, 10);
+    },
 }
 };
 </script>
@@ -971,3 +979,10 @@ option {
 color: #000;
 }
 </style>
+
+//TODO format date (editcar, editprofile) p 
+//TODO currentcy p
+//TODO validate ให้แก้รถได้แค่ id ตัวเอง p
+//TODO create button editcar 
+//TODO validate editpassword p
+//TODO reset button sort & filter (focus)
