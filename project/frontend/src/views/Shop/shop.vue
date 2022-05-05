@@ -52,22 +52,22 @@
                   <div class="grid grid-cols-4 m-2">
                     <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-gray-600 hover:bg-gray-500 text-gray-600 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Gray')">.</a></button>
                     <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-gray-400 hover:bg-gray-300 text-gray-400  py-2 px-4 block whitespace-no-wrap" @click="checkColor('Silver')">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-blue-900 hover:bg-blue-800 text-blue-900 py-2 px-4 block whitespace-no-wrap" @click="checkColor(color)">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-red-600 hover:bg-red-500 text-red-600 py-2 px-4 block whitespace-no-wrap">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-blue-900 hover:bg-blue-800 text-blue-900 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Blue')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-red-600 hover:bg-red-500 text-red-600 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Red')"></a></button>
                   </div>
 
                   <div class="grid grid-cols-4 m-2">
-                     <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-green-600 hover:bg-green-500 text-green-600 py-2 px-4 block whitespace-no-wrap">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-amber-900 hover:bg-amber-800 text-amber-900 py-2 px-4 block whitespace-no-wrap">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-orange-500 hover:bg-orange-400 text-orange-500 py-2 px-4 block whitespace-no-wrap">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-yellow-500 hover:bg-yellow-400 text-yellow-500 py-2 px-4 block whitespace-no-wrap">.</a></button>
+                     <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-green-600 hover:bg-green-500 text-green-600 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Green')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-amber-900 hover:bg-amber-800 text-amber-900 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Brown')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-orange-500 hover:bg-orange-400 text-orange-500 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Orange')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-yellow-500 hover:bg-yellow-400 text-yellow-500 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Yellow')">.</a></button>
                   </div>
 
                   <div class="grid grid-cols-4 m-2">
-                   <button class="flex items-center mb-3 p-2 "><a class="w-full drop-shadow-2xl rounded-full border-2 border-gray-100 bg-white hover:bg-gray-50 text-white py-2 px-4 block">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-black hover:bg-gray-900 text-black py-2 px-4 block whitespace-no-wrap">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-neutral-700 hover:bg-neutral-600 text-neutral-700 py-2 px-4 block whitespace-no-wrap">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-purple-500 py-2 px-4 block whitespace-no-wrap">.</a></button>
+                   <button class="flex items-center mb-3 p-2 "><a class="w-full drop-shadow-2xl rounded-full border-2 border-gray-100 bg-white hover:bg-gray-50 text-white py-2 px-4 block" @click="checkColor('White')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-black hover:bg-gray-900 text-black py-2 px-4 block whitespace-no-wrap" @click="checkColor('Black')" >.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-neutral-700 hover:bg-neutral-600 text-neutral-700 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Bronz')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-purple-500 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Other')">.</a></button>
                   </div>                                                                                                                       
                 </ul>
             </div>

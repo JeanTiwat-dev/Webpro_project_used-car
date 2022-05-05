@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full" id="app">
-    <section class="w-full px-4 text-gray-700 bg-white fixed top-0 z-40 drop-shadow-md">
+  <div class="w-full px-4 text-gray-700 bg-white sticky top-0 z-40 drop-shadow-md" id="app">
+    <section class="w-full">
       <div
         class="
           py-5
@@ -10,7 +10,6 @@
           justify-between
           mx-auto
           md:flex-row
-          
         "
       >
         <div class="relative flex flex-col md:flex-row">
@@ -19,7 +18,6 @@
             class="
               flex
               items-center
-              
               font-medium
               text-gray-900
               lg:w-auto lg:items-center lg:justify-center
@@ -127,7 +125,7 @@
         </div>
         
         <div
-          class="dropdown inline-block relative"
+          class="dropdown inline-block relative cursor-pointer"
           @mouseover="menu = true"
           @mouseleave="menu = false"
           v-else
@@ -180,20 +178,16 @@
             style="width: 200px"
             v-show="menu"
           >
-            <li class="">
-              <router-link
-                to="/profile"
-                class="
-                  rounded-t
+            <li
+                  @click="goToEdit()"
+                  class="rounded-t
                   bg-white
                   hover:bg-gray-200
                   py-2
                   px-4
                   block
-                  whitespace-no-wrap
-                "
-                >My Profile
-              </router-link>
+                  whitespace-no-wrap">
+              My Profile
             </li>
             <li class="">
               <router-link
@@ -213,7 +207,7 @@
             <div @click="islogOut()">
               <li
                 class="
-                  rounded-t
+                  rounded-b
                   bg-white
                   hover:bg-gray-200
                   py-2
@@ -231,7 +225,7 @@
         
       </div>
     </section>
-  </div>
+    </div>
 </template>
     <script>
 export default {
@@ -253,6 +247,9 @@ export default {
       localStorage.removeItem("user_account");
       //   this.$router.push("/");
       location.reload();
+    },
+    goToEdit() {
+      this.$router.push(`/profile/${this.user.user_id}`);
     },
   },
 };
