@@ -877,32 +877,29 @@ export default {
       this.email2 = this.user.user_email;
     },
     saveprofile() {
-      this.firstname = this.firstname2;
-      this.lastname = this.lastname2;
-      this.phone = this.phone2;
-      this.address = this.address2;
-      this.email = this.email2;
-      this.isActive = true;
-      this.showButton = true;
-      // if (this.$v.$invalid) {
-      //   this.$v.$touch();
-      // } else {
-      axios
-        .put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
-          fname: this.firstname,
-          lname: this.lastname,
-          phone: this.phone,
-          address: this.address,
-          email: this.email
-        })
-        .then(res => {
-          if (condition) {
-            
-          } else {
+      // this.firstname = this.firstname2;
+      // this.lastname = this.lastname2;
+      // this.phone = this.phone2;
+      // this.address = this.address2;
+      // this.email = this.email2;
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+      } else {
+        axios
+          .put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
+            fname: this.firstname,
+            lname: this.lastname,
+            phone: this.phone,
+            address: this.address,
+            email: this.email
+          })
+          .then(res => {
+            alert("yes");
             localStorage.setItem("user_account", JSON.stringify(res.data));
-          }
-        });
-      // }
+          });
+        this.isActive = true;
+        this.showButton = true;
+      }
     },
     cancel() {
       this.firstname2 = this.user.user_firstname;

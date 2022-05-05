@@ -88,11 +88,9 @@
                     placeholder="Enter your password"
                   />
                 </div>
-                <span
-                  v-if="$v.Password.$error && !$v.Password.required"
-                  class="text-xs text-red-700 mt-2"
-                  >Please fill in password.</span
-                >
+                <p class="text-xs text-red-700 mt-2" v-if="$v.Password.$error && !$v.Password.required">
+                  Please fill in password.
+                </p>
                 <span v-show="oldPassword" class="text-xs text-red-700 mt-2"
                   >Your password is incorrect!</span
                 >
@@ -364,36 +362,38 @@ export default {
   },
   validations: {
     Password: {
-      required: required,
-      sameAs: sameAs("oldPassword")
+      required,
     },
     newPassword: {
-      required: required,
-      complexup: complexup,
-      complexlow: complexlow,
-      complexnumber: complexnumber,
-      complexwhitespace: complexwhitespace,
-      complexspecial: complexspecial
+      required,
+      complexup,
+      complexlow,
+      complexnumber,
+      complexwhitespace,
+      complexspecial
     },
     conNewPassword: {
-      required: required,
+      required,
       sameAs: sameAs("newPassword")
     }
   },
   methods: {
     savepassword() {
-      if (!this.$v.$invalid) {
+      if (this.$v.$invalid) {
         this.$v.$touch();
       } else {
         axios
-          .put(`http://localhost:3000/resetPassword/${this.$route.params.userId}`, {
-            password: this.Password,
-            newpassword: this.newPassword,
-            confirmpassword: this.conNewPassword
-          })
+          .put(
+            `http://localhost:3000/resetPassword/${this.$route.params.userId}`,
+            {
+              password: this.Password,
+              newpassword: this.newPassword,
+              confirmpassword: this.conNewPassword
+            }
+          )
           .then(res => {
-            if (res.data != "success") {
-              // alert("Can't change password!")
+            if (res.data == "password incorrect") {
+              alert("Can't change password!")
               this.oldPassword = true;
             } else {
               this.oldPassword = false;
@@ -405,7 +405,6 @@ export default {
             console.log(err);
           });
       }
-
     }
   }
 };
