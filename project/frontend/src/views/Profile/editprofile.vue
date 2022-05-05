@@ -388,6 +388,7 @@
                     @click="
                       isActive = false;
                       showButton = false;
+                      edit();
                     "
                   >
                     <svg
@@ -576,7 +577,7 @@
                     class="text-xs text-red-700 mt-2"
                   >
                     <p v-if="!$v.phone2.required">Please enter phone.</p>
-                    <p v-if="!$v.phone2.mobile">Phone format incorrect.</p>
+                    <p v-if="!$v.phone2.mobile || !$v.phone2.maxLength">Phone format incorrect.</p>
                   </div>
                 </div>
 
@@ -706,44 +707,6 @@
                   </div>
                 </div>
 
-                <!-- button edit -->
-                <div
-                  class="flex 
-                items-center 
-                justify-center 
-                w-full 
-                mt-8
-                "
-                  v-show="showButton"
-                >
-                  <a
-                    class="bg-sky-700 hover:bg-sky-600 cursor-pointer duration-150 text-white text-center py-2 px-4 rounded-full h-14 w-14 inline-flex items-center"
-                    @click="showButton = false"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      >
-                        <path
-                          d="m16.474 5.408l2.118 2.117m-.756-3.982L12.109 9.27a2.118 2.118 0 0 0-.58 1.082L11 13l2.648-.53c.41-.082.786-.283 1.082-.579l5.727-5.727a1.853 1.853 0 1 0-2.621-2.621Z"
-                        />
-                        <path
-                          d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3"
-                        />
-                      </g>
-                    </svg>
-                  </a>
-                </div>
-
                 <!-- button cancel/save -->
                 <div class="grid grid-cols-2 gap-2 mt-8" v-show="!showButton">
                   <!-- button cancel-->
@@ -770,7 +733,6 @@
                       @click="
                         showButton = true;
                         isActive = true;
-                        cancel();
                       "
                     >
                       <span class="ml-2 uppercase">cancel</span>
@@ -815,7 +777,7 @@
 
 <script>
 import axios from "axios";
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, maxLength } from "vuelidate/lib/validators";
 
 function mobile(value) {
   return !!value.match(/0[0-9]{9}/);
@@ -849,7 +811,8 @@ export default {
     },
     phone2: {
       required,
-      mobile
+      mobile,
+      maxLength: maxLength(10),
     },
     address2: {
       required
@@ -877,36 +840,36 @@ export default {
       this.email2 = this.user.user_email;
     },
     saveprofile() {
-      // this.firstname = this.firstname2;
-      // this.lastname = this.lastname2;
-      // this.phone = this.phone2;
-      // this.address = this.address2;
-      // this.email = this.email2;
       if (this.$v.$invalid) {
         this.$v.$touch();
       } else {
         axios
           .put(`http://localhost:3000/editUser/${this.$route.params.userId}`, {
-            fname: this.firstname,
-            lname: this.lastname,
-            phone: this.phone,
-            address: this.address,
-            email: this.email
+            fname: this.firstname2,
+            lname: this.lastname2,
+            phone: this.phone2,
+            address: this.address2,
+            email: this.email2
           })
           .then(res => {
-            alert("yes");
             localStorage.setItem("user_account", JSON.stringify(res.data));
+            this.firstname = this.firstname2;
+            this.lastname = this.lastname2;
+            this.phone = this.phone2;
+            this.address = this.address2;
+            this.email = this.email2;
+            alert("Change profile success!");
+            this.isActive = true;
+            this.showButton = true;
           });
-        this.isActive = true;
-        this.showButton = true;
       }
     },
-    cancel() {
-      this.firstname2 = this.user.user_firstname;
-      this.lastname2 = this.user.user_lastname;
-      this.phone2 = this.user.user_phone;
-      this.address2 = this.user.user_address;
-      this.email2 = this.user.user_email;
+    edit() {
+      this.firstname2 = this.firstname;
+      this.lastname2 = this.lastname;
+      this.phone2 = this.phone;
+      this.address2 = this.address;
+      this.email2 = this.email;
     },
     changepassword() {
       this.$router.push(`/changepassword/${this.user.user_id}`);

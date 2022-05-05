@@ -2,7 +2,7 @@
   <welcome-layout>
     <div id="app">
       <!-- component -->
-      <div class="flex items-center justify-center bg-gray-100 py-10 min-h-screen">
+      <div class="flex items-center justify-center bg-gray-100 min-h-screen">
         <!-- card -->
         <div>
           <div
@@ -54,12 +54,12 @@
                   <div class="grid grid-cols-2 gap-4">
                     <!-- car brand -->
                     <div class="flex flex-col mb-5">
-                    <select
-                      required
-                      v-model="car_brand"
-                      id="grid-state"
-                      type="text"
-                      class="
+                      <select
+                        required
+                        v-model="$v.car_brand.$model"
+                        id="grid-state"
+                        type="text"
+                        class="
                       appearance-none
                       bg-transparent
                       border-b border-gray-400
@@ -71,21 +71,29 @@
                       leading-tight
                       focus:outline-none focus:border-orange-400
                     "
-                    >
-                      <option value="" selected disabled>Car Brand</option>
-                      <option value="Mercedes Benz">Mercedes Benz</option>
-                      <option value="BMW">BMW</option>
-                      <option value="Nissan">Nissan</option>
-                      <option value="Honda">Honda</option>
-                      <option value="Toyota">Toyota</option>
-                      <option value="Mazda">Mazda</option>
-                    </select>
+                      >
+                        <option value selected disabled>Car Brand</option>
+                        <option value="Mercedes Benz">Mercedes Benz</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Nissan">Nissan</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Mazda">Mazda</option>
+                      </select>
+                      <div
+                        v-if="$v.car_brand.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_brand.required">
+                          Please select car brand.
+                        </p>
+                      </div>
                     </div>
                     <!-- car model -->
                     <div class="flex flex-col mb-5">
                       <div class="relative">
                         <input
-                          v-model="car_model"
+                          v-model="$v.car_model.$model"
                           id="car_model"
                           type="text"
                           name="car_model"
@@ -105,6 +113,14 @@
                       "
                         />
                       </div>
+                      <div
+                        v-if="$v.car_model.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_model.required">
+                          Please enter car model.
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -114,7 +130,7 @@
                     <div class="flex flex-col mb-5">
                       <div class="relative">
                         <input
-                          v-model="car_modelyear"
+                          v-model="$v.car_modelyear.$model"
                           id="car_modelyear"
                           type="number"
                           name="car_modelyear"
@@ -134,15 +150,23 @@
                       "
                         />
                       </div>
+                      <div
+                        v-if="$v.car_modelyear.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_modelyear.required">
+                          Please enter car model year.
+                        </p>
+                      </div>
                     </div>
                     <!-- car type -->
                     <div class="flex flex-col mb-5">
-                    <select
-                      required
-                      v-model="car_type"
-                      id="grid-state"
-                      type="text"
-                      class="
+                      <select
+                        required
+                        v-model="$v.car_type.$model"
+                        id="grid-state"
+                        type="text"
+                        class="
                       appearance-none
                       bg-transparent
                       border-b border-gray-400
@@ -154,23 +178,31 @@
                       leading-tight
                       focus:outline-none focus:border-orange-400
                     "
-                    >
-                      <option value="" selected disabled>Car Type</option>
-                      <option value="Sedan">Sedan</option>
-                      <option value="Pickup">Pickup</option>
-                      <option value="Hatchback">Hatchback</option>
-                      <option value="SUV">SUV</option>
-                      <option value="7 seater">7 seater</option>
-                      <option value="MPV">MPV</option>
-                    </select>
+                      >
+                        <option value selected disabled>Car Type</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Hatchback">Hatchback</option>
+                        <option value="SUV">SUV</option>
+                        <option value="7 seater">7 seater</option>
+                        <option value="MPV">MPV</option>
+                      </select>
                     </div>
+                    <div
+                        v-if="$v.car_type.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_type.required">
+                          Please select car type.
+                        </p>
+                      </div>
                   </div>
 
                   <!-- PAGE1  number of doors -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="car_num_of_door"
+                        v-model="$v.car_num_of_door.$model"
                         id="car_num_of_door"
                         type="number"
                         name="car_num_of_door"
@@ -190,12 +222,20 @@
                       "
                       />
                     </div>
+                    <div
+                        v-if="$v.car_num_of_door.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_num_of_door.required">
+                          Please enter number of doors.
+                        </p>
+                      </div>
                   </div>
 
                   <!-- PAGE1 Driving Type (select) -->
                   <div class="flex flex-col mb-5">
                     <select
-                      v-model="car_drive_type"
+                      v-model="$v.car_drive_type.$model"
                       id="car_drive_type"
                       type="text"
                       required
@@ -212,19 +252,27 @@
                       focus:outline-none focus:border-orange-400
                     "
                     >
-                      <option value="" selected disabled>Driving Type</option>
+                      <option value selected disabled>Driving Type</option>
                       <option value="4wd">4wd</option>
                       <option value="awd">awd</option>
                       <option value="fwd">fwd</option>
                       <option value="rwd">rwd</option>
                     </select>
+                    <div
+                        v-if="$v.car_drive_type.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_drive_type.required">
+                          Please select driving type.
+                        </p>
+                      </div>
                   </div>
 
                   <!-- PAGE1 car engine -->
                   <div class="flex flex-col mb-5">
                     <div class="relative">
                       <input
-                        v-model="car_engine"
+                        v-model="$v.car_engine.$model"
                         type="text"
                         placeholder="Car Engine"
                         class="
@@ -242,6 +290,14 @@
                       "
                       />
                     </div>
+                    <div
+                        v-if="$v.car_engine.$error"
+                        class="text-xs text-red-700 mt-2"
+                      >
+                        <p v-if="!$v.car_engine.required">
+                          Please enter car engine.
+                        </p>
+                      </div>
                   </div>
                 </div>
 
@@ -845,6 +901,13 @@
 <script>
 import axios from "axios";
 import WelcomeLayout from "../layouts/welcome.vue";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  sameAs
+} from "vuelidate/lib/validators";
 // @ is an alias to /src
 export default {
   name: "addproduct",
@@ -877,6 +940,59 @@ export default {
       images: [],
       user: []
     };
+  },
+  validations: {
+    car_brand: {
+      required
+    },
+    car_model: {
+      required
+    },
+    car_modelyear: {
+      required
+    },
+    car_type: {
+      required
+    },
+    car_color: {
+      required
+    },
+    car_desc: {
+      required
+    },
+    car_num_of_door: {
+      required
+    },
+    car_drive_type: {
+      required
+    },
+    car_engine: {
+      required
+    },
+    car_gear: {
+      required
+    },
+    car_num_of_gear: {
+      required
+    },
+    car_owner: {
+      required
+    },
+    car_act: {
+      required
+    },
+    car_register: {
+      required
+    },
+    car_distance: {
+      required
+    },
+    car_yearbought: {
+      required
+    },
+    car_price: {
+      required
+    }
   },
   mounted() {
     this.getUser();
@@ -918,13 +1034,15 @@ export default {
         console.log(image);
         formData.append("imgCar", image[0]);
       });
-      axios.post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
-      .then(_res => {
-        //TODO go to page myCar
-        this.$router.push(`/mycar/${this.user.user_id}`);
-      }).catch(err => {
-        return console.log(err);
-      });
+      axios
+        .post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
+        .then(_res => {
+          //TODO go to page myCar
+          this.$router.push(`/mycar/${this.user.user_id}`);
+        })
+        .catch(err => {
+          return console.log(err);
+        });
     },
     getUser() {
       this.user = JSON.parse(localStorage.getItem("user_account"));

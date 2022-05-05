@@ -550,7 +550,7 @@
 
 <script>
 import axios from "axios";
-import { required, email, minLength, maxLength,sameAs } from "vuelidate/lib/validators";
+import { required, email, minLength, maxLength, sameAs } from "vuelidate/lib/validators";
 
 function checkid(value) {
   if (!value) {
