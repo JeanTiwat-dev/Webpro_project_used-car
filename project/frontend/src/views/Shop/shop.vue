@@ -435,7 +435,7 @@
                   ><i class="fa-solid fa-circle-info"></i
                 ></router-link>
                 <h2 class="text-lg mt-2 mb-2">
-                  Distance: {{ item.car_distance }}
+                  Distance: {{ convertdis(item.car_distance) }}
                 </h2>
                 <button
                   class="float-right cursor-pointer"
@@ -654,8 +654,14 @@ export default {
           currency: "THB"
         }).format(price);
         return price2.slice(4, price2.length - 3) + ' ฿'
-    },
-    
+      },
+      convertdis(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' KM';
+      },
   }
 };
 </script>

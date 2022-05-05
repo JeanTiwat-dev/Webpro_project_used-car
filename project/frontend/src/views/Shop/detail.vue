@@ -101,7 +101,7 @@
             </div>
             <div class="m-3">
                 <p class="pt-2"> Car registration: {{car.car_regis}}</p><hr>
-                <p class="pt-2">Distance: {{car.car_distance}}</p><hr>
+                <p class="pt-2">Distance: {{convertdis(car.car_distance)}}</p><hr>
                 <p class="pt-2"> Owner: {{car.car_owner}}</p><hr>
                 <p >Year bought: {{car.car_yearbought}}</p>
             </div>
@@ -185,6 +185,13 @@ export default {
           currency: "THB"
           }).format(price);
           return price2.slice(4, price2.length - 3) + ' ฿';
+    },
+    convertdis(price) {
+          let price2 = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "THB"
+          }).format(price);
+          return price2.slice(4, price2.length - 3) + ' KM';
     },
       }
     };
