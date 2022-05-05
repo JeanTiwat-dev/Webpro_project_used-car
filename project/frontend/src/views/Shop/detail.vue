@@ -6,7 +6,7 @@
       <!--Slide 1-->
       <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
       <div class="carousel-item absolute opacity-0" style="height:75vh;">
-        <img :src="getCarImage(car.car_images[0].car_img)" class="block h-full w-full bg-gray-200 text-white text-5xl text-center"/>
+        <img :src="getCarImage(car.car_images[0].car_img)" class="block h-full w-full bg-gray-200 text-white text-5xl text-center" style="background-size: 100% auto"/>
       </div>
       <label for="carousel-6" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-200 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
       <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
@@ -100,7 +100,7 @@
                 <p class="pt-2"> Model year: {{car.car_modelyear}}</p>
             </div>
             <div class="m-3">
-                <p class="pt-2"> car registration {{car.car_regis}}</p><hr>
+                <p class="pt-2"> car registration: {{car.car_regis}}</p><hr>
                 <p class="pt-2">Distance: {{car.car_distance}}</p><hr>
                 <p class="pt-2"> Owner: {{car.car_owner}}</p><hr>
                 <p >Year bought: {{car.car_yearbought}}</p>
@@ -119,7 +119,7 @@
                 <p class="pt-2"> Drive type: {{car.car_drive_type}}</p><hr>
                 <p class="pt-2"> CMI: {{car.car_act}}</p><hr>
                 <p class="pt-2"> Number of doors: {{car.car_num_of_door}}</p><hr>
-                <p class="pt-2"> Manufactured: </p>
+                
             </div>
           </div>
         </div>
