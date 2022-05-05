@@ -265,7 +265,7 @@
                       <i v-if="!isInCompareList(item.car_id)" class="fa-solid fa-circle-plus text-green-500"></i>
                       <i v-else class="fa-solid fa-circle-minus"></i>
                     </button>
-                  <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">{{item.car_desc}}</p>
+                  <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">{{item.car_model}}</p>
                   </div>
                 </div>
                 
@@ -344,7 +344,7 @@ export default {
       showCars(){
         return this.car.filter((item) => {
           if(
-             (this.filters.brand == item.car_brand || this.filters.brand == null)
+            (this.filters.brand == item.car_brand || this.filters.brand == null)
           && (this.priceRange(item.car_price, this.filters.price) || this.filters.price == null)
           && (this.yearRange(item.car_modelyear, this.filters.modelYear) || this.filters.modelYear == null)
           && (this.filters.color == item.car_color || this.filters.color == null)
