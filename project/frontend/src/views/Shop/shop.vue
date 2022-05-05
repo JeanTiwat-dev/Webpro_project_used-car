@@ -7,12 +7,13 @@
               <div>
               <input type="text" v-model="search" class=" text-base placeholder-gray-500 pl-6 pb-1 rounded-3xl border border-orange-400 max-w-screen-2xl py-2 focus:outline-none focus:border-orange-400"/>
                 <i class="fa fa-search text-gray-400 z-20 m-2 hover:text-gray-500" ></i></div>
+              <button class="rounded-full px-4 py-2 mt-3 w-full bg-orange-500 text-white" @click="goToCompare()">compare</button>
               <h5 class="text-xl text-left font-bold mb-4 mt-2">Filtered by<i class="text-gray-400 fa-solid fa-filter ml-2"></i></h5>
               <div class="dropdown text-left">
                 <button class="col-span-2 rounded-full px-4 py-2 w-full bg-orange-500 text-white hover:bg-orange-300 duration-300" @click="brandClick = !brandClick"><i class="mr-2 fa-solid fa-car-side"></i>Brand</button>
                 <ul class="text-center  items-center text-gray-700 pt-2" v-show="brandClick == true">
                     <!-- <li class=""><a class="w-full rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#"></a></li> -->
-                    <li class="flex items-center mb-3"><img class="flex-none w-6 h-full m-3" src="../../assets/mercedes.png" /><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="BrandFiltered('Mercedes Benz'); mer = !mer">Mercedes Benz</button></li>
+                    <li class="flex items-center mb-3"><img class="flex-none w-6 h-full m-3" src="../../assets/mercedes.png" /><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="BrandFiltered('Mercedes Benz');">Mercedes Benz</button></li>
                     <li class="flex items-center mb-3"><img class="flex-none w-6 h-full m-2" src="../../assets/bmw.png" /><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="BrandFiltered('BMW')">BMW</button></li>
                     <li class="flex items-center mb-3"><img class="flex-none w-6 h-full m-2" src="../../assets/nissan.png" /><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="BrandFiltered('Nissan')">Nissan</button></li>
                     <li class="flex items-center mb-3"><img class="flex-none w-6 h-full m-2" src="../../assets/honda.png" /><button class="w-full rounded-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" @click="BrandFiltered('Honda')">Honda</button></li>
@@ -91,31 +92,23 @@
         </div>
         
         </div>
-
         <div class="col-start-4 col-end-13 m-2">
             <div class="min-h-screen container mt-6 mr-3 mx-auto">
+              <!-- <button class="rounded-full px-4 py-2 w-full bg-orange-500 text-white hover:bg-orange-300 duration-300">Compare Cars</button> -->
               <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-2">
-                <div class="card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 mt-4" v-for="(item, index) of car" :key="`car-card-${index}`">
-                  <router-link :to="`/detail/${item.car_id}`">
+                <div class="card m-2  border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 mt-4" v-for="(item, index) of getCars" :key="`car-card-${index}`">
                   <div class="m-3">
                     <img class="rounded" :src=getCarImage(item.car_img)>
-                  <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-teal-100 inline rounded-full px-2 mt-3">{{item.car_price}} ฿</span></button>
+                  <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-gray-100 inline rounded-full px-2 mt-3">{{item.car_price}} ฿</span></button>
                   <h2 class="text-s mt-6 mb-2">Brand: {{item.car_brand}}</h2>
+                  <router-link :to="`/detail/${item.car_id}`" class="cursor-pointer float-right"><i class="fa-solid fa-circle-info"></i></router-link>
                     <h2 class="text-lg mt-2 mb-2">Distance: {{item.car_distance}}</h2>
+                    <button class="float-right cursor-pointer" :class="{'cursor-not-allowed disabled:opacity-50': isUnavailableToCompare(item.car_id), 'text-red-500': isInCompareList(item.car_id)}" @click="addToCompare(item.car_id)" :disabled="isUnavailableToCompare(item.car_id)">
+                      <i v-if="!isInCompareList(item.car_id)" class="fa-solid fa-circle-plus text-green-500"></i>
+                      <i v-else class="fa-solid fa-circle-minus"></i>
+                    </button>
                   <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">{{item.car_desc}}</p>
                   </div>
-                  </router-link>
-                </div>
-                 <div class="card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 mt-4" v-for="(item, index) of car" :key="`car-card-${index}`">
-                  <router-link :to="`/detail/${item.car_id}`">
-                  <div class="m-3">
-                    <img class="rounded" :src=getCarImage(item.car_img)>
-                  <button class="align-top float-right"><span class="text-sm text-teal-800 font-mono bg-teal-100 inline rounded-full px-2 mt-3">{{item.car_price}} ฿</span></button>
-                  <h2 class="text-s mt-6 mb-2">Brand: {{item.car_brand}}</h2>
-                    <h2 class="text-lg mt-2 mb-2">Distance: {{item.car_distance}}</h2>
-                  <p class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200">{{item.car_desc}}</p>
-                  </div>
-                  </router-link>
                 </div>
                 
   
@@ -139,6 +132,7 @@ export default {
       search: "",
       // filtered by
       brandClick: false,
+      brandValue : "",
       priceClick: false,
       yearClick: false,
       colorClick: false,
@@ -146,29 +140,63 @@ export default {
       // sorted by
       distanceSortClick: false,
       priceSortClick: false,
-      // allItems: [
-      //   {id:1, name: "Mercedes Benz", price: "2,000,000", description: "รถมือสองออนไลน์", distance: "40,000 km"},
-      //   {id:2, name: "BMW", price: "500,000", description: "รถมือสองออนไลน์", distance: "20,000 km"},
-      //   {id:3, name: "Nissan", price: "100,000", description: "รถมือสองออนไลน์", distance: "320,000 km"},
-      //   {id:4, name: "Honda", price: "20,000,000", description: "รถมือสองออนไลน์", distance: "250,000 km"},
-      //   {id:5, name: "Toyota", price: "899,900", description: "รถมือสองออนไลน์", distance: "17,000 km"},
-      //   {id:6, name: "Mazda", price: "311,450", description: "รถมือสองออนไลน์", distance: "90,000 km"},
-      //   {id:7, name: "Ferrari", price: "220,000", description: "รถมือสองออนไลน์", distance: "1,000 km"},
-      //   {id:8, name: "Lamborgi", price: "460,000", description: "รถมือสองออนไลน์", distance: "20,050 km"},
-      //   {id:9, name: "Mini", price: "1,200,000", description: "รถมือสองออนไลน์", distance: "70,000 km"},
-      //   {id:10, name: "Agoda", price: "3,200,000", description: "รถมือสองออนไลน์", distance: "40,000 km"}
-      // ],
-      car: []
+      car: [],
+      compareList: []
       };
     },
     mounted() {
       this.getCar();
+    },
+    computed: {
+      getCars(){
+        return this.car.filter((val) => this.brandValue ? val.car_brand === this.brandValue : val)
+      },
+      isInCompareList(){
+        return (carId) => {
+          return this.compareList.includes(carId)
+        }
+      },
+      isUnavailableToCompare(){
+        return (carId) => {
+          return this.compareList.length == 2 && !this.compareList.includes(carId)
+        }
+      }
     },
     methods: {
       helloWorld(item) {
         console.log(item)
 
       },
+      addToCompare(id) {
+          if(this.compareList.includes(id)){
+              this.compareList.splice(this.compareList.indexOf(id), 1)
+          }else{
+              if(this.compareList.length < 2){
+                this.compareList.push(id) 
+              } 
+          }
+
+          // if (this.compareList.length == 2) {
+          //   // if(this.compareList.includes(id)) {
+          //   //   this.compareList = this.compareList.filter((val) => val != id)
+          //   // }
+          //   // else {
+          //   //   this.compareList.push(id)
+          //   // }
+          //    this.compareList.shift()
+          //    this.compareList.push(id)
+          // }else{
+          //    this.compareList.push(id)
+          // }
+      },
+      goToCompare() {
+        console.log(this.compareList)
+         if (this.compareList.length == 2) {
+           this.$router.push(`/comparecar/${this.compareList[0]}/${this.compareList[1]}`);
+         }
+          
+      },
+
       getCar() {
         axios
         .get("http://localhost:3000/CarsData")
@@ -184,7 +212,8 @@ export default {
         }
       },
       BrandFiltered(brand) {
-      this.car = this.car.filter((val) => val.car_brand == brand)
+        this.brandValue = this.brandValue === brand ? "" : brand
+        this.car.filter((val) => val.car_brand == this.brandValue)
       },
       PriceFiltered(num) {
         if (num == 1) {

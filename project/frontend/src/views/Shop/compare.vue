@@ -10,6 +10,9 @@
           <div
             class="bg-orange-200 border-2 w-5/12 space-y-2 p-4 rounded-md text-center"
           >
+          <div class="border-b-2 border-white">
+              <img :src="getCarImage(car1.car_images[0].car_img)">
+            </div>
             <!-- ราคา -->
             <div class="p-4 border-b-2 border-white">
               <p>{{ car1.car_price }}</p>
@@ -106,6 +109,9 @@
           <div
             class="bg-orange-200 border-2 w-5/12 space-y-2 p-4 rounded-md text-center"
           >
+          <div class="border-b-2 border-white">
+              <img :src="getCarImage(car2.car_images[0].car_img)">
+            </div>
             <!-- ราคา -->
             <div class="p-4 border-b-2 border-white">
               <p>{{ car2.car_price }}</p>
@@ -182,7 +188,12 @@ export default {
       .then(res => {
           this.car2 = res.data;
       })
-    }
+    },
+    getCarImage(path) {
+        if (path) {
+          return "http://localhost:3000/" + path
+        }
+      },
   }
 };
 </script>

@@ -868,7 +868,7 @@ export default {
       car_gear: "",
       car_num_of_gear: "",
       car_owner: "",
-      car_act: "",
+      car_act: null,
       car_register: "",
       car_distance: "",
       car_yearbought: "",
@@ -921,7 +921,7 @@ export default {
       axios.post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
       .then(_res => {
         //TODO go to page myCar
-        this.$router.push("/mycar");
+        this.$router.push(`/mycar/${this.user.user_id}`);
       }).catch(err => {
         return console.log(err);
       });
