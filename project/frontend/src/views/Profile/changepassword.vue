@@ -382,9 +382,9 @@ export default {
   },
   methods: {
     savepassword() {
-      // if (this.$v.$invalid) {
-      //   this.$v.$touch();
-      // } else {
+      if (!this.$v.$invalid) {
+        this.$v.$touch();
+      } else {
         axios
           .put(`http://localhost:3000/resetPassword/${this.$route.params.userId}`, {
             password: this.Password,
@@ -393,7 +393,7 @@ export default {
           })
           .then(res => {
             if (res.data != "success") {
-              alert("Can't change password!")
+              // alert("Can't change password!")
               this.oldPassword = true;
             } else {
               this.oldPassword = false;
@@ -404,7 +404,7 @@ export default {
           .catch(err => {
             console.log(err);
           });
-      // }
+      }
     }
   }
 };

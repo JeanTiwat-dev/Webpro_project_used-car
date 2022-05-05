@@ -103,7 +103,6 @@
                         placeholder="Date of Birth"
                         onfocus="(this.type='date')"
                       />
-                      <!-- TODO - validate -->
                       <span
                         v-if="$v.birthdate.$error && !$v.birthdate.required"
                         class="text-xs text-red-700 mt-2"
