@@ -60,8 +60,8 @@
               "
               ><b>shop</b></router-link
             >
-            <router-link
-              to="/sell"
+            <button
+              @click="goTorequestseller()"
               class="
                 mr-10
                 font-medium
@@ -70,8 +70,20 @@
                 hover:text-gray-900
                 focus:text-blue-900
               "
-              ><b>sell car</b></router-link
-            >
+              ><b>sell car</b></button>
+
+            <router-link
+              v-show="isAdmin"
+              to="/manageseller"
+              class="
+                mr-10
+                font-medium
+                leading-6
+                text-gray-600
+                hover:text-gray-900
+                focus:text-blue-900
+              "
+              ><b>manage seller</b></router-link>
           </nav>
         </div>
 
@@ -189,8 +201,10 @@
                   whitespace-no-wrap">
               My Profile
             </li>
-            <li class="
-                  rounded-t
+            <li class="">
+              <router-link
+                to="/myCar"
+                class="
                   bg-white
                   hover:bg-gray-200
                   py-2
@@ -231,15 +245,22 @@ export default {
     return {
       menu: false,
       user: [],
+      isAdmin: false,
     };
   },
   mounted() {
     this.isLoggedin();
+    this.isadmin();
   },
   methods: {
     isLoggedin() {
       this.user = JSON.parse(localStorage.getItem("user_account"));
       // console.log(this);
+    },
+    isadmin() {
+      if (this.user.role === "admin") {
+        this.isAdmin = true;
+      }
     },
     islogOut() {
       localStorage.removeItem("user_account");
@@ -251,6 +272,14 @@ export default {
     },
     goToMyCar() {
       this.$router.push(`/mycar/${this.user.user_id}`);
+    },
+    goTorequestseller() {
+      if(this.user) {
+        this.$router.push(`/requestseller/${this.user.user_id}`);
+      } else {
+        alert("You must login first");
+        this.$router.push("/login");
+      }
     }
   },
 };
