@@ -40,11 +40,12 @@ router.post('/goto', async function(req, res, next) {
 
 // Reset password
 router.put("/resetPassword/:userId", async (req, res, next) => {
-    try {
-        await checkValidate.validateAsync(req.body, { abortEarly: false });
-    } catch (error) {
-        return res.status(400).send(error);
-    }
+    console.log(1);
+    // try {
+    //     await checkValidate.validateAsync(req.body, { abortEarly: false });
+    // } catch (error) {
+    //     return res.status(400).send(error);
+    // }
 
     try {
         let userId = req.params.userId;
