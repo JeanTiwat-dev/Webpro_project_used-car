@@ -64,7 +64,7 @@ router.put("/resetPassword/:userId", async (req, res, next) => {
         }
         await pool.query(
             "UPDATE Login SET login_password = ? WHERE user_id = ?", 
-            [password, userId]
+            [newpassword, userId]
         );
         return res.json('success');
     } catch (err) {

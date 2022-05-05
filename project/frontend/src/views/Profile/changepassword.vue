@@ -319,7 +319,7 @@ export default {
   methods: {
     savepassword() {
       axios
-        .put(`/resetPassword/${this.$route.params.userId}`, {
+        .put(`http://localhost:3000/resetPassword/${this.$route.params.userId}`, {
           password: this.Password,
           newpassword: this.newpassword,
           confirmpassword: this.confirmpassword
