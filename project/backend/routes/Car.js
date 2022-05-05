@@ -60,7 +60,7 @@ router.get("/CarsData", async function (_req, res, next) {
 
 // Get car by id
 router.get("/getCarsData/:id", async function (req, res, next) {
-    console.log(1);
+    console.log("getCarsData");
     try {
         const [cars] = await pool.query(
             `SELECT * FROM Car WHERE car_id = ${req.params.id}`
@@ -77,6 +77,7 @@ router.get("/getCarsData/:id", async function (req, res, next) {
 
 // Add car
 router.post("/addCar/:userId", upload.array("imgCar", 6),async function (req, res, next) {
+    console.log("addCar");
         try {
             await checkValidate.validateAsync(req.body, { abortEarly: false });
         } catch (error) {
