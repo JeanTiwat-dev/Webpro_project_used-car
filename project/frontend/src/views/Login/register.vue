@@ -493,10 +493,13 @@ export default {
             address: this.address
           })
           .then(res => {
+            let errMessage = "";
             if (res.data != "success") {
-              alert(res.data);
+              res.data.forEach(element => {
+                errMessage += element + "\n"; 
+              });
+              alert(errMessage);
               } else {
-                alert("Register Success");
                 this.$router.push("/login");
               }
           })

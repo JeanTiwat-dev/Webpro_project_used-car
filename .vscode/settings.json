@@ -20,12 +20,14 @@
         "idcard",
         "lastname",
         "manageseller",
+        "Massege",
         "modelyear",
         "numberofdoors",
         "numgear",
         "originalname",
         "psge",
         "saveprofile",
+        "semibold",
         "บลาๆๆๆๆ"
     ],
     "cSpell.ignoreWords": [
