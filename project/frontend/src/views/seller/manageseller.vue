@@ -84,8 +84,9 @@
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
                         <!-- confirm -->
-                        <div class="w-24">
+                        <div class="w-24" v-show="showConfirm">
                           <button
+                            @click="confirm()"
                             type="button"
                             class="flex
                                     items-center
@@ -105,7 +106,29 @@
                             <span class="uppercase">confirm</span>
                           </button>
                         </div>
-                        <!-- cancle -->
+                        <!-- cancel -->
+                        <div class="w-24" v-show="showCancel">
+                          <button
+                            @click="cancel()"
+                            type="button"
+                            class="flex
+                                    items-center
+                                    justify-center
+                                    focus:outline-none
+                                    text-white
+                                    bg-red-500
+                                    hover:bg-red-600
+                                    rounded-xl
+                                    py-3
+                                    w-full
+                                    transition
+                                    duration-150
+                                    ease-in
+                                "
+                          >
+                            <span class="uppercase">cancel</span>
+                          </button>
+                        </div>
                         
                       </td>
                     </tr>
@@ -135,6 +158,8 @@ export default {
       phone: "",
       address: "",
       email: "",
+      showCancel: false,
+      showConfirm: true,
     };
   },
   mounted() {
@@ -148,6 +173,15 @@ export default {
       this.phone = this.user.user_phone;
       this.address = this.user.user_address;
       this.email = this.user.user_email;
+    },
+    confirm() {
+      this.showConfirm = false;
+      this.showCancel = true;
+      
+    },
+    cancel() {
+      this.showConfirm = true;
+      this.showCancel = false;
     }
   }
 };
