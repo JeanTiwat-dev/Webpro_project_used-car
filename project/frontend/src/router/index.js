@@ -44,8 +44,9 @@ const routes = [
     component: () => import("../views/Profile/editprofile.vue")
   },
   {
-    path: "/myCar",
+    path: "/mycar/:userId",
     name: "mycar",
+    meta: { login: true },
     component: () => import("../views/Mycar/mycar.vue")
   },
   {
@@ -57,7 +58,7 @@ const routes = [
   {
     path: "/manageseller",
     name: "manageseller",
-    meta: { admin: true },
+    meta: { login: true },
     component: () => import("../views/seller/manageseller.vue")
   },
   {
@@ -68,8 +69,16 @@ const routes = [
   {
     path: "/changepassword/:userId",
     name: "changepassword",
+    meta: { login: true },
     component: () => import("../views/Profile/changepassword.vue")
   },
+  {
+    path: "/requestseller/:userId",
+    name: "requestseller",
+    meta: { login: true },
+    component: () => import("../views/seller/requestseller.vue")
+  },
+
 
 ];
 

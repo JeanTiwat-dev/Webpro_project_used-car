@@ -209,7 +209,7 @@
                       Please enter phone number.
                     </p>
                     <p
-                      v-if="!$v.phone.mobile"
+                      v-if="!$v.phone.mobile || !$v.phone.maxLength"
                       class="text-xs text-red-700 mt-2"
                     >
                       Phone format incorrect.
@@ -550,7 +550,7 @@
 
 <script>
 import axios from "axios";
-import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { required, email, minLength, maxLength,sameAs } from "vuelidate/lib/validators";
 
 function checkid(value) {
   if (!value) {
@@ -640,7 +640,8 @@ export default {
     },
     phone: {
       required,
-      mobile
+      mobile,
+      maxLength: maxLength(10),
     },
     username: {
       required,
@@ -661,9 +662,9 @@ export default {
   },
   methods: {
     register() {
-      if (this.password !== this.password_con) {
-        alert("password not matched");
-      } else {
+        if (this.$v.$invalid) {
+          this.$v.$touch();
+        } else {
         axios
           .post("http://localhost:3000/register", {
             username: this.username,
