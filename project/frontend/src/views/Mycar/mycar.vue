@@ -1,6 +1,6 @@
 <template>
 <welcome-layout>
-    <div class="min-h-screen bg-gradient-to-br pt-20">
+    <div class="min-h-screen bg-gradient-to-br">
         <h2 class="text-3xl m-6 mt-12">{{user.user_firstname}}'s Cars</h2>
     <div class="col-start-4 col-end-13 ">
             <div class="min-h-screen container mt-4 mx-auto" id="app">
@@ -49,8 +49,9 @@ export default {
       console.log(this);
         },
         getCar() {
+            console.log(this.$route.params.userId);
         axios
-        .get("http://localhost:3000/CarsData")
+        .get(`http://localhost:3000/CarsData/${this.$route.params.userId}`)
         .then(res => {
           this.car = res.data
           console.log(this.car)
