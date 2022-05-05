@@ -93,9 +93,7 @@
                   class="text-xs text-red-700 mt-2"
                   >Please fill in password.</span
                 >
-                <span
-                  v-show="oldPassword"
-                  class="text-xs text-red-700 mt-2"
+                <span v-show="oldPassword" class="text-xs text-red-700 mt-2"
                   >Your password is incorrect!</span
                 >
               </div>
@@ -154,12 +152,24 @@
                   >
                   <!-- must have -->
                   <p
-                    v-if="!$v.newPassword.complexup || !$v.newPassword.complexlow || !$v.newPassword.complexnumber || !$v.newPassword.complexspecial || !$v.newPassword.complexwhitespace">Password must have 
+                    v-if="
+                      !$v.newPassword.complexup ||
+                        !$v.newPassword.complexlow ||
+                        !$v.newPassword.complexnumber ||
+                        !$v.newPassword.complexspecial ||
+                        !$v.newPassword.complexwhitespace
+                    "
+                  >
+                    Password must have
                     <span v-if="!$v.newPassword.complexup">2 Uppercase </span>
                     <span v-if="!$v.newPassword.complexlow">2 Lowercase </span>
                     <span v-if="!$v.newPassword.complexnumber">2 Number </span>
-                    <span v-if="!$v.newPassword.complexspecial">2 Special characters </span>
-                    <span v-if="!$v.newPassword.complexwhitespace">No Whitespace </span>
+                    <span v-if="!$v.newPassword.complexspecial"
+                      >2 Special characters
+                    </span>
+                    <span v-if="!$v.newPassword.complexwhitespace"
+                      >No Whitespace
+                    </span>
                   </p>
                 </div>
               </div>
@@ -374,27 +384,28 @@ export default {
   },
   methods: {
     savepassword() {
-      if (this.$v.$invalid) {
-        this.$v.$touch();
-      } else {
+      // if (this.$v.$invalid) {
+      //   this.$v.$touch();
+      // } else {
         axios
-          .put(`/resetPassword/${this.$route.params.userId}`, {
+          .put(`http://localhost:3000/resetPassword/${this.$route.params.userId}`, {
             password: this.Password,
-            newpassword: this.newpassword,
-            confirmpassword: this.confirmpassword
+            newpassword: this.newPassword,
+            confirmpassword: this.conNewPassword
           })
           .then(res => {
-            if (res.data != 'success') {
+            if (res.data != "success") {
               this.oldPassword = true;
             } else {
-              alert('Change Password Success!')
-              this.$router.push("/profile");
+              this.oldPassword = false;
+              alert("Change Password Success!");
+              this.$router.push(`/profile/${this.$route.params.userId}`);
             }
           })
           .catch(err => {
             console.log(err);
           });
-      }
+      // }
     }
   }
 };
