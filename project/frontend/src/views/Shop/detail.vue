@@ -1,7 +1,7 @@
 <template>
 <welcome-layout>
-  <div class="container mx-auto pt-32 pb-20">
-    <div class="carousel relative shadow-2xl bg-white w-full mt-4">
+  <div class="container mx-auto">
+     <div class="carousel relative shadow-2xl bg-white w-full mt-4">
     <div class="carousel-inner relative overflow-hidden w-full">
       <!--Slide 1-->
       <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
@@ -28,23 +28,23 @@
       <label for="carousel-4" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
 
       <!--Slide 4-->
-      <input class="carousel-open" type="radio" id="carousel-4" name="carousel" aria-hidden="true" hidden="">
+       <input class="carousel-open" type="radio" id="carousel-4" name="carousel" aria-hidden="true" hidden="">
       <div class="carousel-item absolute opacity-0" style="height:75vh;">
         <img :src="getCarImage(car.car_images[3].car_img)" class="block h-full w-full bg-gray-200 text-white text-5xl text-center"/>
       </div>
       <label for="carousel-3" class="prev control-4 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
       <label for="carousel-5" class="next control-4 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
 
-      <!--Slide 5-->
-      <input class="carousel-open" type="radio" id="carousel-5" name="carousel" aria-hidden="true" hidden="">
+       <!--Slide 5-->
+       <input class="carousel-open" type="radio" id="carousel-5" name="carousel" aria-hidden="true" hidden="">
       <div class="carousel-item absolute opacity-0" style="height:75vh;">
         <img :src="getCarImage(car.car_images[4].car_img)" class="block h-full w-full bg-gray-200 text-white text-5xl text-center"/>
       </div>
       <label for="carousel-4" class="prev control-5 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
       <label for="carousel-6" class="next control-5 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
 
-      <!--Slide 6-->
-      <input class="carousel-open" type="radio" id="carousel-6" name="carousel" aria-hidden="true" hidden="">
+       <!--Slide 6-->
+       <input class="carousel-open" type="radio" id="carousel-6" name="carousel" aria-hidden="true" hidden="">
       <div class="carousel-item absolute opacity-0" style="height:75vh;">
         <img :src="getCarImage(car.car_images[5].car_img)" class="block h-full w-full bg-gray-200 text-white text-5xl text-center"/>
       </div>
@@ -73,7 +73,7 @@
       </ol>
 
     </div>
-    </div>
+     </div>
     <div class="mt-10 text-center bg-gray-100 p-2 w-full">
       {{car.car_price}} ฿
     </div>
@@ -152,9 +152,6 @@ export default {
           title: 'Spec'
         }
       ],
-      // spec: [
-      //   {id:1, color: "Black"}
-      // ]
       car: {},
       };
     },
@@ -164,15 +161,13 @@ export default {
       methods: {
         getCar() {
         axios
-        .get(`http://localhost:3000/CarsData/${this.$route.params.id}`)
+        .get(`http://localhost:3000/getCarsData/${this.$route.params.id}`)
         .then(res => {
           // const carData = res.data.find((val) => val.car_id == this.$route.params.id)
           // console.log(this.$route.params.id)
           // console.log(carData)
           console.log(res.data)
           this.car = res.data
-          // console.log(this.car)
-
         })
         .catch(err => console.log(err));
         },
