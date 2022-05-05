@@ -921,7 +921,7 @@ export default {
       axios.post(`http://localhost:3000/addCar/${this.user.user_id}`, formData)
       .then(_res => {
         //TODO go to page myCar
-        // this.$router.push('/myCar');
+        this.$router.push("/mycar");
       }).catch(err => {
         return console.log(err);
       });
