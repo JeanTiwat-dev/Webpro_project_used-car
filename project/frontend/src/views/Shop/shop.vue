@@ -1,8 +1,6 @@
 <template>
 <welcome-layout>
-<div class="pt-20 pb-20" id="app">
-       
-    <div class="w-full grid grid-cols-12">
+    <div class="w-full grid grid-cols-12" id="app">
         <div class="col-start-1 col-end-3 text-center text-bold grid grid-cols-1 divide-y py-4 h-screen overflow-y-auto fixed">
           
             <div class="rounded shadow border p-5 w-full mt-3 bg-gray-50">
@@ -66,8 +64,8 @@
                   <div class="grid grid-cols-4 m-2">
                    <button class="flex items-center mb-3 p-2 "><a class="w-full drop-shadow-2xl rounded-full border-2 border-gray-100 bg-white hover:bg-gray-50 text-white py-2 px-4 block" @click="checkColor('White')">.</a></button>
                     <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-black hover:bg-gray-900 text-black py-2 px-4 block whitespace-no-wrap" @click="checkColor('Black')" >.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-neutral-700 hover:bg-neutral-600 text-neutral-700 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Bronz')">.</a></button>
-                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-purple-500 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Other')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-neutral-700 hover:bg-neutral-600 text-neutral-700 py-2 px-4 block whitespace-no-wrap" @click="checkColor('Bronze')">.</a></button>
+                    <button class="flex items-center mb-3 p-2"><a class="w-full drop-shadow-2xl rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-purple-500 py-2 px-4 block whitespace-no-wrap">.</a></button>
                   </div>                                                                                                                       
                 </ul>
             </div>
@@ -125,7 +123,6 @@
          </div>
         </div>
     </div>
-  </div>
 </welcome-layout>
 </template>
 
