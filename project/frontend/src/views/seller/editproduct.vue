@@ -919,8 +919,8 @@ updateProduct() {
     });
     axios
     .put(`http://localhost:3000/editCar/${this.$route.params.carId}`, formData)
-    .then(res => {
-        // TODO go to page my car
+    .then(_res => {
+        this.$router.push(`/mycar/${this.user.user_id}`);
     })
     .catch(err => {
         return console.log(err);
@@ -971,3 +971,10 @@ option {
 color: #000;
 }
 </style>
+
+//TODO format date (editcar, editprofile)
+//TODO currentcy
+//TODO validate ให้แก้รถได้แค่ id ตัวเอง
+//TODO create button editcar
+//TODO validate editpassword
+//TODO reset button sort & filter (focus)

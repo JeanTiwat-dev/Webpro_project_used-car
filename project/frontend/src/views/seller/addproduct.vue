@@ -2,7 +2,7 @@
   <welcome-layout>
     <div id="app">
       <!-- component -->
-      <div class="flex items-center justify-center bg-gray-100 py-10">
+      <div class="flex items-center justify-center bg-gray-100 py-10 min-h-screen">
         <!-- card -->
         <div>
           <div
